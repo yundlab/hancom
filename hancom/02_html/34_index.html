@@ -1,0 +1,204 @@
+<!--
+1. 32_README.md 파일 형식 정리
+2. 33.README.md 파일 클로드 코드 설치 정리
+3. 34_index.html 미니 프로젝트 : 지금까지 배운 태그 활용하여 웹 사이트 구축 후 깃허브 업데이트
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yun:D 이력서</title>
+</head>
+<body>
+    <header>
+        <h1>Yun:D</h1>
+        <nav>
+            <ul>
+                <li><a href="#section1">이력서</a></li>
+                <li><a href="#section2">자기소개서</a></li>
+                <li><a href="#section3">포트폴리오</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>한윤지</h2>
+            <img src="./image.jpg" width="400px" height="500px">
+            <h4>성장은 질문에서 시작한다. <mark>'왜?'</mark>를 놓치지 않는 개발자<br></h4>
+            <p>
+                화면 구현에 흥미를 느끼며 프론트엔드에서 시작해<br>
+                사용자 경험과 디자인을 이해하는 <strong>풀스택 개발자</strong>를 지향하고 있습니다.<br>
+                불편함을 그냥 넘기지 않고 질문하며 더 나은 해결 방법을 고민합니다.<br>
+                질문을 구현으로 연결해 효율적인 서비스를 만드는 개발자가 되고자 합니다.<br>
+            </p>
+        </section>
+        <section id="section1">
+            <h3>이력서</h3>
+            <h4>contact</h4>
+            <ul>
+                <li><a href="tel:01046820113">010-4682-0113</a></li>
+                <li><a href="mailto:by.yundlab@gmail.com">by.yundlab@gmail.com</a></li>
+                <li><a href="https://github.com/yundlab">Github</a></li>
+                <li><a href="https://yundlab.tistory.com">Blog</a></li>
+            </ul>
+            <form>
+                <label>이름 : <input type=text placeholder="이름을 적어주세요"></label>
+                <label>연락처 : <input type="tel"placeholder="연락처를 적어주세요"></label>
+                <label>이메일 : <input type=mail placeholder="메일을 적어주세요"></label>
+                <button typw="submit">보내기</button>
+            </form>
+            <p>
+                <small>연락처를 남겨주시면 확인하는 대로 회신드리겠습니다.</small>
+            </p>
+            <h4>교육</h4>
+            <ul>
+                <li>컴퓨터공학사</li>
+                <li>프로그래머스 데브코스 웹 풀 사이클 개발(React,Node.js) 9기</li>
+                <li>hancom AI를 활용한 프론트엔드 개발자</li>
+            </ul>
+            <h4>자격증</h4>
+            <ol>
+                <li>SQLD</li>
+                <li>정보처리기능사</li>
+                <li>웹디자인기능사</li>
+            </ol>
+            <h4>기술스택</h4>
+            <table border="1">
+                <tr><th>파트</th><th>기술스택</th></tr>
+                <tr><td><strong>Frontend</strong></td><td>React, TypeScript, JavaScript, HTML/CSS, React Router, Tailwind CSS, jQuery</td></tr>
+                <tr><td><strong>Backend</strong></td><td>Node.js, Express, Database MySQL, MariaDB</td></tr>
+                <tr><td><strong>Tools</strong></td><td>Git, GitHub, Notion, Slack, Jira, Figma, Vercel, Photoshop, Illustrator</td></tr>
+            </table>
+            <h4>경력</h4>
+            <ul>
+                <li><strong>비바채엔터프라이즈(24시내고향) | </strong>웹 디자인 및 퍼블리싱 | 2022.06 - 2024.01</li>
+                <li><strong>화로 | </strong>웹 콘텐츠 디자인 | 2021.06 - 2021.12</li>
+                <li><strong>레인보우 | </strong>웹 콘텐츠 디자인 | 2020.10 - 2021.06</li>
+                <li><strong>위메프 | </strong>광고 운영 | 2018.12 - 2019.07</li>
+            </ul>
+            <hr>
+        </section>
+        <section id="section2">
+            <h3>자기소개서</h3>
+            <h4>개발자가 되기로 한 계기</h4>
+            <p>
+                코로나19로 백신 예약 경쟁이 치열하던 시기, GitHub에 공개된 백신 예약 자동화 도구를 보고 개발이 누군가의 불편함을 실질적으로 해결할 수 있다는 걸 처음 실감했습니다. '나도 저런 걸 만드는 사람이 되고 싶다'는 마음이 생겼지만, 그때는 디자인 실무를 이어가고 있었고 바로 뛰어들 용기를 내지 못했습니다. 이후 3년 가까이 웹 디자인·퍼블리싱 업무를 하면서도 그 마음은 사라지지 않았고, 결국 더 미루면 후회로 남을 것 같아 늦었지만 직접 구현하는 개발자의 길을 선택했습니다.
+            </p>
+            <h4>강점</h4>
+            <p>
+                데브코스 팀 프로젝트에서 게시글 목록 화면을 구현하던 중, 데이터가 많아질수록 페이지 로딩이 눈에 띄게 느려지는 문제를 발견했습니다. 처음에는 프론트엔드 렌더링 문제라고 생각했지만, 네트워크 탭을 확인해보니 API 응답 자체가 2초 이상 걸리고 있었습니다. '왜 이렇게 느릴까'라는 질문에서 출발해 백엔드 코드를 직접 살펴봤고, 게시글을 조회할 때마다 댓글 수를 매번 별도 쿼리로 계산하고 있다는 걸 발견했습니다. 팀원들과 상의해 쿼리를 조인 방식으로 개선하고, 필요한 데이터만 페이지네이션으로 나눠 불러오도록 구조를 바꿨습니다. 그 결과 평균 응답 시간을 2초에서 400ms대로 줄일 수 있었고, 이 경험을 통해 화면에 보이는 문제라도 원인은 다른 레이어에 있을 수 있다는 것, 그리고 궁금증을 끝까지 파고드는 태도가 실제 문제 해결로 이어진다는 것을 배웠습니다.
+            </p>
+            <h4>이전 경력</h4>
+            <p>
+                3년간 퍼블리싱과 디자인을 하며 사용자가 실제로 마주하는 화면의 디테일과 접근성을 고민해왔습니다. 이 경험은 지금 프론트엔드 개발을 할 때, 단순히 화면을 구현하는 것을 넘어 사용자 경험까지 고려하는 태도로 이어지고 있습니다.
+            </p>
+            <hr>
+        </section>
+        <section>
+            <h3>포트폴리오</h3>
+            <article>
+                <h4>todam</h4>
+                <video controls width="200" src="./video2.mp4" autoplay muted loop></video>
+
+                <p>
+                    보이지 않던 ‘기다림’을, 보이게 만들다<br>
+                    고객과 공방을 ‘한 달의 공백’ 동안 잇는 서비스
+                </p>
+
+                <dl>
+                    <dt><b>Frontend</b></dt>
+                    <dd>Next.js 16, React 19, TypeScript, TanStack Query, Zustand, Tailwind CSS 4, framer-motion, PWA</dd>
+                    <dt><b>Backend</b></dt>
+                    <dd>NestJS 11, Prisma 7, PostgreSQL, Redis, BullMQ, JWT, Passport, Zod 검증, Swagger</dd>
+                    <dt><b>Infra · DevOps</b></dt>
+                    <dd>Docker, Nginx, AWS EC2, S3, SES, GCP Vision, FCM, Turborepo · pnpm, GitHub Actions CI, Husky, ESLint</dd>
+                    <dt><b>기간</b></dt>
+                    <dd>2026.05.18 - 2026.06.19</dd>
+                    <dt><b>인원</b></dt>
+                    <dd>FE 3명 / BE 2명</dd>
+                </dl>
+
+                <h5>주요 기능</h5>
+                <ul>
+                    <li><strong>영수증 기반 자동 기록</strong> : 영수증 OCR 인식을 통해 지출 정보를 추출하고 여행별 소비 내역을 자동 기록</li>
+                    <li><strong>여행별 소비 조회 및 정산</strong> : 사용자별 지출 내역을 시각화하고 다인원 정산 금액을 자동 계산</li>
+                    <li><strong>분석 리포트</strong> : OpenAI API로 지출 패턴을 분석해 개인화된 소비 인사이트 제공</li>
+                    <li><strong>위치 기반 기록</strong> : Google Places + Geocoding API로 영수증 발생 위치를 지도에 자동 매핑</li>
+                </ul>
+
+                <h5>나의 역할 (Frontend)</h5>
+                <ul>
+                    <li>React + TypeScript 기반 PWA로 구현해 모바일/데스크톱 모두에서 앱과 유사한 사용 경험 제공</li>
+                    <li>TanStack Query로 서버 상태 관리 및 캐싱 처리, 중복 API 호출을 줄여 응답 속도 개선</li>
+                    <li>소셜 로그인, 지출 기록, 리포트 등 핵심 페이지 UI 및 사용자 인터랙션 구현</li>
+                    <li>Tailwind CSS 기반 반응형 디자인 시스템 구축</li>
+                </ul>
+
+                <h5>문제 해결 / 트러블슈팅</h5>
+                <p>(프로젝트 진행 중, 구현 과정에서의 문제 해결 경험은 추후 보완 예정 / 상황, 분석, 해결, 결과)</p>
+
+                <h5>아쉬운 점</h5>
+                <ul>
+                    <li>4주의 제한된 일정으로 React Native 앱 기획을 PWA로 전환하게 된 점</li>
+                    <li>OCR이 핵심 정보 추출에 초점을 맞춰, 영수증 세부 항목까지 구조화하지 못한 점</li>
+                </ul>
+
+                <h5>향후 개선 방향</h5>
+                <p>향후에는 앱 환경으로의 확장과 함께 OCR 상세 추출 범위를 고도화해 더 정교한 소비 기록 서비스를 구현하고 싶습니다.</p>
+            </article>
+            <article>
+                <h4>travel-tick</h4>
+                <video controls width="200" src="./video.mp4" autoplay muted loop></video>
+
+                <p>여행은 내가 할게, 기록은 누가할래? 영수증 OCR을 활용해 여행 중 지출을 기록하고 정산까지 도와주는 서비스</p>
+
+                <dl>
+                    <dt><b>Frontend</b></dt>
+                    <dd>React, TypeScript, Tailwind CSS, TanStack Query, PWA</dd>
+                    <dt><b>Backend</b></dt>
+                    <dd>Node.js, Express, PostgreSQL, Prisma</dd>
+                    <dt><b>Infra</b></dt>
+                    <dd>Render, Supabase, Vercel</dd>
+                    <dt><b>External API</b></dt>
+                    <dd>Naver Clova OCR, OpenAI API, Google Places API, Geocoding API</dd>
+                    <dt><b>기간</b></dt>
+                    <dd>2026.04.20 - 2026.05.15</dd>
+                    <dt><b>인원</b></dt>
+                    <dd>FE 1명 / BE 1명 / Full-stack 2명</dd>
+                </dl>
+
+                <h5>주요 기능</h5>
+                <ul>
+                    <li><strong>영수증 기반 자동 기록</strong> : 영수증 OCR 인식을 통해 지출 정보를 추출하고 여행별 소비 내역을 자동 기록</li>
+                    <li><strong>여행별 소비 조회 및 정산</strong> : 사용자별 지출 내역을 시각화하고 다인원 정산 금액을 자동 계산</li>
+                    <li><strong>분석 리포트</strong> : OpenAI API로 지출 패턴을 분석해 개인화된 소비 인사이트 제공</li>
+                    <li><strong>위치 기반 기록</strong> : Google Places + Geocoding API로 영수증 발생 위치를 지도에 자동 매핑</li>
+                </ul>
+
+                <h5>나의 역할 (Frontend)</h5>
+                <ul>
+                    <li>React + TypeScript 기반 PWA로 구현해 모바일/데스크톱 모두에서 앱과 유사한 사용 경험 제공</li>
+                    <li>TanStack Query로 서버 상태 관리 및 캐싱 처리, 중복 API 호출을 줄여 응답 속도 개선</li>
+                    <li>소셜 로그인, 지출 기록, 리포트 등 핵심 페이지 UI 및 사용자 인터랙션 구현</li>
+                    <li>Tailwind CSS 기반 반응형 디자인 시스템 구축</li>
+                </ul>
+
+                <h5>문제 해결 / 트러블슈팅</h5>
+                <p>(프로젝트 진행 중, 구현 과정에서의 문제 해결 경험은 추후 보완 예정 / 상황, 분석, 해결, 결과)</p>
+
+                <h5>아쉬운 점</h5>
+                <ul>
+                    <li>4주의 제한된 일정으로 React Native 앱 기획을 PWA로 전환하게 된 점</li>
+                    <li>OCR이 핵심 정보 추출에 초점을 맞춰, 영수증 세부 항목까지 구조화하지 못한 점</li>
+                </ul>
+
+                <h5>향후 개선 방향</h5>
+                <p>향후에는 앱 환경으로의 확장과 함께 OCR 상세 추출 범위를 고도화해 더 정교한 소비 기록 서비스를 구현하고 싶습니다.</p>
+            </article>  
+        </section>
+    </main>
+    <footer></footer>
+</body>
+</html>

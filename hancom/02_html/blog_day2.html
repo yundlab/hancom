@@ -1,0 +1,513 @@
+<style>
+.post-wrap * { box-sizing: border-box; }
+.post-wrap ul, .post-wrap ol, .post-wrap li { list-style: none !important; border: none !important; margin: 0; padding: 0; }
+.post-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+    color: #333;
+    line-height: 1.8;
+}
+.post-wrap .post-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    border-left: 5px solid #4f7df3;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    padding-left: 18px;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 40px;
+}
+.post-wrap .post-header * {
+    margin-top: 0 !important;
+}
+.post-wrap .tag-badge {
+    display: inline-block !important;
+    background: #e8effe;
+    color: #4f7df3;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.post-wrap .post-header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #1a1a2e;
+    margin: 0;
+}
+.post-wrap .subtitle {
+    margin-top: 8px;
+    color: #666;
+    font-size: 14px;
+}
+.post-wrap h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 48px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+.post-wrap h3 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #2c3e50 !important;
+    margin: 28px 0 10px !important;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap p {
+    margin-bottom: 14px;
+    font-size: 15px;
+}
+.post-wrap .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    background: none !important;
+}
+.post-wrap .summary-card {
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 10px;
+    padding: 16px 18px;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.post-wrap .summary-card * {
+    border: none !important;
+    outline: none !important;
+}
+.post-wrap .summary-card .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #4f7df3;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap .summary-card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.post-wrap .ctag {
+    display: inline-block;
+    background: #f1f3f9;
+    color: #444;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 0;
+    line-height: 1.6;
+    vertical-align: middle;
+}
+.post-wrap pre {
+    background: #1e2235;
+    color: #e8eaf6;
+    border-radius: 10px;
+    padding: 20px 22px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 14px 0 20px !important;
+}
+.post-wrap pre .c  { color: #7986cb; }
+.post-wrap pre .t  { color: #80cbc4; }
+.post-wrap pre .a  { color: #ffcc80; }
+.post-wrap pre .v  { color: #a5d6a7; }
+.post-wrap pre .tx { color: #e8eaf6; }
+.post-wrap code {
+    font-family: 'Courier New', monospace;
+    font-size: 13.5px;
+    background: #f1f3f9;
+    color: #c0392b;
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+.post-wrap .callout {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 18px 0;
+    font-size: 14.5px;
+}
+.post-wrap .callout.blue {
+    background: #e8f4fd;
+    border-left: 4px solid #3498db;
+    color: #1a5276;
+}
+.post-wrap .callout.green {
+    background: #eafaf1;
+    border-left: 4px solid #27ae60;
+    color: #1d6a3a;
+}
+.post-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 14px;
+}
+.post-wrap th {
+    background: #4f7df3;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+}
+.post-wrap td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e9ecef;
+}
+.post-wrap tr:nth-child(even) td { background: #f8f9ff; }
+.post-wrap .semantic-visual {
+    border: 2px solid #dee2e6;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+.post-wrap .sv-header {
+    background: #4f7df3;
+    color: #fff;
+    padding: 12px 16px;
+    text-align: center;
+}
+.post-wrap .sv-nav {
+    background: #7c9ff5;
+    color: #fff;
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 12px;
+}
+.post-wrap .sv-body {
+    display: flex;
+    min-height: 140px;
+}
+.post-wrap .sv-main {
+    flex: 3;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.post-wrap .sv-section {
+    background: #eaf2ff;
+    border: 1px dashed #7c9ff5;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #2c5282;
+}
+.post-wrap .sv-article {
+    background: #dbeafe;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: #1e3a5f;
+    margin-top: 4px;
+}
+.post-wrap .sv-aside {
+    flex: 1;
+    background: #fff3cd;
+    border-left: 2px solid #ffc107;
+    padding: 14px;
+    font-size: 12px;
+    color: #856404;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.post-wrap .sv-footer {
+    background: #6c757d;
+    color: #fff;
+    padding: 10px 16px;
+    text-align: center;
+}
+.post-wrap .tag-role-list {
+    margin: 14px 0;
+    padding: 0;
+    border: none;
+}
+.post-wrap .tag-role-item {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    margin-bottom: 6px !important;
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+}
+.post-wrap .tag-role-item .tname {
+    font-family: 'Courier New', monospace;
+    color: #4f7df3;
+    font-weight: 700;
+    display: inline-block !important;
+    width: 150px !important;
+    min-width: 150px !important;
+    max-width: 150px !important;
+    flex-shrink: 0 !important;
+    font-size: 13px;
+}
+.post-wrap .tag-role-item .tdesc {
+    color: #555;
+    flex: 1;
+    display: inline-block !important;
+}
+.post-wrap .closing {
+    margin-top: 0 !important;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #667eea22, #764ba222);
+    border-radius: 14px;
+    border: 1px solid #dee2e6;
+}
+.post-wrap .closing h3 { margin-top: 0 !important; margin-bottom: 10px; font-size: 17px; }
+.post-wrap .closing p  { font-size: 14.5px; color: #555; margin-bottom: 6px; }
+.post-wrap hr.divider {
+    border: none;
+    border-top: 1px solid #e9ecef;
+    margin: 36px 0;
+}
+</style>
+
+<div class="post-wrap">
+
+    <div class="post-header">
+        <span class="tag-badge"># HTML 학습일지</span>
+        <h1>[HTML 2일차] 오늘 배운 태그 총정리<br>+ 시맨틱 태그 심화 정리</h1>
+        <p class="subtitle">2026.06.30 · 학습 범위: 11번 ~ 28번 파일</p>
+    </div>
+
+    <h2>📋 오늘 다시 짚어본 것들</h2>
+
+    <p>퍼블리셔로 일하면서 수없이 익혀왔던 태그들이지만, 오랜만에 다시 직접 코드를 쳐보니 새롭게 느껴졌다. 손에 익었다고 생각했던 것들도 막상 처음부터 다시 쓰면 잠깐 멈추게 되는 순간이 있다. 그게 오히려 재미있었다.</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="card-title">목록</div>
+            <div class="tags">
+                <span class="ctag">ul</span><span class="ctag">ol</span><span class="ctag">li</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">표</div>
+            <div class="tags">
+                <span class="ctag">table</span><span class="ctag">tr</span><span class="ctag">th</span><span class="ctag">td</span><span class="ctag">thead</span><span class="ctag">tbody</span><span class="ctag">colspan</span><span class="ctag">rowspan</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">폼 &amp; 입력</div>
+            <div class="tags">
+                <span class="ctag">form</span><span class="ctag">label</span><span class="ctag">input</span><span class="ctag">textarea</span><span class="ctag">select</span><span class="ctag">button</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">미디어 / 링크</div>
+            <div class="tags">
+                <span class="ctag">iframe</span><span class="ctag">a</span><span class="ctag">img</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">레이아웃</div>
+            <div class="tags">
+                <span class="ctag">div</span><span class="ctag">span</span><span class="ctag">class</span><span class="ctag">id</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">글자 꾸미기</div>
+            <div class="tags">
+                <span class="ctag">em</span><span class="ctag">mark</span><span class="ctag">small</span><span class="ctag">blockquote</span><span class="ctag">sub</span><span class="ctag">sup</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">기타</div>
+            <div class="tags">
+                <span class="ctag">details</span><span class="ctag">summary</span><span class="ctag">br</span><span class="ctag">hr</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">⭐ 시맨틱</div>
+            <div class="tags">
+                <span class="ctag">header</span><span class="ctag">nav</span><span class="ctag">main</span><span class="ctag">section</span><span class="ctag">article</span><span class="ctag">aside</span><span class="ctag">footer</span>
+            </div>
+        </div>
+    </div>
+
+    <h2>🗂️ 태그별 메모</h2>
+
+    <h3>목록 — ul / ol / li</h3>
+    <p>실무에서 워낙 자주 쓰던 조합이라 별다른 막힘은 없었다. <code>type</code> 속성으로 번호 스타일을 <code>1</code>, <code>a</code>, <code>i</code>로 지정하거나, <code>ol</code> 안에 <code>ol</code>을 중첩하면 계층 구조도 표현된다.</p>
+
+    <pre><span class="t">&lt;ol</span> <span class="a">type</span>=<span class="v">"1"</span><span class="t">&gt;</span>
+  <span class="t">&lt;li&gt;</span><span class="tx">먹는 것</span><span class="t">&lt;/li&gt;</span>
+  <span class="t">&lt;ol</span> <span class="a">type</span>=<span class="v">"a"</span><span class="t">&gt;</span>
+    <span class="t">&lt;li&gt;</span><span class="tx">고기</span><span class="t">&lt;/li&gt;</span>
+    <span class="t">&lt;ol</span> <span class="a">type</span>=<span class="v">"i"</span><span class="t">&gt;</span>
+      <span class="t">&lt;li&gt;</span><span class="tx">삼겹살</span><span class="t">&lt;/li&gt;</span>
+    <span class="t">&lt;/ol&gt;</span>
+  <span class="t">&lt;/ol&gt;</span>
+<span class="t">&lt;/ol&gt;</span></pre>
+
+    <hr class="divider">
+
+    <h3>표 — table / colspan / rowspan</h3>
+    <p><code>colspan</code>으로 가로 칸, <code>rowspan</code>으로 세로 칸을 병합하는 건 실무에서도 빠질 수 없는 기본이다. <code>thead</code> / <code>tbody</code>로 구조를 나눠두면 나중에 CSS 적용할 때 훨씬 편하다.</p>
+
+    <pre><span class="t">&lt;table</span> <span class="a">border</span>=<span class="v">"1"</span><span class="t">&gt;</span>
+  <span class="t">&lt;thead&gt;</span>
+    <span class="t">&lt;tr&gt;&lt;th</span> <span class="a">colspan</span>=<span class="v">"3"</span><span class="t">&gt;</span><span class="tx">성적표</span><span class="t">&lt;/th&gt;&lt;/tr&gt;</span>
+  <span class="t">&lt;/thead&gt;</span>
+  <span class="t">&lt;tbody&gt;</span>
+    <span class="t">&lt;tr&gt;&lt;td</span> <span class="a">rowspan</span>=<span class="v">"2"</span><span class="t">&gt;</span><span class="tx">과목</span><span class="t">&lt;/td&gt;&lt;td&gt;</span><span class="tx">국어</span><span class="t">&lt;/td&gt;&lt;td&gt;</span><span class="tx">90</span><span class="t">&lt;/td&gt;&lt;/tr&gt;</span>
+    <span class="t">&lt;tr&gt;&lt;td&gt;</span><span class="tx">영어</span><span class="t">&lt;/td&gt;&lt;td&gt;</span><span class="tx">100</span><span class="t">&lt;/td&gt;&lt;/tr&gt;</span>
+  <span class="t">&lt;/tbody&gt;</span>
+<span class="t">&lt;/table&gt;</span></pre>
+
+    <hr class="divider">
+
+    <h3>폼 — form / input type</h3>
+    <p><code>form</code>으로 입력 요소들을 묶고, <code>input</code>의 <code>type</code> 속성으로 용도에 맞는 입력창을 지정한다. 자주 쓰는 것들이지만 이번 기회에 종류를 한 번 정리해봤다.</p>
+
+    <table>
+        <tr><th>type</th><th>역할</th></tr>
+        <tr><td><code>text</code></td><td>일반 텍스트 입력</td></tr>
+        <tr><td><code>email</code></td><td>이메일 형식 검증 포함</td></tr>
+        <tr><td><code>password</code></td><td>입력값 마스킹</td></tr>
+        <tr><td><code>checkbox</code></td><td>체크박스 — 다중 선택</td></tr>
+        <tr><td><code>radio</code></td><td>라디오 버튼 — name으로 묶어 단일 선택</td></tr>
+        <tr><td><code>file</code></td><td>파일 첨부</td></tr>
+        <tr><td><code>range</code></td><td>슬라이더</td></tr>
+        <tr><td><code>date</code></td><td>날짜 선택기</td></tr>
+        <tr><td><code>color</code></td><td>색상 피커</td></tr>
+    </table>
+
+    <hr class="divider">
+
+    <h3>a 태그 — href 활용</h3>
+    <p>실무에서 늘 쓰던 <code>a</code> 태그지만, <code>mailto:</code>, <code>tel:</code>, 앵커 링크까지 한 번에 정리해봤다.</p>
+
+    <pre><span class="t">&lt;a</span> <span class="a">href</span>=<span class="v">"https://google.com"</span> <span class="a">target</span>=<span class="v">"_blank"</span><span class="t">&gt;</span><span class="tx">새 탭으로 열기</span><span class="t">&lt;/a&gt;</span>
+<span class="t">&lt;a</span> <span class="a">href</span>=<span class="v">"mailto:me@example.com"</span><span class="t">&gt;</span><span class="tx">이메일 보내기</span><span class="t">&lt;/a&gt;</span>
+<span class="t">&lt;a</span> <span class="a">href</span>=<span class="v">"tel:01012345678"</span><span class="t">&gt;</span><span class="tx">전화 걸기</span><span class="t">&lt;/a&gt;</span>
+<span class="t">&lt;a</span> <span class="a">href</span>=<span class="v">"#section"</span><span class="t">&gt;</span><span class="tx">페이지 내 이동</span><span class="t">&lt;/a&gt;</span></pre>
+
+    <hr class="divider">
+
+    <h3>details / summary — JS 없는 아코디언</h3>
+    <p>퍼블리싱할 때도 가끔 쓰던 건데, 중첩까지 되는 걸 다시 확인했다. JS 없이 순수 HTML로 접기 UI를 만들 수 있다는 게 여전히 유용하다.</p>
+
+    <pre><span class="t">&lt;details&gt;</span>
+  <span class="t">&lt;summary&gt;</span><span class="tx">정답 보기</span><span class="t">&lt;/summary&gt;</span>
+  <span class="t">&lt;p&gt;</span><span class="tx">정답은 여기!</span><span class="t">&lt;/p&gt;</span>
+  <span class="t">&lt;details&gt;</span>
+    <span class="t">&lt;summary&gt;</span><span class="tx">정답 속의 정답</span><span class="t">&lt;/summary&gt;</span>
+    <span class="t">&lt;p&gt;</span><span class="tx">중첩도 된다.</span><span class="t">&lt;/p&gt;</span>
+  <span class="t">&lt;/details&gt;</span>
+<span class="t">&lt;/details&gt;</span></pre>
+
+    <hr class="divider">
+
+    <h2>⭐ 시맨틱 태그 — 다시 짚어보니</h2>
+
+    <p>오늘 다시 정리하면서 가장 의미 있었던 파트다. 퍼블리싱할 때도 써왔지만, 개념부터 다시 들여다보니 왜 써야 하는지가 더 명확하게 정리됐다.</p>
+
+    <h3>div와 뭐가 다른가</h3>
+    <p><code>div</code>는 아무 의미 없는 컨테이너다. 클래스 이름을 붙여야 비로소 어떤 영역인지 알 수 있다. 반면 시맨틱 태그는 태그 이름 자체가 역할을 설명한다. 코드 가독성뿐 아니라 검색엔진과 스크린리더도 이 차이를 읽는다.</p>
+
+    <div class="callout blue">
+        ❌ <code>&lt;div class="header"&gt;</code> — 클래스를 봐야 헤더인지 알 수 있음<br>
+        ✅ <code>&lt;header&gt;</code> — 태그 이름 자체가 역할을 말해줌
+    </div>
+
+    <h3>각 태그의 역할</h3>
+
+    <div class="tag-role-list">
+        <div class="tag-role-item"><span class="tname">&lt;header&gt;</span><span class="tdesc">페이지 또는 섹션 상단 — 로고, 제목, 검색창 등</span></div>
+        <div class="tag-role-item"><span class="tname">&lt;nav&gt;</span><span class="tdesc">내비게이션 링크 모음</span></div>
+        <div class="tag-role-item"><span class="tname">&lt;main&gt;</span><span class="tdesc">페이지 핵심 콘텐츠 — 페이지당 하나만</span></div>
+        <div class="tag-role-item"><span class="tname">&lt;section&gt;</span><span class="tdesc">주제별 묶음 — 챕터 단위로 내용을 구분</span></div>
+        <div class="tag-role-item"><span class="tname">&lt;article&gt;</span><span class="tdesc">독립적으로 완결되는 콘텐츠 — 포스트 하나, 댓글 하나</span></div>
+        <div class="tag-role-item"><span class="tname">&lt;aside&gt;</span><span class="tdesc">본문 외 보조 정보 — 사이드바, 관련 글 등</span></div>
+        <div class="tag-role-item"><span class="tname">&lt;footer&gt;</span><span class="tdesc">페이지 하단 — 저작권, 연락처, 사이트맵 등</span></div>
+    </div>
+
+    <h3>실제 페이지 구조</h3>
+
+    <div class="semantic-visual">
+        <div class="sv-header">
+            &lt;header&gt; — 로고 / 제목
+            <div class="sv-nav">&lt;nav&gt; — 홈 | 소개 | 연락처</div>
+        </div>
+        <div class="sv-body">
+            <div class="sv-main">
+                &lt;main&gt;
+                <div class="sv-section">
+                    &lt;section&gt;
+                    <div class="sv-article">&lt;article&gt; 글 1</div>
+                    <div class="sv-article">&lt;article&gt; 글 2</div>
+                </div>
+            </div>
+            <div class="sv-aside">&lt;aside&gt;<br>사이드바</div>
+        </div>
+        <div class="sv-footer">&lt;footer&gt; — 2026. 내 사이트</div>
+    </div>
+
+    <h3>section vs article</h3>
+    <p>기준은 하나다. <strong>이 내용을 따로 떼어내도 맥락이 통하는가.</strong></p>
+
+    <table>
+        <tr><th></th><th>section</th><th>article</th></tr>
+        <tr><td>역할</td><td>주제별 묶음</td><td>독립적으로 완결되는 콘텐츠</td></tr>
+        <tr><td>예시</td><td>"인기 글 모음" 섹션</td><td>블로그 글 하나, 댓글 하나</td></tr>
+    </table>
+
+    <h3>뼈대 코드</h3>
+
+    <pre><span class="t">&lt;body&gt;</span>
+  <span class="t">&lt;header&gt;</span>
+    <span class="t">&lt;h1&gt;</span><span class="tx">내 사이트</span><span class="t">&lt;/h1&gt;</span>
+    <span class="t">&lt;nav&gt;</span><span class="tx">홈 | 소개 | 연락처</span><span class="t">&lt;/nav&gt;</span>
+  <span class="t">&lt;/header&gt;</span>
+  <span class="t">&lt;main&gt;</span>
+    <span class="t">&lt;section&gt;</span>
+      <span class="t">&lt;article&gt;</span>
+        <span class="t">&lt;h2&gt;</span><span class="tx">글 제목</span><span class="t">&lt;/h2&gt;</span>
+        <span class="t">&lt;p&gt;</span><span class="tx">내용</span><span class="t">&lt;/p&gt;</span>
+      <span class="t">&lt;/article&gt;</span>
+    <span class="t">&lt;/section&gt;</span>
+  <span class="t">&lt;/main&gt;</span>
+  <span class="t">&lt;aside&gt;</span><span class="tx">관련 글 목록</span><span class="t">&lt;/aside&gt;</span>
+  <span class="t">&lt;footer&gt;</span><span class="tx">© 2026 내 사이트</span><span class="t">&lt;/footer&gt;</span>
+<span class="t">&lt;/body&gt;</span></pre>
+
+    <div class="callout green">
+        페이지의 큰 구역을 나눌 때는 시맨틱 태그, CSS 적용을 위해 묶기만 할 때는 <code>div</code>나 <code>span</code>을 쓰면 된다.
+    </div>
+
+    <div class="closing">
+        <h3>✍️ 마치며</h3>
+        <p>퍼블리셔로 일하면서 수없이 익혀왔던 것들이지만, 오랜만에 다시 코드를 치는 게 새로웠다. 당연하다고 넘겼던 것들을 처음부터 다시 짚어보니 정리되는 느낌이 있었다. 내일은 CSS로 넘어간다.</p>
+        <p style="margin-top:16px; font-size:13px; color:#888;">🏷️ HTML &nbsp;|&nbsp; 시맨틱태그 &nbsp;|&nbsp; 웹개발 &nbsp;|&nbsp; 학습일지 &nbsp;|&nbsp; 프론트엔드</p>
+    </div>
+
+</div>
