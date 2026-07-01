@@ -1,0 +1,12 @@
+/* 기본 - 페이지 전체(가장 넓음) */
+body { background-color: #333; font-family:Verdana, Geneva, Tahoma, sans-serif }
+
+/* 요소 선택자 */
+h1 { color: azure; text-align: center;}
+p {color:#ccc; text-align: center;}
+
+/* 클래스 선택자 */
+.special {color: orangered; font-weight: bold;}
+
+/* 자손 선택자 */
+li em { color: yellow; font-style: normal; }
