@@ -1,0 +1,44 @@
+<!-- HTML 선언 -->
+<!DOCTYPE html>
+<!-- HTML 문서 시작 및 한국어 설정 -->
+<html lang="ko">
+    <!-- 화면에 보이지 않는 칸 -->
+    <head>
+        <!-- 한글이 깨지지 않도록 -->
+        <meta charset="UTF-8">
+        <!-- 브라우저 탭 이름-->
+        <title>
+            입력 Type
+        </title>
+    </head>
+    <!-- 화면에 보이는 칸 -->
+    <body>
+        <h1>입력 Type</h1>
+        <form>
+            <label>이메일 : <input type="email", placeholder="메일"></label>
+            <br>
+            <label>비밀번호 : <input type="password", placeholder="비밀번호"></label>
+            <br>
+            <label>동의<input type="checkbox"></label>
+            <br>
+            <label>성별<input type="radio" name="gender">남</label>
+            <label><input type="radio" name="gender">여</label>
+            <br>
+            <input type="date">
+            <br>
+            <textarea></textarea>
+            <br>
+            <select>
+                <option>서울</option>
+                <option>부산</option>
+                <option>제주도</option>
+            </select>
+            <br>
+            <label><input type="button" value="확인"></label>
+            <br>
+            <label>첨부하기 <input type="file"></label>
+            <br>
+            <label>볼륨<input type="range"></label>
+        </form>
+    </body>
+</html>
