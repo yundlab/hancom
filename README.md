@@ -1,100 +1,61 @@
-# hancom — HTML 프론트엔드 학습 기록
+# hancom — AI기반 프론트엔드 웹개발자 양성과정
 
-**한컴 AI를 활용한 프론트엔드 개발자** 과정의 실습 코드 및 학습 자료 저장소입니다.
-
-- GitHub: https://github.com/yundlab/hancom
-- Blog: https://yundlab.tistory.com/
+한컴 AI 활용 프론트엔드 개발자 과정의 실습 코드와 학습 자료를 정리한 저장소입니다.
+HTML과 CSS를 중심으로 매일의 실습 결과와 학습 노트를 기록합니다.
 
 ---
 
-## 폴더 구조
+## 📂 폴더 구조
 
 ```
 hancom/
-├── 01_vscode/      # VSCode 개발환경 설정
-└── 02_html/        # HTML 강의 실습 파일 (03 ~ 34번)
+├── 01_vscode/        # VS Code 사용법 학습 노트
+├── 02_html/          # HTML 실습 (기초 태그 ~ 블로그 만들기)
+├── 03_css/           # CSS 실습 (레이아웃, 스타일링)
+├── _daily/           # 날짜별 학습 기록
+├── .gitignore
+└── README.md
 ```
 
 ---
 
-## 01_vscode — 개발환경
+## 📖 학습 내용
 
-| 파일 | 내용 |
-|---|---|
-| `01_README.md` | VSCode 공식 다운로드 링크 |
-| `02_README.md` | 웹 개발 필수 확장 프로그램 목록 |
+### 01_vscode — 개발 환경
+VS Code 설치와 기본 사용법, 확장 프로그램 등 개발 환경 세팅을 정리했습니다.
 
-**주요 확장 프로그램**
-- **Live Server** — 저장 시 브라우저 자동 새로고침
-- **Prettier** — 코드 자동 정렬
-- **ESLint** — JS 오류 실시간 감지
-- **Auto Rename Tag** — HTML 태그 쌍 자동 수정
-- **GitLens** — Git 히스토리 시각화
+### 02_html — HTML 실습
+기초 태그부터 시작해 단계별로 실습한 `index.html` 파일들(01~34)과, 실전 예제로 만든 블로그 페이지(`blog_day1~3.html`)가 있습니다.
+이미지·오디오·비디오 등 미디어 요소를 다루는 실습 자료도 포함되어 있습니다.
 
----
+### 03_css — CSS 실습
+CSS를 활용한 스타일링과 레이아웃 실습입니다. 프로젝트별로 폴더(`01`, `02`)를 나누어 HTML과 스타일시트를 관리합니다.
 
-## 02_html — HTML 실습
-
-> HTML · CSS · JS 세 가지가 모여 웹 페이지를 구성합니다.
-> HTML(뼈대) → CSS(꾸미기) → JS(동작)
-
-### 강의 흐름
-
-| 번호 | 주요 내용 |
-|---|---|
-| 03 | 첫 HTML 페이지 — `h1~h3`, `a` 태그, DOCTYPE 선언 |
-| 04 ~ 06 | 텍스트 태그 — `p`, `strong`, `em`, `br`, `hr` 등 |
-| 07 ~ 09 | 링크 · 이미지 — `a href`, `img src`, `target="_blank"` |
-| 10 | 목록 · 시맨틱 — `ul/ol/li`, `header`, `main`, `footer` |
-| 11 | **실습: 자기소개 웹사이트** — 배운 태그 총 활용 |
-| 12 ~ 15 | 테이블 — `table`, `thead`, `tbody`, `th`, `td` |
-| 16 ~ 19 | 폼 기초 — `form`, `input`, `label`, `button` |
-| 20 ~ 23 | 폼 심화 — `select`, `textarea`, `checkbox`, `radio` |
-| 24 ~ 27 | 멀티미디어 — `img`, `audio`, `video`, `iframe` |
-| 28 | 과제: 실습 코드 GitHub 업로드 + 블로그 글 작성 |
-| 29 ~ 31 | 시맨틱 태그 심화 — `section`, `article`, `nav`, `aside` |
-| 32 | 개발자도구(F12) 사용법 |
-| 33 | 회원가입 폼 페이지 — `aria-label`, `fieldset`, `method="post"` |
-| 34 | **미니 프로젝트: 이력서 웹사이트** |
+### _daily — 학습 일지
+날짜별(`YYMMDD.md`)로 그날 배운 내용과 메모를 기록합니다.
 
 ---
 
-### 주요 README
+## ✅ 학습 진행 상황
 
-| 파일 | 내용 |
-|---|---|
-| `11_README.md` | 자기소개 웹사이트 실습 + GitHub·블로그 과제 안내 |
-| `28_README.md` | 실습 코드 GitHub 업로드 + 블로그 글 작성 과제 |
-| `32_README.md` | 개발자도구(F12) 꿀팁 정리 |
-| `33_README.md` | Claude Code 설치 방법 (Windows) |
-| `깃허브_README.md` | GitHub 저장소 링크 |
-| `블로그_README.md` | 블로그 링크 |
+| 단원 | 내용 | 상태 |
+|------|------|------|
+| 01_vscode | VS Code 기초 | ✅ 완료 |
+| 02_html | HTML 태그 & 구조 실습 | ✅ 완료 |
+| 02_html | 블로그 페이지 만들기 (3일차까지) | ✅ 완료 |
+| 03_css | CSS 스타일링 & 레이아웃 | 🔄 진행 중 |
 
----
-
-### 미니 프로젝트 — 이력서 웹사이트 (`34_index.html`)
-
-지금까지 배운 HTML 태그를 모두 활용해 만든 개인 이력서 페이지입니다.
-
-**포함 내용**
-- 자기소개 및 프로필 이미지
-- 연락처 (전화, 이메일, GitHub, 블로그)
-- 교육 / 자격증 / 기술스택 (테이블)
-- 경력 사항
-- 자기소개서
-- 포트폴리오 (todam, travel-tick) — 동영상 포함
-
-**사용 태그**
-`header` `nav` `main` `section` `article` `footer`
-`h1~h5` `p` `ul` `ol` `dl` `table` `form` `input` `video` `img` `a` `strong` `mark` `small` `hr`
+### 📅 날짜별 기록
+- **2026-07-01** — CSS 레이아웃 실습, 블로그 페이지 3일차 업로드 완료
 
 ---
 
-## 학습 도구
+## 🛠 사용 기술
 
-| 도구 | 용도 |
-|---|---|
-| VSCode + Live Server | 코드 작성 및 실시간 미리보기 |
-| 개발자도구 (F12) | HTML 구조 확인, 에러 디버깅, 디자인 미리보기 |
-| Claude Code | AI 코드 어시스턴트 |
-| GitHub | 코드 버전 관리 및 백업 |
+- HTML5
+- CSS3
+- VS Code
+
+---
+
+*한컴 AI 활용 프론트엔드 개발자 과정 · 학습 기록용 저장소*
