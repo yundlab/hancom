@@ -1,0 +1,13 @@
+.grid {
+    display: grid;                          /* 2차원 격자 켜기 */
+    grid-template-columns: repeat(3, 1fr);  /* 3칸 똑같은 너비(1fr 1fr 1fr과 같음) */
+    gap: 12px;                              /* 칸 사이 간격 */
+}
+
+.card {
+    background: rgb(255, 138, 255);
+    color: white;
+    text-align: center;
+    padding: 22px 0;
+    border-radius: 8px;
+}

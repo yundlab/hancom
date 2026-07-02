@@ -1,0 +1,19 @@
+/* 방문 전 */
+a:link {
+    color: pink;
+}
+
+/* 방문 후 */
+a:visited {
+    color:#ccc;
+}
+
+/* 마우스 올렸을 때 */
+a:hover {
+    color:red;
+}
+
+/* 누르는 중 */
+a:active {
+    color:aquamarine;
+}

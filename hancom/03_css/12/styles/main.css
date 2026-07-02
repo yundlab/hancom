@@ -1,0 +1,143 @@
+/* 페이지를 일부러 길게 만들어서 스크롤 생성 => fixed, sticky 동작 확인용 */
+body {
+    min-height: 1500px;
+}
+
+
+/* 부모 박스 : position:relative */
+.parent {
+    position: relative; /* 기준이 되는 부모 */
+    border: 1px dashed red;
+    border-radius: 8px;
+    height: 120px;
+    background: rgb(255, 247, 236);
+    margin: 10px 0
+}
+
+/* relative: 원래 자리 기준으로 이동 */
+.ptag {
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    color: purple;
+    font-weight: bold;
+}
+
+.rel {
+    position:relative;
+    top: 30px; 
+    left: 20px;
+    width: 500px;
+    padding: 8px;
+    background: mediumaquamarine;
+    border-radius: 6px;
+    font-weight: bold;
+    color: rgb(19, 66, 55);
+    z-index: 10;
+}
+
+.abs {
+    position: absolute;
+    background: rgb(163, 7, 33);
+    color: antiquewhite;
+    padding:10px;
+    bottom: 50px;
+    right: 16px;
+    z-index: 5;
+    border-radius: 6px;
+}
+
+/* fixed : 화면 고정 - 스크롤해도 그 자리 */
+.fixed {
+    position: fixed;
+    background: blueviolet;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    bottom: 16px;
+    right: 16px;
+    padding: 10px;
+}
+
+/* sticky : 스크롤 하다 top : 0 지점에 닿으면 상단에 착 붙음 */
+.sticky {
+    position: sticky;
+    top:0;
+    margin: 10px 0;
+    padding: 8px 12px;
+    background: greenyellow;
+    color: rgb(5, 45, 68);
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+
+/*
+Q. 원래 position: absolute;적용을 하면 block이 inline이 됨?
+A. 실제로 일어나는 일
+position: absolute(또는 fixed)를 적용하면, 요소는 **"블록 컨테이너"**로 취급되긴 하는데, display 값 자체가 inline으로 바뀌는 게 아니라 크기 계산 방식이 달라지는 것이에요.
+CSS 스펙 용어로는 이걸 "position이 absolute인 요소는 auto 크기일 때 내용물 크기(shrink-to-fit)로 계산된다"라고 표현합니다.
+왜 이런 일이 생기냐면
+일반적인 block 요소(static이나 relative)는:
+
+width: auto → 부모 너비만큼 채움 (normal flow 안에서 다른 요소랑 공간을 나눠 쓰는 흐름)
+
+absolute(또는 fixed) 요소는:
+
+문서 흐름(normal flow)에서 완전히 빠져나옴
+더 이상 "부모 안에서 형제 요소들과 공간을 나눈다"는 개념이 없음
+그래서 width: auto일 때 브라우저는 "내용물이 필요한 만큼만" 크기를 잡음 (= shrink-to-fit)
+
+즉 inline처럼 보이는 이유는 우연히 "내용 크기만큼만 차지한다"는 결과가 inline 요소의 특징과 비슷해서지, 실제로 display: inline이 되는 게 아니에요. 확인해보면:
+cssp {
+  position: absolute;
+}
+이래도 여전히 display는 block이고, width: 100%나 inset: 0 같은 걸 명시적으로 주면 부모만큼 꽉 채울 수 있어요. inline이었다면 애초에 width/height 자체를 지정해도 적용이 안 되는데, absolute된 <p>는 width를 주면 그대로 반영되죠. 이게 진짜 inline과의 결정적 차이예요.
+정리
+흐름 안(static/relative) blockposition: absolute/fixedwidth auto일 때부모 너비 꽉 채움내용 크기만큼(shrink-to-fit)width 직접 지정 시적용됨적용됨display 값block여전히 block (안 바뀜)
+그래서 정확히 말하면 "inline이 된다"보다는 **"흐름에서 빠지면서 width: auto의 기본 동작이 shrink-to-fit으로 바뀐다"**가 더 정확한 설명이에요.
+*/
+
+/* 
+   ============================================
+   float와 clearfix (overflow: hidden) 정리
+   ============================================
+
+   [문제] float 자식 요소는 일반 흐름(normal flow)에서 빠져나옴
+   → 부모가 자식 크기를 인식 못해서 부모 높이가 0으로 찌그러짐
+
+   예시:
+   ul { background: yellow; }  // li들이 float되면 노란 배경이 안 보임
+
+   [해결 1] overflow: hidden (BFC 이용)
+   - overflow가 visible이 아니면 BFC(Block Formatting Context) 생성
+   - BFC는 float된 자식까지 포함해서 높이를 계산함
+   - 단점: 자식이 부모 밖으로 삐져나오면 잘림(clip)
+
+   ul {
+     overflow: hidden;
+   }
+
+   [해결 2] clearfix (가상 요소 이용) - 실무 표준이었음
+   - 부모 끝에 안 보이는 블록 요소를 추가하고 clear: both로
+     float된 요소 다음 줄로 강제 이동시킴
+   - overflow: hidden보다 부작용 적음 (Bootstrap 등에서 사용)
+
+   .clearfix::after {
+     content: "";
+     display: block;
+     clear: both;
+   }
+
+   [현재] flexbox 사용 시 float/clearfix 자체가 불필요
+   - float 안 쓰므로 흐름 이탈 문제 없음
+   - flex 컨테이너는 자식 높이를 정상적으로 인식함
+
+   nav ul {
+     display: flex;
+     list-style: none;
+     margin: 0;
+     padding: 0;
+   }
+   ============================================
+*/

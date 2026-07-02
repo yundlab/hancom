@@ -1,0 +1,29 @@
+@keyframes move {
+    0%, 100% {transform: translateY(0);}    /* 시작(0%) | 끝(100%) : 제자리 */
+    50% {transform: translateY(-30px)}      /* 중간(50%) : 위로 30px 올라감! (translateY 음수 = 위) */
+}
+
+@keyframes move2 {
+    0%, 100% {transform: translateX(0);}
+    50% {transform: translateX(300px)}
+}
+
+.ball {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: gray;
+    animation: move 1s ease-in-out infinite;
+}
+
+.ball2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: salmon;
+    animation: move2 3s ease infinite;
+
+}
+
+/* animation: 이름 | 지속시간 | ease속도곡선 | 시작 지연 | 반복횟수 | 방향 | 전/후 스타일 유지 | 재생/일시정지;
+ */

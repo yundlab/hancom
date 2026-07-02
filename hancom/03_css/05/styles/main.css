@@ -1,0 +1,38 @@
+.menu {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+/* li 부분 디자인 입히기 */
+.menu li {
+    width:100px;
+    padding: 5px;
+    border-radius: 5px;
+    line-height:30px;
+    text-align: center;
+    font-weight: 700;
+    background-color:rgb(255, 225, 185) ;
+    color:darkcyan;
+    
+}
+
+.menu li:hover {
+    background-color: darkcyan;
+    color: rgb(255, 255, 185);
+}
+
+.box { 
+    display: flex;
+    gap: 50px;
+ }
+
+ .box div {
+    width: 100px;
+    background-color: #333;
+    padding: 5px;
+    font-size: 30px;
+    text-align: center;
+    color: #fff
+ 
+}

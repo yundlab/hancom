@@ -1,0 +1,35 @@
+.box {
+    border: 1px solid ;
+    width: 200px;
+    height: 200px;
+    display: flex;              /* 글자를 가운데 두기 위한 준비 */
+    align-items: center;        /* 세로 가운데 정렬 */
+    justify-content: center;    /* 가로 가운데 정렬 */
+    background-color: hotpink;
+    color: white;
+    border-radius: 16px;
+    transition: transform 0.3s ease-in-out;
+    margin: 50px;
+}
+
+.box:hover {
+    transform: rotate(50deg) scale(1.2);
+}
+
+.box2 {
+    border: 1px solid ;
+    width: 100px;
+    height: 100px;
+    display: flex;              /* 글자를 가운데 두기 위한 준비 */
+    align-items: center;        /* 세로 가운데 정렬 */
+    justify-content: center;    /* 가로 가운데 정렬 */
+    background-color: gold;
+    color: #333;
+    border-radius: 16px;
+    transition: transform 0.6s ease-in-out;
+    margin: 50px;
+}
+
+.box2:hover {
+    transform:rotate(-60deg) skew(10deg);
+}

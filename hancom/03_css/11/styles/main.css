@@ -1,0 +1,16 @@
+.neon {
+    width: 250px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;;
+    background: linear-gradient(135deg, #e02c89, #146786);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 25px rgba(249, 76, 162, 0.7);
+}
+
+/* 
+background: 배경색 | 이미지 | 이미지 위치 / 이미지 크기 | 반복 여부 | 배경 기준 박스 | 배경 잘리는 범위 | 스크롤 시 고정여부;
+*/    
