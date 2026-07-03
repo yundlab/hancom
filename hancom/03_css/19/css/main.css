@@ -432,6 +432,13 @@ section h3 img {
     border-bottom: 3px solid var(--yellow);
 }
 
+/* 미리보기 1px 테두리가 소수점 픽셀 위치에서 흐려지지 않도록
+   정리 섹션의 줄높이를 정수 px 로 고정 (요소들이 정수 픽셀에 떨어지게) */
+#til        { line-height: 26px; }
+#til h2     { line-height: 32px; }
+#til h3     { line-height: 30px; }
+#til pre    { line-height: 20px; }
+
 /* 용어 목록 (dl) */
 dt {
     font-weight: 700;
@@ -453,7 +460,7 @@ pre {
     padding: 14px 16px;
     border-radius: 10px;
     overflow-x: auto;
-    margin: 8px 0 4px;
+    margin: 8px 0 16px;   /* 아래 미리보기와 확실히 간격 확보 */
     font-size: 13px;
     line-height: 1.5;
 }
@@ -476,9 +483,9 @@ pre code {
 
 /* "적용 결과" 미리보기 박스 */
 .preview {
-    margin-top: 10px;
+    margin-top: 26px;
     padding: 14px 16px 16px;
-    border: 1px dashed #e6c34a;   /* 노랑 점선 테두리 */
+    border: 1px dashed #d19a00;   /* 진한 금색 점선 테두리 */
     border-radius: 8px;
     background: #fffdf2;          /* 아주 연한 노랑 배경 */
 }
