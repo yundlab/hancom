@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/main.css?v=2">
+    <title>미니 프로젝트_한윤지</title>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <h1>Yun:D 미니 프로젝트</h1>
+        </header>
+        <nav>
+            <a href="#site" class="nav-btn">마음에 드는 웹사이트</a>
+            <a href="#til" class="nav-btn">HTML, CSS 정리</a>
+            <a href="#quiz" class="nav-btn">HTML, CSS 퀴즈</a>
+        </nav>
+        <main>
+            <a href="#" class="up">↑</a>
+            <section id="site">
+                <div class="title_box">
+                    <h2 class="typing">마음에 드는 웹 사이트 찾고 의견 및 분석</h2>
+                </div>
+                <h3>
+                    <img src="./img/apple.svg" alt="애플 로고">
+                    <a href="https://www.apple.com/kr/">APPLE</a>
+                </h3>
+                <img src="./img/image.png" alt="apple사이트 사진">
+                <article>
+                    <h4>사이트 분석</h4>
+                    <p><strong>1. 정보 구조 — "매장이자 잡지"</strong><br>
+                        애플 홈페이지는 사실상 쇼핑몰인데도 가격이나 "구매" 버튼을 전면에 내세우지 않아요. 각 제품마다 큰 이미지 + 짧은 카피("Now supercharged by M5") + [Learn more]와 [Buy] 두 개의 링크만 둡니다. 먼저 제품을 감상시키고, 사고 싶어지면 그때 사라는 순서예요. 상단 내비게이션(Mac, iPad, iPhone, Watch...)은 제품 카테고리로만 딱 나눠서 길을 잃지 않게 합니다.
+                    </p>
+                    <p><strong>2. 비주얼 — 여백과 이미지가 주인공</strong><br>
+                        텍스트는 극도로 절제돼요. 문장이 짧고, 형용사 하나하나가 카피라이팅으로 다듬어져 있죠. 배경은 대부분 흰색/검정이고 제품 사진이 화면을 가득 채웁니다. "MacBook을 V자로 배치해 M5 칩 패밀리를 암시"하는 식으로 이미지 자체가 메시지를 전달해요.
+                    </p>
+                    <p><strong>3. 마케팅 설계 — 생태계로 끌어들이기</strong><br>
+                        단순히 기기만 파는 게 아니에요. Apple Trade In(중고 보상), Apple Card(자체 신용카드), Apple TV·Music·Fitness+·Arcade 같은 구독 서비스가 홈에 같이 노출됩니다. 기기를 산 사람을 애플 생태계 안에 계속 머물게 하려는 의도가 페이지 구성에 그대로 드러나요.
+                    </p>
+                </article>
+                <article class="opinion">
+                    <h4>의견</h4>
+                    <p><strong>좋은 점</strong><br>
+                        일관성이 정말 뛰어나다는 거예요. 20년 넘게 "미니멀 + 제품 중심" 원칙을 지켜서, 애플 페이지는 로고를 안 봐도 애플인 걸 알 수 있어요. 정보 위계도 명확해서 누구나 3초 안에 원하는 제품으로 갈 수 있고, 스크롤 인터랙션·이미지 최적화 같은 기술 완성도도 업계 최고 수준입니다.
+                    </p>
+                    <p><strong>아쉬운 점</strong><br>
+                        이 절제된 스타일이 정보 탐색에는 불친절할 때가 있어요. 가격이나 상세 스펙을 보려면 반드시 한 단계 더 들어가야 하고, 여러 제품을 비교하기가 은근히 번거롭습니다. 또 첫 화면이 거의 신제품 광고판이라, "지금 뭐가 새로 나왔지"엔 강하지만 "내게 맞는 걸 고르고 싶다"는 사용자에겐 덜 배려적이에요.
+                    </p>
+                    <p><strong>한 줄 평가</strong><br>
+                        애플 홈페이지는 웹사이트라기보다 브랜드 그 자체를 체험시키는 공간이에요. 판매 효율보다 브랜드 이미지를 우선한 전략적 선택이고, 그걸 이렇게 오래 완성도 있게 유지한다는 점이 가장 인상적입니다.
+                    </p>
+                </article>
+            </section>
+            <section id="til">
+                <h2 class="typing">HTML, CSS 정리 내용</h2>
+
+                <article>
+                    <h3>
+                        <img src="./img/html.png" alt="html 아이콘"> HTML — 웹의 뼈대
+                    </h3>
+                    <p>HTML(HyperText Markup Language)은 페이지의 구조와 내용을 담는 마크업 언어다.
+                    &lt;여는 태그&gt; 내용 &lt;/닫는 태그&gt; 형태로 요소를 만들고, 태그에 속성(예: href, src)을 더해 세부 동작을 지정한다.</p>
+                    <dl>
+                        <dt>① 문서 기본 구조</dt>
+                        <dd>모든 HTML 문서의 뼈대. head에는 화면에 안 보이는 정보(메타·제목·CSS 연결), body에는 실제 보이는 내용이 들어간다.
+                            <pre><code>
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="ko"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;탭에 뜨는 제목&lt;/title&gt;
+        &lt;link rel="stylesheet" href="./css/main.css"&gt;
+    &lt;/head&gt;
+    &lt;body&gt; 화면에 보이는 내용 &lt;/body&gt;
+    &lt;/html&gt;
+                            </code></pre>
+                            <div class="preview">
+                                이 페이지 자체가 이 구조로 만들어져 있어요. head 안 내용은 화면에 안 보이고, body 안의 내용만 표시됩니다.
+                            </div>
+                        </dd>
+
+                        <dt>② 제목 · 문단</dt>
+                        <dd>h1~h6는 제목(숫자가 작을수록 큼, 한 페이지에 h1은 하나 권장), p는 문단, br은 줄바꿈, hr은 가로 구분선.
+                            <pre><code>
+    &lt;h1&gt;가장 큰 제목&lt;/h1&gt;
+    &lt;p&gt;문단입니다.&lt;br&gt;줄을 바꿉니다.&lt;/p&gt;
+    &lt;hr&gt;
+                            </code></pre>
+                            <div class="preview">
+                                <h1>가장 큰 제목</h1>
+                                <p style="margin:4px 0">문단입니다.<br>줄을 바꿉니다.</p>
+                                <hr>
+                            </div>
+                        </dd>
+
+                        <dt>③ 텍스트 강조</dt>
+                        <dd>strong·b(굵게), em·i(기울임), mark(형광펜), sub·sup(아래·위 첨자), small(작게).
+                            strong·em은 "의미상 강조", b·i는 "단순 시각 표시"라는 차이가 있다.
+                            <pre><code>
+    &lt;strong&gt;중요&lt;/strong&gt; &lt;em&gt;강조&lt;/em&gt; &lt;mark&gt;형광펜&lt;/mark&gt;
+    H&lt;sub&gt;2&lt;/sub&gt;O, x&lt;sup&gt;2&lt;/sup&gt;
+                            </code></pre>
+                            <div class="preview">
+                                <strong>중요</strong> <em>강조</em> <mark>형광펜</mark><br>
+                                H<sub>2</sub>O, x<sup>2</sup>
+                            </div>
+                        </dd>
+
+                        <dt>④ 목록</dt>
+                        <dd>ul(순서 없는 ·), ol(순서 있는 1·2·3), 항목은 li. dl·dt·dd는 "용어–설명" 목록(이 정리처럼).
+                            <pre><code>
+    &lt;ul&gt;
+        &lt;li&gt;사과&lt;/li&gt;
+        &lt;li&gt;바나나&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;dl&gt;
+        &lt;dt&gt;HTML&lt;/dt&gt;
+        &lt;dd&gt;웹의 뼈대&lt;/dd&gt;
+    &lt;/dl&gt;
+                            </code></pre>
+                            <div class="preview">
+                                <ul><li>사과</li><li>바나나</li></ul>
+                                <ol><li>첫째</li><li>둘째</li></ol>
+                            </div>
+                        </dd>
+
+                        <dt>⑤ 링크 · 이미지</dt>
+                        <dd>a는 href 주소로 이동(같은 페이지 이동은 #id). img는 src로 경로, alt로 대체 텍스트(이미지가 안 뜰 때·접근성).
+                            <pre><code>
+    &lt;a href="https://apple.com"&gt;애플&lt;/a&gt;
+    &lt;a href="#til"&gt;정리로 이동&lt;/a&gt;
+    &lt;img src="./img/apple.svg" alt="애플 로고"&gt;
+                            </code></pre>
+                            <div class="preview">
+                                <a href="https://apple.com">애플</a> &nbsp;
+                                <a href="#til">정리로 이동</a><br>
+                                <img src="./img/apple.svg" alt="애플 로고" style="height:36px;margin-top:6px">
+                            </div>
+                        </dd>
+
+                        <dt>⑥ 표</dt>
+                        <dd>table(표) 안에 tr(행), 그 안에 th(제목칸·굵게 가운데)·td(일반 칸). thead·tbody로 머리/몸통 구분.
+                            <pre><code>
+    &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;이름&lt;/th&gt;&lt;th&gt;점수&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;윤지&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+                            </code></pre>
+                            <div class="preview">
+                                <table>
+                                    <tr><th>이름</th><th>점수</th></tr>
+                                    <tr><td>윤지</td><td>100</td></tr>
+                                </table>
+                            </div>
+                        </dd>
+
+                        <dt>⑦ 입력 폼</dt>
+                        <dd>form은 입력 묶음, input은 입력칸(type으로 종류 지정), label은 입력칸 설명(for로 연결), button은 버튼.
+                            <pre><code>
+    &lt;form&gt;
+        &lt;label for="id"&gt;아이디&lt;/label&gt;
+        &lt;input type="text" id="id"&gt;
+        &lt;button&gt;전송&lt;/button&gt;
+    &lt;/form&gt;
+                            </code></pre>
+                            <div class="preview">
+                                <form>
+                                    <label for="pid">아이디</label>
+                                    <input type="text" id="pid">
+                                    <button type="button">전송</button>
+                                </form>
+                            </div>
+                        </dd>
+
+                        <dt>⑧ 미디어</dt>
+                        <dd>video·audio로 영상·소리 삽입(controls로 재생 버튼), iframe으로 외부 페이지(유튜브 등)를 창처럼 삽입.
+                            <pre><code>
+    &lt;video src="video.mp4" controls&gt;&lt;/video&gt;
+    &lt;iframe src="https://youtube.com/..."&gt;&lt;/iframe&gt;
+                            </code></pre>
+                            <div class="preview">
+                                영상(video)·소리(audio)·유튜브 같은 외부 페이지(iframe)가 이 자리에 삽입되어 재생돼요. (실제 파일·주소가 있어야 화면에 나타납니다)
+                            </div>
+                        </dd>
+
+                        <dt>⑨ 시맨틱 구조</dt>
+                        <dd>의미를 가진 구획 태그. header(머리말)·nav(메뉴)·main(본문)·section(구획)·article(독립 글)·footer(꼬리말).
+                            div·span은 의미 없이 묶을 때만 사용(div=줄바꿈 블록, span=한 줄 안).
+                            <pre><code>
+    &lt;header&gt;
+        &lt;nav&gt;메뉴&lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;section&gt;
+            &lt;article&gt;내용&lt;/article&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+        &copy; Yun:D
+    &lt;/footer&gt;
+                            </code></pre>
+                            <div class="preview">
+                                <div style="border:1px solid #bbb;border-radius:6px;overflow:hidden;font-size:13px;text-align:center">
+                                    <div style="background:#e3effd;padding:6px">header (nav 메뉴)</div>
+                                    <div style="background:#f5f9ff;padding:16px 6px">main → section → article (본문 내용)</div>
+                                    <div style="background:#e3effd;padding:6px">footer (꼬리말)</div>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                </article>
+
+                <article>
+                    <h3>
+                        <img src="./img/css.png" alt="css 아이콘"> CSS — 꾸미기
+                    </h3>
+                    <p>CSS(Cascading Style Sheets)는 HTML 요소에 색·크기·배치·효과를 입히는 스타일 언어다.
+                    <code>선택자 { 속성: 값; }</code> 형태로 "무엇을(선택자) 어떻게(속성·값) 꾸밀지" 적는다.</p>
+
+                    <dl>
+                        <dt>① 적용하는 3가지 방법</dt>
+                        <dd>외부(link로 .css 연결) · 내부(head 안 style) · 인라인(태그 style 속성). 유지·보수가 쉬운 외부 방식을 주로 쓴다.
+                            <pre><code>
+    &lt;link rel="stylesheet" href="./css/main.css"&gt;  /* 외부(권장) */
+    &lt;style&gt; p { color: red; } &lt;/style&gt;             /* 내부 */
+    &lt;p style="color:red"&gt;글자&lt;/p&gt;                  /* 인라인 */
+                            </code></pre>
+                            <div class="preview">
+                                <p style="color:red;margin:0">이 글자는 빨간색으로 적용됩니다.</p>
+                            </div>
+                        </dd>
+
+                        <dt>② 선택자</dt>
+                        <dd>꾸밀 대상을 고르는 방법. 태그명, class는 점(.), id는 샵(#). class는 여러 개, id는 페이지에 하나만.
+                            <pre><code>
+    p        { color: gray; }     /* 모든 p */
+    .title   { font-size: 24px; } /* class="title" */
+    #site    { padding: 20px; }   /* id="site" */
+                            </code></pre>
+                            <div class="preview">
+                                <p style="color:gray;margin:2px 0">태그 선택자 p → 회색</p>
+                                <p style="font-size:24px;margin:2px 0">.title → 24px 큰 글씨</p>
+                            </div>
+                        </dd>
+
+                        <dt>③ 박스 모델</dt>
+                        <dd>모든 요소는 네모 상자. 안쪽부터 content → padding(안 여백) → border(테두리) → margin(바깥 여백).
+                            <pre><code>
+    .box {
+        padding: 20px;          /* 안쪽 여백 */
+        border: 2px solid navy; /* 두께 종류 색 */
+        margin: 20px;           /* 바깥 여백 */
+    }
+                            </code></pre>
+                            <div class="preview">
+                                <div style="display:inline-block;padding:20px;border:2px solid navy;margin:20px;background:#fff">여백·테두리 상자</div>
+                            </div>
+                        </dd>
+
+                        <dt>④ 크기 · 색</dt>
+                        <dd>width·height로 크기, color로 글자색, background로 배경색·이미지. 색은 이름·#hex·rgb()로 지정.
+                            <pre><code>
+    .box { 
+        width: 200px; height: 100px;
+        color: white; background: hotpink;
+    }
+                            </code></pre>
+                            <div class="preview">
+                                <div style="width:200px;height:100px;color:white;background:hotpink;display:flex;align-items:center;justify-content:center">200 × 100</div>
+                            </div>
+                        </dd>
+
+                        <dt>⑤ 배치 — flex</dt>
+                        <dd>부모에 display:flex를 주면 자식들이 한 줄로 정렬. justify-content(가로 정렬)·align-items(세로 정렬)로 위치 조절.
+                            <pre><code>
+    nav {
+        display: flex; gap: 10px;
+        justify-content: center;
+    }
+                            </code></pre>
+                            <div class="preview">
+                                <div style="display:flex;gap:10px;justify-content:center">
+                                    <div style="background:#48f;color:#fff;padding:10px 16px;border-radius:6px">1</div>
+                                    <div style="background:#48f;color:#fff;padding:10px 16px;border-radius:6px">2</div>
+                                    <div style="background:#48f;color:#fff;padding:10px 16px;border-radius:6px">3</div>
+                                </div>
+                            </div>
+                        </dd>
+
+                        <dt>⑥ 배치 — Grid</dt>
+                        <dd>display:grid는 2차원(행·열) 격자 배치. grid-template-columns로 열 개수·너비 지정.
+                            <pre><code>
+    .list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;  /* 3열 */
+    }
+                            </code></pre>
+                            <div class="preview">
+                                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+                                    <div style="background:#0a8;color:#fff;padding:12px;text-align:center;border-radius:6px">A</div>
+                                    <div style="background:#0a8;color:#fff;padding:12px;text-align:center;border-radius:6px">B</div>
+                                    <div style="background:#0a8;color:#fff;padding:12px;text-align:center;border-radius:6px">C</div>
+                                </div>
+                            </div>
+                        </dd>
+
+                        <dt>⑦ 위치 — position</dt>
+                        <dd>static(기본)·relative(원래 자리 기준 이동)·absolute(부모 기준)·fixed(화면 고정). top·left 등으로 위치값.
+                            <pre><code>
+    .up { position: fixed; right: 20px; bottom: 20px; }
+                            </code></pre>
+                            <div class="preview">
+                                <div style="position:relative;height:70px;background:#eef3f9;border-radius:6px">
+                                    <span style="position:absolute;right:8px;bottom:8px;background:var(--blue);color:#fff;padding:4px 10px;border-radius:4px">오른쪽 아래 고정</span>
+                                </div>
+                                <small>(fixed는 화면 기준, 이 페이지의 ↑ 버튼처럼 스크롤해도 자리 유지)</small>
+                            </div>
+                        </dd>
+
+                        <dt>⑧ 가상 클래스 · 가상 요소</dt>
+                        <dd>:hover(마우스 올림)·:active 등 상태별 스타일이 가상 클래스. ::before·::after는 내용 앞뒤에 장식 요소를 추가.
+                            <pre><code>
+    button:hover { background: skyblue; }
+    .title::before { content: "★ "; }
+                            </code></pre>
+                            <div class="preview">
+                                <span class="demo-hover">마우스 올려보세요</span> &nbsp;
+                                <span class="demo-star">별이 앞에 붙은 텍스트</span>
+                            </div>
+                        </dd>
+
+                        <dt>⑨ 변형 · 전환 · 애니메이션</dt>
+                        <dd>transform으로 회전·확대·이동, transition으로 변화를 부드럽게, @keyframes로 자동으로 반복되는 움직임.
+                            <pre><code>
+    .card { transition: 0.3s; }
+    .card:hover { transform: rotate(10deg) scale(1.1); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+                            </code></pre>
+                            <div class="preview">
+                                <div class="demo-spin" style="width:46px;height:46px;background:var(--blue);border-radius:8px;display:inline-block;vertical-align:middle"></div> &nbsp;
+                                <span class="demo-scale" style="background:#f0a;color:#fff;padding:8px 12px;border-radius:6px">마우스 올려보세요</span>
+                            </div>
+                        </dd>
+
+                        <dt>⑩ 꾸밈 효과</dt>
+                        <dd>box-shadow(그림자)·border-radius(둥근 모서리)·opacity(투명도)·linear-gradient(그라디언트 배경).
+                            <pre><code>
+    .card {
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,.2);
+        background: linear-gradient(45deg, #f06, #48f);
+    }
+                            </code></pre>
+                            <div class="preview">
+                                <div style="width:120px;height:80px;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.2);background:linear-gradient(45deg,#f06,#48f)"></div>
+                            </div>
+                        </dd>
+
+                        <dt>⑪ 반응형 — @media</dt>
+                        <dd>화면 폭에 따라 다른 스타일 적용. 모바일·PC 화면을 하나의 코드로 대응한다.
+                            <pre><code>
+    @media (max-width: 600px) {
+        nav { flex-direction: column; }  /* 좁으면 세로로 */
+    }
+                            </code></pre>
+                            <div class="preview">
+                                브라우저 창을 좁게(600px 이하) 줄이면 이 페이지의 배치·글자 크기가 바뀌는 것으로 직접 확인할 수 있어요.
+                            </div>
+                        </dd>
+
+                        <dt>⑫ CSS 변수 · 리셋</dt>
+                        <dd>:root에 --변수를 정의하고 var()로 재사용하면 색·값을 한 곳에서 관리. CSS 리셋은 브라우저 기본 여백(margin 등)을 없애 스타일을 처음부터 통일한다.
+                            <pre><code>
+    :root { --main: #ff0066; }
+    button { background: var(--main); }
+    * { margin: 0; padding: 0; box-sizing: border-box; } /* 리셋 */
+                            </code></pre>
+                            <div class="preview">
+                                <span style="background:#ff0066;color:#fff;padding:4px 10px;border-radius:4px">--main 색이 적용된 요소</span>
+                            </div>
+                        </dd>
+                    </dl>
+                </article>
+            </section>
+            <section id="quiz">
+                <h2 class="typing">HTML, CSS 퀴즈</h2>
+                <p>아래 <strong>정답 보기</strong>를 누르면 답이 펼쳐집니다.</p>
+
+                <article>
+                    <h4>Q1. (HTML) 다음 중 <em>순서가 있는</em> 목록을 만드는 태그는?</h4>
+                    <p>① &lt;ul&gt; &nbsp; ② &lt;ol&gt; &nbsp; ③ &lt;li&gt; &nbsp; ④ &lt;dl&gt;</p>
+                    <details>
+                        <summary>정답 보기</summary>
+                        <p><strong>② &lt;ol&gt;</strong> (ordered list). &lt;ul&gt;은 순서 없는 목록,
+                        &lt;li&gt;는 각 항목, &lt;dl&gt;은 용어–설명 목록.</p>
+                    </details>
+                </article>
+
+                <article>
+                    <h4>Q2. (HTML) &lt;a&gt; 태그에서 <em>이동할 주소</em>를, &lt;img&gt; 태그에서 <em>이미지 경로</em>를 지정하는 속성은 각각 무엇일까?</h4>
+                    <details>
+                        <summary>정답 보기</summary>
+                        <p>&lt;a&gt;는 <strong>href</strong>, &lt;img&gt;는 <strong>src</strong>.
+                        참고로 &lt;img&gt;의 <strong>alt</strong>은 이미지가 안 뜰 때 보여줄 대체 텍스트다.</p>
+                    </details>
+                </article>
+
+                <article>
+                    <h4>Q3. (CSS) 박스 모델에서 <em>바깥쪽 여백</em>과 <em>안쪽 여백</em>을 지정하는 속성을 순서대로 쓰면?</h4>
+                    <details>
+                        <summary>정답 보기</summary>
+                        <p>바깥쪽 여백 = <strong>margin</strong>, 안쪽 여백 = <strong>padding</strong>.
+                        테두리는 border. (안에서부터 content → padding → border → margin 순)</p>
+                    </details>
+                </article>
+
+                <article>
+                    <h4>Q4. (CSS) 아래 빈칸에 들어갈 속성은? 마우스를 올렸을 때만 배경색을 바꾸려고 한다.</h4>
+                    <pre><code>
+    button:______ {
+        background: skyblue;
+    }
+                    </code></pre>
+                    <details>
+                        <summary>정답 보기</summary>
+                        <p><strong>hover</strong> → <code>button:hover</code>.
+                        :hover는 마우스를 올린 상태에만 적용되는 가상 클래스다.</p>
+                    </details>
+                </article>
+
+                <article>
+                    <h4>Q5. (CSS) 자식 요소들을 <em>가로로 나란히</em> 정렬하려면 부모에 어떤 속성을 줘야 할까?</h4>
+                    <p>① display: block &nbsp; ② display: none &nbsp; ③ display: flex &nbsp; ④ position: fixed</p>
+                    <details>
+                        <summary>정답 보기</summary>
+                        <p><strong>③ display: flex</strong>. 부모에 flex를 주면 자식이 한 줄로 정렬되고,
+                        justify-content(가로)·align-items(세로)로 위치를 조절한다.</p>
+                    </details>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Yun:D
+        </footer>
+    </div>
+</body>
+</html>

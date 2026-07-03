@@ -1,0 +1,72 @@
+﻿* {
+    margin: 0;                  /* 기본 바깥 여백 제거 */
+    padding: 0;                 /* 기본 안쪽 여백 제거 */
+    box-sizing: border-box;     /* 크기 계산 방식 변경 */
+}
+
+h1 {
+    color: green
+}
+
+p {
+    color:peru;
+}
+
+
+/* ==========================================================================
+   CSS RESET 정리
+
+   1. box-sizing: border-box 통일
+      - padding, border가 width/height에 포함되어 계산이 편해짐
+
+   2. margin, padding 제거
+      - 브라우저마다 다른 기본값을 0으로 통일
+
+   3. text-size-adjust: 100%
+      - 모바일 화면 회전 시 폰트 크기 자동 조절되는 것 방지
+
+   4. font-smoothing: antialiased
+      - 폰트 렌더링을 부드럽게 처리 (안티앨리어싱)
+
+   5. line-height: 1.5
+      - 기본 줄 간격 설정으로 가독성 확보
+
+   6. list-style: none
+      - ul, ol의 기본 불릿/숫자 제거
+      - 네비게이션, 카드 리스트 만들 때 편리
+
+   7. a 태그 text-decoration, color 초기화
+      - 기본 밑줄과 방문 링크 색상(파란색/보라색) 제거
+      - color: inherit로 부모 색상 상속
+
+   8. img, video 등 display: block, max-width: 100%
+      - inline 요소 특성으로 생기는 미세한 하단 여백 제거
+      - 반응형을 위해 부모보다 커지지 않도록 설정
+
+   9. input, button, textarea, select 폰트 상속
+      - 브라우저마다 제각각인 폼 요소 폰트를 통일
+
+   10. button 기본 스타일 제거
+       - 배경, 테두리 제거하고 cursor: pointer 적용
+
+   11. overflow-wrap: break-word
+       - 텍스트가 길 때 부모 요소를 벗어나지 않도록 줄바꿈
+
+   12. table border-collapse: collapse
+       - 테이블 셀 사이 기본 간격 제거
+
+   13. scroll-behavior: smooth
+       - 앵커 이동 시 부드러운 스크롤 애니메이션 (선택사항)
+   ========================================================================== 
+   
+    유명한 리셋 라이브러리 사용하고 싶다면
+    직접 작성하기 번거로우면 아래 두 가지가 많이 쓰여요:
+
+    * Eric Meyer's Reset — 오래되고 강력하게 초기화 (모든 스타일을 거의 0으로)
+    * Normalize.css — 초기화보다는 브라우저 간 "일관성"을 맞추는 방식 (완전히 없애지 않고 좋은 기본값은 살림)
+    * Josh Comeau's Custom CSS Reset — 요즘 실무에서 인기 많은 버전, 위 코드가 이 스타일을 기반으로 한 거예요
+
+    실무에서는 보통 Josh Comeau 스타일처럼 **"필요한 것만 리셋"**하는 방식을 많이 씁니다. Eric Meyer식은 너무 과격하게 다 지워버려서 오히려 다시 스타일링할 게 많아지거든요.
+    혹시 Tailwind CSS 쓰시나요? Tailwind는 preflight라는 자체 리셋을 내장하고 있어서 별도 리셋이 필요 없어요
+   
+   */

@@ -1,0 +1,370 @@
+<style>
+.post-wrap * { box-sizing: border-box; }
+.post-wrap ul, .post-wrap ol, .post-wrap li { list-style: none !important; border: none !important; margin: 0; padding: 0; }
+.post-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+    color: #333;
+    line-height: 1.8;
+}
+.post-wrap .post-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    border-left: 5px solid #4f7df3;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    padding-left: 18px;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 40px;
+}
+.post-wrap .post-header * {
+    margin-top: 0 !important;
+}
+.post-wrap .tag-badge {
+    display: inline-block !important;
+    background: #e8effe;
+    color: #4f7df3;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.post-wrap .post-header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #1a1a2e;
+    margin: 0;
+}
+.post-wrap .subtitle {
+    margin-top: 8px;
+    color: #666;
+    font-size: 14px;
+}
+.post-wrap h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 48px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+.post-wrap h3 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #2c3e50 !important;
+    margin: 28px 0 10px !important;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap p {
+    margin-bottom: 14px;
+    font-size: 15px;
+}
+.post-wrap .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    background: none !important;
+}
+.post-wrap .summary-card {
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 10px;
+    padding: 16px 18px;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.post-wrap .summary-card * {
+    border: none !important;
+    outline: none !important;
+}
+.post-wrap .summary-card .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #4f7df3;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap .summary-card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.post-wrap .ctag {
+    display: inline-block;
+    background: #f1f3f9;
+    color: #444;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 0;
+    line-height: 1.6;
+    vertical-align: middle;
+}
+.post-wrap pre {
+    background: #1e2235;
+    color: #e8eaf6;
+    border-radius: 10px;
+    padding: 20px 22px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 14px 0 20px !important;
+}
+.post-wrap pre .c  { color: #7986cb; }
+.post-wrap pre .t  { color: #80cbc4; }
+.post-wrap pre .a  { color: #ffcc80; }
+.post-wrap pre .v  { color: #a5d6a7; }
+.post-wrap pre .tx { color: #e8eaf6; }
+.post-wrap code {
+    font-family: 'Courier New', monospace;
+    font-size: 13.5px;
+    background: #f1f3f9;
+    color: #c0392b;
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+.post-wrap .callout {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 18px 0;
+    font-size: 14.5px;
+}
+.post-wrap .callout.blue {
+    background: #e8f4fd;
+    border-left: 4px solid #3498db;
+    color: #1a5276;
+}
+.post-wrap .callout.green {
+    background: #eafaf1;
+    border-left: 4px solid #27ae60;
+    color: #1d6a3a;
+}
+.post-wrap .callout.yellow {
+    background: #fef9e7;
+    border-left: 4px solid #f39c12;
+    color: #7d6608;
+}
+.post-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 14px;
+}
+.post-wrap th {
+    background: #4f7df3;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+}
+.post-wrap td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e9ecef;
+}
+.post-wrap tr:nth-child(even) td { background: #f8f9ff; }
+.post-wrap .cascade-list {
+    margin: 14px 0;
+    padding: 0;
+    border: none;
+}
+.post-wrap .cascade-item {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    margin-bottom: 6px !important;
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+}
+.post-wrap .cascade-item .cnum {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 24px !important;
+    min-width: 24px !important;
+    height: 24px;
+    border-radius: 50%;
+    background: #4f7df3;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 12px;
+    flex-shrink: 0 !important;
+}
+.post-wrap .cascade-item .cname {
+    font-family: 'Courier New', monospace;
+    color: #4f7df3;
+    font-weight: 700;
+    display: inline-block !important;
+    width: 130px !important;
+    min-width: 130px !important;
+    flex-shrink: 0 !important;
+    font-size: 13px;
+}
+.post-wrap .cascade-item .cdesc {
+    color: #555;
+    flex: 1;
+    display: inline-block !important;
+}
+.post-wrap .demo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px 0 20px;
+    font-weight: 700;
+    color: #fff;
+}
+.post-wrap .closing {
+    margin-top: 0 !important;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #667eea22, #764ba222);
+    border-radius: 14px;
+    border: 1px solid #dee2e6;
+}
+.post-wrap .closing h3 { margin-top: 0 !important; margin-bottom: 10px; font-size: 17px; }
+.post-wrap .closing p  { font-size: 14.5px; color: #555; margin-bottom: 6px; }
+.post-wrap hr.divider {
+    border: none;
+    border-top: 1px solid #e9ecef;
+    margin: 36px 0;
+}
+</style>
+
+<div class="post-wrap">
+
+    <div class="post-header">
+        <span class="tag-badge"># CSS 학습일지</span>
+        <h1>[CSS 3일차] 반응형 @media 부터<br>CSS 변수 · box-shadow · transition 까지</h1>
+        <p class="subtitle">2026.07.03 · 학습 범위: CSS 14번 ~ 16번 폴더</p>
+    </div>
+
+    <h2>📋 오늘 다룬 것들</h2>
+
+    <p>어제 훑은 레이아웃·애니메이션에 이어, 오늘은 실무에서 계속 쓰이는 세 가지를 짧게 파봤다. 화면 폭에 따라 스타일을 바꾸는 <strong>반응형 @media</strong>, 반복되는 값을 한 곳에서 관리하는 <strong>CSS 변수</strong>, 그리고 그림자·둥근 모서리·전환을 조합해 <strong>hover 시 떠오르는 카드</strong>를 만드는 것까지. 세 개 다 "한 곳만 고치면 전체가 바뀐다" / "부드럽게 반응한다"는 공통점이 있어서 묶어서 이해하기 좋았다.</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="card-title">반응형</div>
+            <div class="tags"><span class="ctag">@media</span><span class="ctag">max-width</span><span class="ctag">row↔column</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">CSS 변수</div>
+            <div class="tags"><span class="ctag">:root</span><span class="ctag">--main-color</span><span class="ctag">var()</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">그림자 &amp; 전환</div>
+            <div class="tags"><span class="ctag">box-shadow</span><span class="ctag">border-radius</span><span class="ctag">opacity</span><span class="ctag">transition</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">인터랙션</div>
+            <div class="tags"><span class="ctag">:hover</span><span class="ctag">translateY</span></div>
+        </div>
+    </div>
+
+    <h2>🗂️ 폴더별 메모</h2>
+
+    <h3>14 — 화면 크기별 스타일 (@media)</h3>
+    <p>화면 폭에 따라 다른 CSS를 적용하는 게 <code>@media</code>다. 한 CSS 파일로 PC와 모바일을 동시에 대응하는 반응형의 핵심. 기본은 넓은 화면 기준으로 짜두고, <code>@media (max-width: 600px)</code> 안에 좁을 때만 덮어쓸 규칙을 넣는다. 오늘 예제는 카드 3개를 넓을 땐 가로(<code>flex-direction: row</code>), 좁을 땐 세로(<code>column</code>)로 전환했다.</p>
+
+    <pre><span class="c">/* 기본(넓은 화면): 카드를 가로로 나란히 */</span>
+<span class="t">.box</span> {
+  <span class="a">display</span>: <span class="v">flex</span>;
+  <span class="a">flex-direction</span>: <span class="v">row</span>;   <span class="c">/* 가로 배치 (왼→오) */</span>
+  <span class="a">gap</span>: <span class="v">10px</span>;
+}
+
+<span class="c">/* 화면 폭이 600px 이하일 때만 아래 규칙 적용 (모바일) */</span>
+<span class="c">@media</span> (<span class="a">max-width</span>: <span class="v">600px</span>) {
+  <span class="t">.box</span> { <span class="a">flex-direction</span>: <span class="v">column</span>; }  <span class="c">/* 세로로 쌓기 */</span>
+}</pre>
+
+    <div class="callout blue">
+        <strong>자주 쓰는 media query 분기점 (main.css 주석 정리)</strong><br>
+        <code>480px</code> — 작은 모바일 &nbsp;/&nbsp; <code>768px</code> — 태블릿 시작점(아이패드 세로 기준) &nbsp;/&nbsp; <code>1024px</code> — 데스크톱 시작점(아이패드 가로 기준) &nbsp;/&nbsp; <code>1280px · 1440px</code> — 큰 화면 대응. 브라우저 창을 줄였다 늘이며 가로↔세로 전환을 직접 확인하면 감이 잡힌다.
+    </div>
+
+    <hr class="divider">
+
+    <h3>15 — CSS 변수 (custom properties · :root · var())</h3>
+    <p>CSS 변수는 <strong>값에 이름표를 붙이는 것</strong>이다. 색·간격처럼 반복되는 값을 <code>:root</code> 안에 한 번 정의해두고, 여러 곳에서 <code>var()</code>로 꺼내 쓴다. 버튼 2개가 같은 <code>--main-color</code>를 쓰면, <code>:root</code> 한 줄만 고쳐도 둘 다 동시에 바뀐다 — 유지보수의 핵심.</p>
+
+    <pre><span class="c">/* :root = 문서 전체의 뿌리 → 어디서든 꺼내 쓸 수 있음 */</span>
+<span class="t">:root</span> {
+  <span class="a">--main-color</span>: <span class="v">#ec4899</span>;  <span class="c">/* 이 한 줄만 고치면 전체 반영 */</span>
+  <span class="a">--gap</span>: <span class="v">12px</span>;
+}
+
+<span class="t">.btn</span> {
+  <span class="a">background</span>: <span class="v">var(--main-color)</span>;  <span class="c">/* 버튼1·버튼2 같은 색 */</span>
+}
+<span class="t">.row</span> { <span class="a">gap</span>: <span class="v">var(--gap)</span>; }        <span class="c">/* 간격도 변수로 */</span></pre>
+
+    <div class="callout green">
+        <strong>커스텀 프로퍼티가 뭔가? (main.css 주석 그대로)</strong><br>
+        <code>--main-color</code>, <code>--gap</code>, <code>--body-color</code>는 전부 <strong>커스텀 프로퍼티(custom property)</strong>, 즉 개발자가 이름을 직접 만든 변수다. CSS에 미리 정해진 속성이 아니다. 핵심 규칙은 딱 하나 — <strong><code>--</code>(대시 두 개)로 시작</strong>하기만 하면 이름은 뭐든 원하는 대로 지을 수 있다. 실무에선 의미가 통하는 이름을 짓는 게 흔한데, 변수 이름만 봐도 "아, 이건 gap 속성에 쓸 값이구나" 하고 바로 이해되게 하기 위해서다.
+    </div>
+
+    <div class="callout yellow">색을 바꾸고 싶으면 <code>--main-color</code> 값 <strong>한 줄만</strong> 수정 → 사용처 전부 반영. (예: <code>#2563eb</code>로 바꿔보기)</div>
+
+    <hr class="divider">
+
+    <h3>16 — 그림자·둥근모서리·전환 (box-shadow · border-radius · opacity · transition)</h3>
+    <p>카드 하나에 효과 4종을 몰아넣고, <code>transition</code>으로 hover 시 부드럽게 반응하게 만들었다. 핵심은 <code>transition</code> 덕에 변화가 뚝딱이 아니라 스르륵 일어난다는 것. 숫자(0.3s · -8px · 16px)만 바꾸면 속도·높이·그림자 세기를 조절할 수 있다.</p>
+
+    <pre><span class="t">.card</span> {
+  <span class="a">border-radius</span>: <span class="v">16px</span>;                      <span class="c">/* ① 모서리 둥글게 */</span>
+  <span class="a">opacity</span>: <span class="v">0.85</span>;                            <span class="c">/* ② 살짝 비치게 (1=불투명) */</span>
+  <span class="a">box-shadow</span>: <span class="v">0 6px 18px rgba(0,0,0,.25)</span>;  <span class="c">/* ③ x·y·번짐·색 */</span>
+  <span class="a">transition</span>: <span class="v">all 0.3s ease</span>;                <span class="c">/* ④ 바뀔 때 0.3초 스르륵 */</span>
+}
+
+<span class="c">/* 마우스 올리면 → 떠오르고 또렷해지고 그림자 커짐 */</span>
+<span class="t">.card:hover</span> {
+  <span class="a">opacity</span>: <span class="v">1</span>;
+  <span class="a">transform</span>: <span class="v">translateY(-8px)</span>;                 <span class="c">/* 위로 8px 떠오름 */</span>
+  <span class="a">box-shadow</span>: <span class="v">0 16px 32px rgba(255,105,180,.5)</span>;
+}</pre>
+
+    <table>
+        <tr><th>속성</th><th>역할</th></tr>
+        <tr><td><code>box-shadow</code></td><td>그림자 — <code>x축 y축 번짐 색</code> 순서</td></tr>
+        <tr><td><code>border-radius</code></td><td>모서리 둥글게</td></tr>
+        <tr><td><code>opacity</code></td><td>투명도 (1=불투명, 0=완전 투명)</td></tr>
+        <tr><td><code>transition</code></td><td>값이 바뀔 때 부드럽게 전환</td></tr>
+    </table>
+
+    <div class="demo-box" style="background: hotpink; box-shadow: 0 6px 18px rgba(0,0,0,0.25);">올려봐</div>
+
+    <div class="closing">
+        <h3>✍️ 마치며</h3>
+        <p>오늘 세 개를 묶어보니 CSS를 "값을 한 번 정하고 재사용·반응시키는 도구"로 보는 눈이 조금 생겼다. <code>@media</code>는 화면 폭에 반응하고, <code>var()</code>는 한 곳의 값 변경에 반응하고, <code>transition</code>은 상태 변화에 반응한다 — 결이 비슷하다. 특히 CSS 변수는 어제 배운 반복 스타일들을 <code>:root</code> 한 곳으로 모을 수 있다는 점에서, 앞으로 프로젝트가 커질수록 진가를 발휘할 것 같다. 다음엔 변수와 @media를 실제 페이지에 함께 적용해볼 예정이다.</p>
+        <p style="margin-top:16px; font-size:13px; color:#888;">🏷️ CSS &nbsp;|&nbsp; 반응형 &nbsp;|&nbsp; CSS변수 &nbsp;|&nbsp; 학습일지 &nbsp;|&nbsp; 프론트엔드</p>
+    </div>
+
+</div>

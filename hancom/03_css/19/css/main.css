@@ -1,0 +1,490 @@
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-display: swap;
+}
+
+/* 전체에 Pretendard 적용 (안 불러와지면 뒤 글꼴로 대체) */
+body {
+    font-family: 'Pretendard', "Malgun Gothic", system-ui, sans-serif;
+}
+
+button,
+.nav-btn,
+.up {
+  display: inline-block;
+  background: transparent;
+  position: relative;
+  padding: 5px 15px;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid rgb(40, 144, 241);
+  border-radius: 25px;
+  outline: none;
+  overflow: hidden;
+  color: rgb(40, 144, 241);
+  transition: color 0.3s 0.1s ease-out;
+  text-align: center;
+}
+
+
+button::before,
+.nav-btn::before,
+.up::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  content: '';
+  border-radius: 50%;
+  display: block;
+  width: 20em;
+  height: 20em;
+  left: -5em;
+  text-align: center;
+  transition: box-shadow 0.5s ease-out;
+  z-index: -1;
+}
+
+button:hover,
+.nav-btn:hover,
+.up:hover {
+  color: #fff;
+  border: 1px solid rgb(40, 144, 241);
+}
+
+button:hover::before,
+.nav-btn:hover::before,
+.up:hover::before {
+  box-shadow: inset 0 0 0 10em rgb(40, 144, 241);
+}
+ 
+.wrap {
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px
+}
+
+nav {
+    display: flex;
+    text-align: center;
+    margin: 20px auto 50px;
+    /* 스크롤해도 화면 위에 고정 */
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--bg);
+}
+
+nav a {
+    flex: 1;
+}
+nav .nav-btn {
+    width: 100%;
+    border-radius: 0;
+    padding: 12px 0;
+}
+/* nav 버튼: 원 퍼짐 효과를 버튼 전체를 덮도록 크게 + 가운데 정렬 */
+nav .nav-btn::before {
+    width: 50em;
+    height: 50em;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin: 0;
+    transform: translate(-50%, -50%);
+}
+nav .nav-btn:hover::before {
+    box-shadow: inset 0 0 0 25em var(--blue);
+}
+
+.up {
+    position: fixed;
+    bottom: 30px;
+    right:30px;
+    padding: 5px 10px;
+    z-index: 10;
+}
+
+/* =========================================================
+   전체 꾸미기 — 색·배경·카드·타이포
+   ========================================================= */
+
+/* 자주 쓰는 색을 변수로 (한 곳에서 관리) */
+:root {
+    --blue: rgb(40, 144, 241);
+    --blue-dark: #1b6fc0;
+    --ink: #1f2937;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --bg: #eef3f9;
+    --card: #ffffff;
+    --code-bg: #0f172a;
+}
+
+body {
+    background: var(--bg);
+    color: var(--ink);
+}
+
+/* 가운데 정렬 컨테이너 */
+.wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 20px 90px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 16px 0;
+}
+
+/* 헤더 제목 */
+h1 {
+    font-weight: 800;
+    font-size: 30px;
+    color: var(--blue-dark);
+}
+
+/* 섹션을 카드처럼 */
+section {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px 30px;
+    margin-bottom: 28px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    /* 고정 nav에 가리지 않게 앵커 이동 시 여유 */
+    scroll-margin-top: 70px;
+}
+
+/* 섹션 제목 */
+h2 {
+    font-size: 24px;
+    font-weight: 800;
+    padding-left: 12px;
+    margin-bottom: 18px;
+    border-left: 5px solid var(--blue);
+    line-height: 1.3;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 16px 0 4px;
+    text-align: center;
+}
+
+/* 정리·아이콘 이미지 — 가운데 정렬, 아래 여백 제거 */
+section h3 img {
+    height: 44px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 정리 섹션: 아이콘 아래 제목도 가운데로 맞춰 정렬 */
+#til h4 {
+    text-align: center;
+    margin-top: 4px;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin: 20px 0 6px;
+}
+
+p {
+    margin: 8px 0;
+}
+
+/* 아티클 카드 — 뒤에 컬러 박스가 겹쳐 보이는 효과
+   (box-shadow에 흐림 0 + 오프셋만 주면 단색 박스처럼 보임) */
+#site article,
+#til article {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--blue);
+    border-radius: 14px;
+    padding: 22px 26px;
+    max-width: 80%;
+    margin: 100px auto 44px 0;      /* 왼쪽 정렬 + 오른쪽에 컬러 박스 공간 */
+    box-shadow: 26px 26px 0 var(--blue);
+}
+
+/* 2섹션(정리) 아티클 — 가로 꽉 차게, 그림자 없음 */
+#til article {
+    max-width: none;
+    margin: 40px 0 48px 0;
+    text-align: left;
+    box-shadow: none;
+}
+
+/* 의견 아티클 — 그림자 왼쪽, 글자 오른쪽 정렬 */
+#site article.opinion {
+    margin: 100px 0 44px auto;      /* 오른쪽 정렬 + 왼쪽에 컬러 박스 공간 */
+    text-align: right;
+    box-shadow: -26px 26px 0 var(--blue);
+}
+
+/* 본문 링크(내비·버튼 제외)는 파란 링크로 */
+main a:not(.nav-btn):not(.up) {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+main a:not(.nav-btn):not(.up):hover {
+    color: var(--blue-dark);
+}
+
+/* 사이트 분석 스크린샷 (#site 바로 아래 img만 — h3 아이콘 제외) */
+#site > img {
+    display: block;
+    max-width: 100%;
+    border-radius: 12px;
+    margin: 14px auto;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* 정리 내용 — 용어 목록(dl) */
+dt {
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin-top: 16px;
+}
+dd {
+    margin: 4px 0 10px;
+    padding-left: 12px;
+    border-left: 2px solid var(--line);
+    color: #374151;
+}
+
+/* 코드 블록 */
+pre {
+    background: var(--code-bg);
+    color: #e2e8f0;
+    padding: 14px 16px;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 8px 0 4px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+/* 인라인 코드 (문장 속 code) */
+code {
+    font-family: ui-monospace, "Consolas", monospace;
+    background: #eef2f7;
+    color: #c026d3;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.9em;
+}
+/* pre 안의 code는 배경·색 초기화 */
+pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+}
+
+/* 코드 예시의 "적용 결과" 미리보기 박스 */
+.preview {
+    margin-top: 10px;
+    padding: 14px 16px 16px;
+    border: 1px dashed #9ec7f5;
+    border-radius: 8px;
+    background: #fafcff;
+}
+.preview::before {
+    content: "▶ 적용 결과";
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 10px;
+}
+/* 미리보기 안에서는 리스트·표 기본 모양을 되살림 */
+.preview ul { list-style: disc; padding-left: 22px; margin: 4px 0; }
+.preview ol { list-style: decimal; padding-left: 22px; margin: 4px 0; }
+.preview table { border-collapse: collapse; }
+.preview th, .preview td { border: 1px solid #cbd5e1; padding: 4px 12px; }
+.preview h1 { font-size: 26px; color: var(--ink); font-weight: 800; margin: 4px 0; text-align: left; }
+.preview dt { margin-top: 4px; }
+/* 데모용 라이브 효과 */
+@keyframes demo-spin { to { transform: rotate(360deg); } }
+.demo-spin { animation: demo-spin 2.5s linear infinite; }
+.demo-hover { display: inline-block; border: 1px solid var(--blue); padding: 6px 14px; border-radius: 6px; cursor: pointer; transition: 0.3s; }
+.demo-hover:hover { background: skyblue; }
+.demo-scale { display: inline-block; transition: 0.3s; }
+.demo-scale:hover { transform: rotate(10deg) scale(1.1); }
+.demo-star::before { content: "★ "; color: #f0a; }
+
+/* 퀴즈 문항 카드 */
+#quiz article {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    background: #fbfdff;
+}
+#quiz h4 {
+    margin-top: 0;
+    color: var(--ink);
+}
+
+/* 정답 펼치기(details) */
+details {
+    background: #f1f7ff;
+    border: 1px solid #d5e6fb;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-top: 10px;
+}
+summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--blue);
+    list-style: none;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "▸ "; }
+details[open] summary::before { content: "▾ "; }
+details p { margin-bottom: 0; }
+
+/* 꼬리말 */
+footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    padding: 24px 0;
+}
+
+/* 제목 등장 효과 — 스크롤로 들어오면 한 글자씩 타이핑 (순수 CSS)
+   width:fit-content 로 글자폭에 맞추고, clip-path 를 오른쪽부터
+   steps(글자수) 단계로 열어 한 글자씩 나오는 것처럼 보이게 함 */
+@keyframes type-reveal {
+    from { clip-path: inset(0 100% 0 0); }
+    to   { clip-path: inset(0 0 0 0); }
+}
+
+/* 기본: 화면에 그려질 때 1.4초 동안 타이핑 (모든 브라우저에서 동작) */
+.typing {
+    display: inline-block;
+    width: fit-content;
+    animation: type-reveal 1.4s both;
+}
+/* 제목 글자 수만큼 단계 지정 (한 글자당 한 단계) */
+#site .typing { animation-timing-function: steps(23); }
+#til  .typing { animation-timing-function: steps(15); }
+#quiz .typing { animation-timing-function: steps(12); }
+
+/* 스크롤로 나타날 때 — 방향별 슬라이드 인 (순수 CSS, JS 없음)
+   animation-timeline: view() = 요소가 화면에 들어오는 정도에 맞춰 애니메이션 진행 */
+@keyframes slide-from-left {
+    from { opacity: 0; transform: translateX(-90px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-from-right {
+    from { opacity: 0; transform: translateX(90px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-from-bottom {
+    from { opacity: 0; transform: translateY(280px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 지원하는 브라우저(크롬·엣지)에서만 적용 — 미지원 시 그냥 정상 표시 */
+@supports (animation-timeline: view()) {
+    #site article,
+    #til article {
+        animation: slide-from-left linear both;
+        animation-timeline: view();
+        /* 구간을 넓게 잡아 스크롤하는 동안 서서히 나타남 (반짝임 방지) */
+        animation-range: entry 5% cover 35%;
+    }
+    /* 의견 아티클은 오른쪽에서 왼쪽으로 */
+    #site article.opinion {
+        animation-name: slide-from-right;
+    }
+    /* 2섹션(정리) 아티클은 밑에서 위로, 반쯤 들어오면 이미 다 나타남 */
+    #til article {
+        animation-name: slide-from-bottom;
+        animation-range: entry 0% entry 50%;
+    }
+}
+
+/* 화면이 좁을 때(모바일) */
+@media (max-width: 600px) {
+    section { padding: 20px 18px; }
+    h1 { font-size: 24px; }
+    h2 { font-size: 20px; }
+}
+

@@ -1,0 +1,85 @@
+﻿.start-title {
+    color: navy;
+    font-size: 50px;
+}
+
+.start-title::before {
+    content: "⭐";
+}
+
+.quote {
+    color: gray;
+    font-style: italic;
+}
+
+.quote::before {
+    content: " ' ";
+    color: tomato;
+    font-weight: 700;
+}
+
+.quote::after {
+    content: " ' ";
+    color: tomato;
+    font-weight: 700;
+}
+
+.underline-deco {
+    position: relative;
+    color: green;
+    display: inline-block;
+}
+
+.underline-deco::after {
+    content: "";
+    background-color: royalblue;
+    width: 100%;
+    height: 2px;
+    display: block;     /* 블록으로 바꿔 줄 모양으로 만들기 */
+    border-radius: 2px;
+    margin-top: 3px;
+}
+
+/* ==========================================
+   display 속성 정리 (block / inline / inline-block)
+   ========================================== */
+
+/* 
+  [1] block
+  - 항상 줄바꿈됨 (한 줄 전체 차지)
+  - width, height 지정 가능
+  - margin, padding 상하좌우 모두 적용됨
+  - 대표 태그: div, p, h1~h6, ul, li, section
+*/
+
+/* 
+  [2] inline
+  - 줄바꿈 없음 (한 줄에 나란히 배치)
+  - width, height 지정해도 무시됨 (내용물 크기만큼만 차지)
+  - margin, padding 좌우만 적용됨 (상하는 레이아웃에 영향 없음)
+  - 대표 태그: span, a, strong, em, b
+*/
+
+/* 
+  [3] inline-block
+  - 줄바꿈 없음 (한 줄에 나란히 배치)
+  - width, height, margin, padding 상하좌우 모두 적용됨
+  - inline + block 장점을 합친 형태
+  - 주로 버튼, 네비게이션 메뉴 등에 사용
+*/
+
+/* 
+  비교 요약
+  ------------------------------------------
+                줄바꿈    width/height   margin·padding(상하)
+  block          O           적용됨          적용됨
+  inline         X           무시됨          무시됨
+  inline-block   X           적용됨          적용됨
+  ------------------------------------------
+*/
+
+/* 
+  실무 팁
+  - 여러 요소를 가로로 나열할 땐 inline-block보다
+    부모에 display: flex; gap: var(--gap); 사용하는 게 더 깔끔함
+*/

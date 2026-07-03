@@ -1,0 +1,33 @@
+﻿
+/* root = 문서 전체의 뿌리 => 어디서든 꺼내 쓸 수 있음(안에 변수 정의) */
+:root {
+    --main-color: rgb(106, 220, 255);      /* 메인 색 (이 한 줄만 고치면 전체 반영 */
+    --gap: 12px;                             /* 버튼 사이 간격 */
+    --body-color: rgb(247, 252, 255);
+}
+
+body {
+    background: var(--body-color);
+}
+
+.row {
+    display: flex;
+    gap: var(--gap);
+}
+
+/* 변수 꺼내 쓰기 */
+.btn {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 8px;
+    background: var(--main-color);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* 
+--main-color, --gap, --body-color 전부 **커스텀 프로퍼티(custom property)**라고 해서, 개발자가 이름을 직접 만든 변수예요. CSS에 미리 정해진 속성이 아닙니다.
+핵심 규칙은 딱 하나: --로 시작하기만 하면 이름은 뭐든 원하는 대로 지을 수 있어요.
+의미가 통하는 이름을 짓는 게 실무에서 흔합니다. 변수 이름만 봐도 "아, 이건 gap 속성에 쓸 값이구나"라고 바로 이해
+ */

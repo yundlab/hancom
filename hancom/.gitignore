@@ -1,2 +1,8 @@
 ﻿*.mp4
 hancom.txt
+.env
+__pycache__/
+*.pyc
+venv/
+node_modules/
+.DS_Store
