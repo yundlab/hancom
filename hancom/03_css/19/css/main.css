@@ -1,59 +1,72 @@
+/* =========================================================
+   미니 프로젝트 — main.css
+   ─────────────────────────────────────────────────────────
+   ①  웹폰트 (Pretendard)
+   ②  색 변수 (:root)
+   ③  기본 요소 (body·제목·문단·구분선·링크)
+   ④  버튼 공통 효과 (Uiverse 원 퍼짐)
+   ⑤  레이아웃 (컨테이너·헤더·내비게이션·맨위 버튼)
+   ⑥  섹션 카드
+   ⑦  사이트 분석 섹션 (#site)
+   ⑧  정리 섹션 (#til) — 용어목록·코드·미리보기
+   ⑨  퀴즈 섹션 (#quiz)
+   ⑩  꼬리말
+   ⑪  애니메이션 (제목 타이핑·스크롤 슬라이드)
+   ⑫  반응형
+   ========================================================= */
+
+
+/* =========================================================
+   ①  웹폰트 — Pretendard (100~900)
+   ========================================================= */
 @font-face {
     font-family: 'Pretendard';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
     font-weight: 100;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'Pretendard';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
     font-weight: 200;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'Pretendard';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
     font-weight: 300;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'Pretendard';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
     font-weight: 400;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'Pretendard';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
     font-weight: 500;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'Pretendard';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
     font-weight: 600;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'Pretendard';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
     font-weight: 700;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'Pretendard';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
     font-weight: 800;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'Pretendard';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
@@ -61,198 +74,61 @@
     font-display: swap;
 }
 
-/* 전체에 Pretendard 적용 (안 불러와지면 뒤 글꼴로 대체) */
-body {
-    font-family: 'Pretendard', "Malgun Gothic", system-ui, sans-serif;
-}
-
-button,
-.nav-btn,
-.up {
-  display: inline-block;
-  background: transparent;
-  position: relative;
-  padding: 5px 15px;
-  align-items: center;
-  font-size: 17px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  border: 1px solid rgb(40, 144, 241);
-  border-radius: 25px;
-  outline: none;
-  overflow: hidden;
-  color: rgb(40, 144, 241);
-  transition: color 0.3s 0.1s ease-out;
-  text-align: center;
-}
-
-
-button::before,
-.nav-btn::before,
-.up::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  content: '';
-  border-radius: 50%;
-  display: block;
-  width: 20em;
-  height: 20em;
-  left: -5em;
-  text-align: center;
-  transition: box-shadow 0.5s ease-out;
-  z-index: -1;
-}
-
-button:hover,
-.nav-btn:hover,
-.up:hover {
-  color: #fff;
-  border: 1px solid rgb(40, 144, 241);
-}
-
-button:hover::before,
-.nav-btn:hover::before,
-.up:hover::before {
-  box-shadow: inset 0 0 0 10em rgb(40, 144, 241);
-}
- 
-.wrap {
-    position: relative;
-}
-
-h1 {
-    text-align: center;
-    margin: 20px
-}
-
-nav {
-    display: flex;
-    text-align: center;
-    margin: 20px auto 50px;
-    /* 스크롤해도 화면 위에 고정 */
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    background: var(--bg);
-}
-
-nav a {
-    flex: 1;
-}
-nav .nav-btn {
-    width: 100%;
-    border-radius: 0;
-    padding: 12px 0;
-}
-/* nav 버튼: 원 퍼짐 효과를 버튼 전체를 덮도록 크게 + 가운데 정렬 */
-nav .nav-btn::before {
-    width: 50em;
-    height: 50em;
-    top: 50%;
-    left: 50%;
-    right: auto;
-    bottom: auto;
-    margin: 0;
-    transform: translate(-50%, -50%);
-}
-nav .nav-btn:hover::before {
-    box-shadow: inset 0 0 0 25em var(--blue);
-}
-
-.up {
-    position: fixed;
-    bottom: 30px;
-    right:30px;
-    padding: 5px 10px;
-    z-index: 10;
-}
 
 /* =========================================================
-   전체 꾸미기 — 색·배경·카드·타이포
+   ②  색 변수 — 한 곳에서 관리
    ========================================================= */
-
-/* 자주 쓰는 색을 변수로 (한 곳에서 관리) */
 :root {
     --blue: rgb(40, 144, 241);
     --blue-dark: #1b6fc0;
-    --ink: #1f2937;
-    --muted: #6b7280;
-    --line: #e5e7eb;
-    --bg: #eef3f9;
-    --card: #ffffff;
-    --code-bg: #0f172a;
+    --yellow: #f7c600;   /* 진한 개나리 노랑 — 보조 포인트 색 */
+    --ink: #1f2937;      /* 기본 글자색 */
+    --muted: #6b7280;    /* 흐린 글자색 */
+    --line: #e5e7eb;     /* 옅은 테두리/구분선 */
+    --bg: #eef3f9;       /* 아주 연한 하늘색 배경 */
+    --card: #ffffff;     /* 카드 배경 */
+    --code-bg: #0f172a;  /* 코드 블록 배경 */
 }
 
+
+/* =========================================================
+   ③  기본 요소 — 글꼴·배경·제목·문단·구분선·링크
+   ========================================================= */
 body {
+    font-family: 'Pretendard', "Malgun Gothic", system-ui, sans-serif;
     background: var(--bg);
     color: var(--ink);
 }
 
-/* 가운데 정렬 컨테이너 */
-.wrap {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 24px 20px 90px;
-}
-
-hr {
-    border: none;
-    border-top: 1px solid var(--line);
-    margin: 16px 0;
-}
-
-/* 헤더 제목 */
+/* 페이지 제목 (Yun:D 미니 프로젝트) */
 h1 {
+    text-align: center;
+    margin: 20px;
     font-weight: 800;
     font-size: 30px;
     color: var(--blue-dark);
 }
-
-/* 섹션을 카드처럼 */
-section {
-    background: var(--card);
-    border-radius: 16px;
-    padding: 28px 30px;
-    margin-bottom: 28px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-    /* 고정 nav에 가리지 않게 앵커 이동 시 여유 */
-    scroll-margin-top: 70px;
+/* 제목 속 D 만 노랑 포인트 */
+h1 span {
+    color: var(--yellow);
 }
 
-/* 섹션 제목 */
+/* 섹션 제목 (왼쪽 파란 강조선) */
 h2 {
     font-size: 24px;
     font-weight: 800;
     padding-left: 12px;
     margin-bottom: 18px;
-    border-left: 5px solid var(--blue);
+    border-left: 5px solid var(--yellow);
     line-height: 1.3;
 }
 
+/* 소제목 (APPLE·정리 아이콘 등) — 가운데 정렬 */
 h3 {
     font-size: 20px;
     font-weight: 700;
     margin: 16px 0 4px;
     text-align: center;
-}
-
-/* 정리·아이콘 이미지 — 가운데 정렬, 아래 여백 제거 */
-section h3 img {
-    height: 44px;
-    width: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-/* 정리 섹션: 아이콘 아래 제목도 가운데로 맞춰 정렬 */
-#til h4 {
-    text-align: center;
-    margin-top: 4px;
 }
 
 h4 {
@@ -266,36 +142,13 @@ p {
     margin: 8px 0;
 }
 
-/* 아티클 카드 — 뒤에 컬러 박스가 겹쳐 보이는 효과
-   (box-shadow에 흐림 0 + 오프셋만 주면 단색 박스처럼 보임) */
-#site article,
-#til article {
-    position: relative;
-    background: #fff;
-    border: 1px solid var(--blue);
-    border-radius: 14px;
-    padding: 22px 26px;
-    max-width: 80%;
-    margin: 100px auto 44px 0;      /* 왼쪽 정렬 + 오른쪽에 컬러 박스 공간 */
-    box-shadow: 26px 26px 0 var(--blue);
+hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 16px 0;
 }
 
-/* 2섹션(정리) 아티클 — 가로 꽉 차게, 그림자 없음 */
-#til article {
-    max-width: none;
-    margin: 40px 0 48px 0;
-    text-align: left;
-    box-shadow: none;
-}
-
-/* 의견 아티클 — 그림자 왼쪽, 글자 오른쪽 정렬 */
-#site article.opinion {
-    margin: 100px 0 44px auto;      /* 오른쪽 정렬 + 왼쪽에 컬러 박스 공간 */
-    text-align: right;
-    box-shadow: -26px 26px 0 var(--blue);
-}
-
-/* 본문 링크(내비·버튼 제외)는 파란 링크로 */
+/* 본문 링크 (내비·버튼 제외)는 파란 밑줄 링크 */
 main a:not(.nav-btn):not(.up) {
     color: var(--blue);
     text-decoration: underline;
@@ -305,23 +158,289 @@ main a:not(.nav-btn):not(.up):hover {
     color: var(--blue-dark);
 }
 
-/* 사이트 분석 스크린샷 (#site 바로 아래 img만 — h3 아이콘 제외) */
+
+/* =========================================================
+   ④  버튼 공통 효과 — Uiverse 원 퍼짐 (button·nav·맨위 버튼)
+   ========================================================= */
+button,
+.nav-btn,
+.up {
+    display: inline-block;
+    background: transparent;
+    position: relative;
+    padding: 5px 15px;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid var(--blue);
+    border-radius: 25px;
+    outline: none;
+    overflow: hidden;
+    color: var(--blue);
+    transition: color 0.3s 0.1s ease-out;
+    text-align: center;
+}
+/* hover 시 안쪽에서 퍼지는 원 */
+button::before,
+.nav-btn::before,
+.up::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -5em;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: block;
+    width: 20em;
+    height: 20em;
+    border-radius: 50%;
+    transition: box-shadow 0.5s ease-out;
+    z-index: -1;
+}
+button:hover,
+.nav-btn:hover,
+.up:hover {
+    color: #fff;
+    border: 1px solid var(--blue);
+}
+button:hover::before,
+.nav-btn:hover::before,
+.up:hover::before {
+    box-shadow: inset 0 0 0 10em var(--blue);
+}
+
+
+/* =========================================================
+   ⑤  레이아웃 — 컨테이너·헤더·내비게이션·맨위 버튼
+   ========================================================= */
+/* 가운데 정렬 컨테이너 */
+.wrap {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 20px 90px;
+}
+
+header {
+    text-align: center;
+}
+
+/* 내비게이션 — 스크롤해도 상단 고정 */
+nav {
+    display: flex;
+    text-align: center;
+    margin: 20px auto 50px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--bg);
+}
+nav a {
+    flex: 1;
+}
+/* nav 버튼 — 흰 배경, 테두리 없음, 칸을 꽉 채우는 사각형 */
+nav .nav-btn {
+    width: 100%;
+    border-radius: 0;
+    padding: 12px 0;
+    background: #fff;
+    border: none;
+    color: var(--blue);
+    z-index: 0;   /* 독립 스택 문맥 → 원(::before)이 흰 배경 위·글자 아래에 놓임 */
+}
+/* 원이 가운데서부터 커지는 hover (scale 0 → 1) */
+nav .nav-btn::before {
+    width: 40em;
+    height: 40em;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin: 0;
+    background: var(--yellow);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.9s ease;
+}
+nav .nav-btn:hover {
+    color: #fff;
+    border: none;
+}
+nav .nav-btn:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: none;   /* 공통 버튼의 파란 채움 제거 (노란 원만 보이게) */
+}
+
+/* 맨 위로 가는 고정 버튼 (position:fixed 는 버튼 공통의 relative 를 덮어야 하므로 뒤에) */
+.up {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 5px 10px;
+    z-index: 10;
+}
+
+
+/* =========================================================
+   ⑥  섹션 카드
+   ========================================================= */
+section {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px 30px;
+    margin-bottom: 28px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    scroll-margin-top: 70px;   /* 고정 nav에 가리지 않게 앵커 이동 여유 */
+}
+
+/* 소제목 속 아이콘 이미지 — 가운데 정렬 */
+section h3 img {
+    height: 44px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   ⑦  사이트 분석 섹션 (#site) — 카드 + 뒤에 겹친 컬러 박스
+   ========================================================= */
+/* 애플 스크린샷 — 1초 딜레이 후 2초 동안 서서히 나타남 */
 #site > img {
     display: block;
     max-width: 100%;
     border-radius: 12px;
     margin: 14px auto;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    animation: fade-in 2s 1s both;
+}
+@keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
-/* 정리 내용 — 용어 목록(dl) */
+/* 분석·의견 카드 (흰 카드 + 파란 오프셋 박스) */
+#site article {
+    position: relative;
+    max-width: 82%;
+    margin: 0 0 52px 0;                   /* 왼쪽 정렬 + 오른쪽에 컬러 박스 공간 */
+    padding: 30px 34px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 22px 22px 0 var(--blue);  /* 뒤에 겹친 파란 박스 */
+}
+#site article:first-of-type {
+    margin-top: 150px;     /* 스크린샷 ↔ 사이트 분석 */
+    margin-bottom: 100px;  /* 사이트 분석 ↔ 의견 */
+}
+
+/* 소제목 (사이트 분석 / 의견) — 가운데 + 아래 액센트 라인 */
+#site article h4 {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 40px;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--ink);
+    padding-bottom: 3px;
+    border-bottom: 3px solid var(--yellow);
+}
+
+/* 본문 */
+#site article p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #374151;
+    margin: 0 0 52px;
+}
+#site article p:last-child {
+    margin-bottom: 0;
+}
+
+/* 라벨 — 가운데 정렬 알약 배지 (1. 정보 구조 / 좋은 점 등) */
+#site article p strong {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #fff;
+    background: var(--blue);
+    padding: 4px 13px;
+    border-radius: 999px;
+}
+
+/* 배지 옆 강조 문구 — 기울임 인용구 (위·아래 따옴표) */
+.pull-quote {
+    display: block;
+    font-style: italic;
+    text-align: center;
+    color: var(--blue-dark);
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 16px auto;
+}
+.pull-quote::before,
+.pull-quote::after {
+    display: block;
+    font-size: 30px;
+    line-height: 0.7;
+    color: var(--yellow);
+    font-style: normal;
+}
+.pull-quote::before { content: "\201C"; }
+.pull-quote::after  { content: "\201D"; }
+
+/* 의견 카드 — 오른쪽 배치, 본문 왼쪽 정렬, 컬러 박스 왼쪽 */
+#site article.opinion {
+    margin: 0 0 52px auto;
+    text-align: left;
+    box-shadow: -22px 22px 0 var(--blue);
+}
+#site article.opinion p {
+    max-width: none;
+}
+/* 의견 라벨은 색으로 구분 */
+#site article.opinion p:nth-of-type(1) strong { background: #16a34a; }   /* 좋은 점 — 초록 */
+#site article.opinion p:nth-of-type(2) strong { background: #dc2626; }   /* 아쉬운 점 — 빨강 */
+#site article.opinion p:nth-of-type(3) strong { background: var(--blue); } /* 한 줄 평가 — 파랑 */
+
+
+/* =========================================================
+   ⑧  정리 섹션 (#til) — 카드·용어목록·코드·미리보기
+   ========================================================= */
+/* 정리 카드 (가로 꽉 참, 그림자 없음) */
+#til article {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--blue);
+    border-radius: 14px;
+    padding: 22px 26px;
+    max-width: none;
+    margin: 40px 0 48px 0;
+    text-align: left;
+}
+/* 정리 소제목(아이콘 + 제목) — 가운데 + 노랑 밑줄 (글자 폭에 맞춤) */
+#til h3 {
+    width: fit-content;
+    margin: 16px auto;
+    padding-bottom: 3px;
+    border-bottom: 3px solid var(--yellow);
+}
+
+/* 용어 목록 (dl) */
 dt {
     font-weight: 700;
+    font-size: 19px;
     color: var(--blue-dark);
-    margin-top: 16px;
+    margin: 44px 0 14px;            /* 항목(번호) 사이 여백 + dt↔dd 간격 */
 }
 dd {
-    margin: 4px 0 10px;
+    margin: 0 0 12px;
     padding-left: 12px;
     border-left: 2px solid var(--line);
     color: #374151;
@@ -338,7 +457,7 @@ pre {
     font-size: 13px;
     line-height: 1.5;
 }
-/* 인라인 코드 (문장 속 code) */
+/* 문장 속 인라인 코드 */
 code {
     font-family: ui-monospace, "Consolas", monospace;
     background: #eef2f7;
@@ -347,7 +466,7 @@ code {
     border-radius: 6px;
     font-size: 0.9em;
 }
-/* pre 안의 code는 배경·색 초기화 */
+/* pre 안의 code 는 배경·색 초기화 */
 pre code {
     background: none;
     color: inherit;
@@ -355,20 +474,20 @@ pre code {
     font-size: inherit;
 }
 
-/* 코드 예시의 "적용 결과" 미리보기 박스 */
+/* "적용 결과" 미리보기 박스 */
 .preview {
     margin-top: 10px;
     padding: 14px 16px 16px;
-    border: 1px dashed #9ec7f5;
+    border: 1px dashed #e6c34a;   /* 노랑 점선 테두리 */
     border-radius: 8px;
-    background: #fafcff;
+    background: #fffdf2;          /* 아주 연한 노랑 배경 */
 }
 .preview::before {
     content: "▶ 적용 결과";
     display: block;
     font-size: 12px;
     font-weight: 700;
-    color: var(--blue);
+    color: #a16207;              /* 짙은 골드 라벨 (연노랑 위에서 잘 보이게) */
     margin-bottom: 10px;
 }
 /* 미리보기 안에서는 리스트·표 기본 모양을 되살림 */
@@ -377,22 +496,52 @@ pre code {
 .preview table { border-collapse: collapse; }
 .preview th, .preview td { border: 1px solid #cbd5e1; padding: 4px 12px; }
 .preview h1 { font-size: 26px; color: var(--ink); font-weight: 800; margin: 4px 0; text-align: left; }
-.preview dt { margin-top: 4px; }
-/* 데모용 라이브 효과 */
+
+/* 미리보기 데모 — 라이브 효과 (hover·회전·별) */
 @keyframes demo-spin { to { transform: rotate(360deg); } }
-.demo-spin { animation: demo-spin 2.5s linear infinite; }
+.demo-spin  { animation: demo-spin 2.5s linear infinite; }
 .demo-hover { display: inline-block; border: 1px solid var(--blue); padding: 6px 14px; border-radius: 6px; cursor: pointer; transition: 0.3s; }
 .demo-hover:hover { background: skyblue; }
 .demo-scale { display: inline-block; transition: 0.3s; }
 .demo-scale:hover { transform: rotate(10deg) scale(1.1); }
 .demo-star::before { content: "★ "; color: #f0a; }
 
-/* 퀴즈 문항 카드 */
+/* 미리보기 데모 — 정적 요소 (인라인 스타일에서 옮긴 클래스) */
+.pv-line { margin: 4px 0; }
+.pv-icon { height: 36px; margin-top: 6px; }
+.pv-red  { color: red; margin: 0; }
+.pv-gray { color: gray; margin: 2px 0; }
+.pv-24   { font-size: 24px; margin: 2px 0; }
+/* 시맨틱 구조 미리보기 */
+.pv-layout    { border: 1px solid #bbb; border-radius: 6px; overflow: hidden; font-size: 13px; text-align: center; }
+.pv-band      { background: #e3effd; padding: 6px; }
+.pv-band-main { background: #f5f9ff; padding: 16px 6px; }
+/* 박스 모델·크기·색 */
+.pv-box     { display: inline-block; padding: 20px; border: 2px solid navy; margin: 20px; background: #fff; }
+.pv-hotpink { width: 200px; height: 100px; color: #fff; background: hotpink; display: flex; align-items: center; justify-content: center; }
+/* flex · grid */
+.pv-flex      { display: flex; gap: 10px; justify-content: center; }
+.pv-blue-box  { background: #48f; color: #fff; padding: 10px 16px; border-radius: 6px; }
+.pv-grid      { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.pv-green-box { background: #0a8; color: #fff; padding: 12px; text-align: center; border-radius: 6px; }
+/* position */
+.pv-pos       { position: relative; height: 70px; background: #eef3f9; border-radius: 6px; }
+.pv-pos-badge { position: absolute; right: 8px; bottom: 8px; background: var(--blue); color: #fff; padding: 4px 10px; border-radius: 4px; }
+/* 변형·효과 */
+.pv-spin-box { width: 46px; height: 46px; background: var(--blue); border-radius: 8px; display: inline-block; vertical-align: middle; }
+.pv-pink-box { background: #f0a; color: #fff; padding: 8px 12px; border-radius: 6px; }
+.pv-gradient { width: 120px; height: 80px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); background: linear-gradient(45deg, #f06, #48f); }
+.pv-var      { background: #ff0066; color: #fff; padding: 4px 10px; border-radius: 4px; }
+
+
+/* =========================================================
+   ⑨  퀴즈 섹션 (#quiz) — 문항 카드 + 정답 펼치기
+   ========================================================= */
 #quiz article {
-    border: 1px solid var(--line);
+    border: 1px solid var(--blue);
     border-radius: 12px;
     padding: 16px 20px;
-    margin-bottom: 14px;
+    margin-bottom: 30px;
     background: #fbfdff;
 }
 #quiz h4 {
@@ -400,10 +549,10 @@ pre code {
     color: var(--ink);
 }
 
-/* 정답 펼치기(details) */
+/* 정답 펼치기 (details/summary) */
 details {
-    background: #f1f7ff;
-    border: 1px solid #d5e6fb;
+    background: #fffdf2;          /* 아주 연한 노랑 배경 */
+    border: 1px solid #ecd58a;    /* 노랑 테두리 */
     border-radius: 10px;
     padding: 10px 14px;
     margin-top: 10px;
@@ -411,7 +560,7 @@ details {
 summary {
     cursor: pointer;
     font-weight: 700;
-    color: var(--blue);
+    color: #a16207;               /* 짙은 골드 */
     list-style: none;
 }
 summary::-webkit-details-marker { display: none; }
@@ -419,7 +568,10 @@ summary::before { content: "▸ "; }
 details[open] summary::before { content: "▾ "; }
 details p { margin-bottom: 0; }
 
-/* 꼬리말 */
+
+/* =========================================================
+   ⑩  꼬리말
+   ========================================================= */
 footer {
     text-align: center;
     color: var(--muted);
@@ -427,27 +579,23 @@ footer {
     padding: 24px 0;
 }
 
-/* 제목 등장 효과 — 스크롤로 들어오면 한 글자씩 타이핑 (순수 CSS)
-   width:fit-content 로 글자폭에 맞추고, clip-path 를 오른쪽부터
-   steps(글자수) 단계로 열어 한 글자씩 나오는 것처럼 보이게 함 */
+
+/* =========================================================
+   ⑪  애니메이션
+   ========================================================= */
+/* 페이지 제목(h1) — 로드 1초 뒤 한 글자씩 타이핑
+   width:fit-content 로 글자폭에 맞추고, clip-path 를 steps(글자수) 로 열어 타이핑처럼 */
 @keyframes type-reveal {
     from { clip-path: inset(0 100% 0 0); }
     to   { clip-path: inset(0 0 0 0); }
 }
-
-/* 기본: 화면에 그려질 때 1.4초 동안 타이핑 (모든 브라우저에서 동작) */
 .typing {
     display: inline-block;
     width: fit-content;
-    animation: type-reveal 1.4s both;
+    animation: type-reveal 1.4s steps(13) 1s both;
 }
-/* 제목 글자 수만큼 단계 지정 (한 글자당 한 단계) */
-#site .typing { animation-timing-function: steps(23); }
-#til  .typing { animation-timing-function: steps(15); }
-#quiz .typing { animation-timing-function: steps(12); }
 
-/* 스크롤로 나타날 때 — 방향별 슬라이드 인 (순수 CSS, JS 없음)
-   animation-timeline: view() = 요소가 화면에 들어오는 정도에 맞춰 애니메이션 진행 */
+/* 스크롤로 화면에 들어올 때 방향별 슬라이드 인 (크롬·엣지 전용, 순수 CSS) */
 @keyframes slide-from-left {
     from { opacity: 0; transform: translateX(-90px); }
     to   { opacity: 1; transform: translateX(0); }
@@ -460,31 +608,47 @@ footer {
     from { opacity: 0; transform: translateY(280px); }
     to   { opacity: 1; transform: translateY(0); }
 }
-
-/* 지원하는 브라우저(크롬·엣지)에서만 적용 — 미지원 시 그냥 정상 표시 */
 @supports (animation-timeline: view()) {
-    #site article,
-    #til article {
+    /* 분석 카드: 왼쪽에서 */
+    #site article {
         animation: slide-from-left linear both;
         animation-timeline: view();
-        /* 구간을 넓게 잡아 스크롤하는 동안 서서히 나타남 (반짝임 방지) */
         animation-range: entry 5% cover 35%;
     }
-    /* 의견 아티클은 오른쪽에서 왼쪽으로 */
+    /* 의견 카드: 오른쪽에서 */
     #site article.opinion {
         animation-name: slide-from-right;
     }
-    /* 2섹션(정리) 아티클은 밑에서 위로, 반쯤 들어오면 이미 다 나타남 */
+    /* 정리 카드: 아래에서 위로 (반쯤 들어오면 다 나타남) */
     #til article {
         animation-name: slide-from-bottom;
         animation-range: entry 0% entry 50%;
     }
 }
 
-/* 화면이 좁을 때(모바일) */
+
+/* =========================================================
+   ⑫  반응형
+   ========================================================= */
+/* 중간 이하 화면 — 분석·의견 카드 꽉 차게 */
+@media (max-width: 820px) {
+    #site article {
+        max-width: 100%;
+        margin: 0 0 42px 0;
+        box-shadow: 12px 12px 0 var(--blue);
+    }
+    #site article.opinion {
+        margin: 0 0 42px 0;
+        box-shadow: -12px 12px 0 var(--blue);
+    }
+}
+
+/* 모바일 — 여백·컬러 박스 축소 */
 @media (max-width: 600px) {
     section { padding: 20px 18px; }
     h1 { font-size: 24px; }
     h2 { font-size: 20px; }
+    #site article { padding: 22px 20px; box-shadow: 8px 8px 0 var(--blue); }
+    #site article.opinion { box-shadow: -8px 8px 0 var(--blue); }
+    #site article p { max-width: 100%; }
 }
-
