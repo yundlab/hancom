@@ -19,34 +19,11 @@
 /* =========================================================
    ①  웹폰트 — Pretendard (100~900)
    ========================================================= */
-@font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
-    font-weight: 100;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
-    font-weight: 200;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
-    font-weight: 300;
-    font-display: swap;
-}
+/* 실제 사용 굵기: 400(본문) · 600(버튼) · 700(소제목·강조) · 800(대제목) */
 @font-face {
     font-family: 'Pretendard';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
     font-weight: 400;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
-    font-weight: 500;
     font-display: swap;
 }
 @font-face {
@@ -65,12 +42,6 @@
     font-family: 'Pretendard';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
     font-weight: 800;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
-    font-weight: 900;
     font-display: swap;
 }
 
@@ -98,6 +69,7 @@ body {
     font-family: 'Pretendard', "Malgun Gothic", system-ui, sans-serif;
     background: var(--bg);
     color: var(--ink);
+    line-height: 26px;   /* 정수 px 줄높이 — 요소가 소수점 픽셀에 놓이지 않게 (1px 선 또렷) */
 }
 
 /* 페이지 제목 (Yun:D 미니 프로젝트) */
@@ -106,6 +78,7 @@ h1 {
     margin: 20px;
     font-weight: 800;
     font-size: 30px;
+    line-height: 40px;
     color: var(--blue-dark);
 }
 /* 제목 속 D 만 노랑 포인트 */
@@ -120,7 +93,7 @@ h2 {
     padding-left: 12px;
     margin-bottom: 18px;
     border-left: 5px solid var(--yellow);
-    line-height: 1.3;
+    line-height: 32px;
 }
 
 /* 소제목 (APPLE·정리 아이콘 등) — 가운데 정렬 */
@@ -151,11 +124,14 @@ hr {
 /* 본문 링크 (내비·버튼 제외)는 파란 밑줄 링크 */
 main a:not(.nav-btn):not(.up) {
     color: var(--blue);
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    text-decoration: none;
 }
 main a:not(.nav-btn):not(.up):hover {
     color: var(--blue-dark);
+}
+/* APPLE 링크는 hover 시 노랑 */
+#site h3 a:hover {
+    color: var(--yellow);
 }
 
 
@@ -352,7 +328,7 @@ section h3 img {
 /* 본문 */
 #site article p {
     font-size: 16px;
-    line-height: 1.9;
+    line-height: 30px;
     color: #374151;
     margin: 0 0 52px;
 }
@@ -381,7 +357,7 @@ section h3 img {
     text-align: center;
     color: var(--blue-dark);
     font-size: 18px;
-    line-height: 1.4;
+    line-height: 26px;
     margin: 16px auto;
 }
 .pull-quote::before,
@@ -433,11 +409,12 @@ section h3 img {
 }
 
 /* 미리보기 1px 테두리가 소수점 픽셀 위치에서 흐려지지 않도록
-   정리 섹션의 줄높이를 정수 px 로 고정 (요소들이 정수 픽셀에 떨어지게) */
-#til        { line-height: 26px; }
-#til h2     { line-height: 32px; }
-#til h3     { line-height: 30px; }
-#til pre    { line-height: 20px; }
+   정리 섹션 안 모든 글자 줄높이를 정수 px 로 고정 (요소가 정수 픽셀에 떨어지게) */
+#til          { line-height: 26px; }
+#til h2       { line-height: 32px; }
+#til h3       { line-height: 30px; }
+#til pre      { line-height: 20px; }
+#til .preview h1 { line-height: 30px; }
 
 /* 용어 목록 (dl) */
 dt {
@@ -462,7 +439,7 @@ pre {
     overflow-x: auto;
     margin: 8px 0 16px;   /* 아래 미리보기와 확실히 간격 확보 */
     font-size: 13px;
-    line-height: 1.5;
+    line-height: 20px;
 }
 /* 문장 속 인라인 코드 */
 code {
@@ -485,9 +462,9 @@ pre code {
 .preview {
     margin-top: 26px;
     padding: 14px 16px 16px;
-    border: 1px dashed #d19a00;   /* 진한 금색 점선 테두리 */
+    border: 1px dashed #d19a00;
     border-radius: 8px;
-    background: #fffdf2;          /* 아주 연한 노랑 배경 */
+    background: #fffdf2;
 }
 .preview::before {
     content: "▶ 적용 결과";
@@ -502,7 +479,7 @@ pre code {
 .preview ol { list-style: decimal; padding-left: 22px; margin: 4px 0; }
 .preview table { border-collapse: collapse; }
 .preview th, .preview td { border: 1px solid #cbd5e1; padding: 4px 12px; }
-.preview h1 { font-size: 26px; color: var(--ink); font-weight: 800; margin: 4px 0; text-align: left; }
+.preview h1 { font-size: 26px; line-height: 34px; color: var(--ink); font-weight: 800; margin: 4px 0; text-align: left; }
 
 /* 미리보기 데모 — 라이브 효과 (hover·회전·별) */
 @keyframes demo-spin { to { transform: rotate(360deg); } }
@@ -558,8 +535,8 @@ pre code {
 
 /* 정답 펼치기 (details/summary) */
 details {
-    background: #fffdf2;          /* 아주 연한 노랑 배경 */
-    border: 1px solid #ecd58a;    /* 노랑 테두리 */
+    background: #fffdf2;
+    border: 1px dashed #d19a00;
     border-radius: 10px;
     padding: 10px 14px;
     margin-top: 10px;
@@ -583,7 +560,24 @@ footer {
     text-align: center;
     color: var(--muted);
     font-size: 14px;
-    padding: 24px 0;
+    padding: 30px 0;
+    margin-top: 24px;
+    border-top: 1px solid var(--line);
+}
+footer p {
+    margin: 4px 0;
+}
+.footer-links {
+    margin-bottom: 10px;
+}
+.footer-links a {
+    color: var(--blue);
+    font-weight: 700;
+    text-decoration: none;
+    margin: 0 10px;
+}
+.footer-links a:hover {
+    color: var(--yellow);
 }
 
 
