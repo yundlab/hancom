@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>최종 결산 — 트래블틱</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <main class="app report-app">
+
+    <header class="page-head">
+      <a class="back" id="backLink" href="#">←</a>
+      <h1>최종 결산</h1>
+    </header>
+
+    <!-- 공동지출 총액 카드 -->
+    <div class="report-top">
+      <p class="rt-trip-name" id="rtTripName">🧳 여행</p>
+      <p class="rt-trip-period" id="rtTripPeriod"></p>
+      <p class="rt-label">TOTAL SHARED EXPENSE</p>
+      <p class="rt-total"><b id="sharedLocal">0</b> <span id="sharedCur">JPY</span></p>
+      <p class="rt-krw">≈ <span id="sharedKrw">0</span>원</p>
+      <div class="rt-per">
+        <span class="rt-per-label">평균 인당 분담금</span>
+        <span class="rt-per-val"><b id="sharePerLocal">0</b> <span id="sharePerCur">JPY</span>
+          ≈ <span id="sharePerKrw">0</span>원</span>
+      </div>
+    </div>
+
+    <!-- 최적 송금 루트 -->
+    <section class="report-card">
+      <h2>💸 최적 정산 루트</h2>
+      <div id="routes" class="routes"></div>
+    </section>
+
+    <!-- 인원별 내역 -->
+    <section class="report-card">
+      <h2>👥 인원별 내역</h2>
+      <div id="ledger" class="ledger"></div>
+    </section>
+
+    <p id="rateNote" class="rate-note">📌 이번 여행 적용 환율</p>
+
+    <a class="report-btn" id="backBtn" href="#">← 타임라인으로 돌아가기</a>
+  </main>
+
+  <script src="scripts/store.js"></script>
+  <script src="scripts/report.js"></script>
+</body>
+</html>

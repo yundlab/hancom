@@ -1,0 +1,10 @@
+p {
+    font-size: 24px;
+    font-weight: 700;
+    color: cornflowerblue;
+}
+
+button {
+    padding: 8px 12px;
+    font-size: 14px;
+}

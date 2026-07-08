@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>새 여행 만들기 — 트래블틱</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <main class="app">
+
+    <header class="page-head">
+      <a class="back" id="backLink" href="index.html#trips">←</a>
+      <h1 id="pageTitle">새 여행 만들기</h1>
+    </header>
+
+    <form id="createForm" class="create-form">
+
+      <p class="field-label">어디로 떠나세요? 🌍</p>
+      <div id="countryGrid" class="country-grid"><!-- JS가 나라 타일 채움 --></div>
+
+      <label class="field-label" for="name">여행 이름</label>
+      <input id="name" placeholder="예: 26년 봄 후쿠오카" autocomplete="off">
+
+      <p class="field-label">여행 기간</p>
+      <div class="date-row">
+        <input id="start" type="date" aria-label="여행 시작일">
+        <span class="tilde">~</span>
+        <input id="end" type="date" aria-label="여행 종료일">
+      </div>
+      <p id="days" class="days-label"></p>
+
+      <label class="field-label" for="currency">통화 · 환율 (1 <span id="curLabel">JPY</span> = ? 원)</label>
+      <div class="cur-row">
+        <select id="currency">
+          <option value="JPY">엔 JPY</option>
+          <option value="USD">달러 USD</option>
+          <option value="EUR">유로 EUR</option>
+          <option value="THB">바트 THB</option>
+          <option value="TWD">대만달러 TWD</option>
+          <option value="VND">동 VND</option>
+          <option value="HKD">홍콩달러 HKD</option>
+          <option value="SGD">싱가포르달러 SGD</option>
+          <option value="KRW">원 KRW</option>
+        </select>
+        <input id="rate" type="number" step="any" placeholder="예: 9">
+        <button type="button" id="rateFetch" class="rate-fetch">🔄 실시간 환율</button>
+      </div>
+      <p id="rateStatus" class="rate-status"></p>
+
+      <label class="field-label" for="budget">총 예산 (원)</label>
+      <input id="budget" type="number" placeholder="1000000">
+      <div class="budget-chips">
+        <button type="button" data-v="300000">30만</button>
+        <button type="button" data-v="500000">50만</button>
+        <button type="button" data-v="1000000">100만</button>
+        <button type="button" data-v="2000000">200만</button>
+      </div>
+
+      <p class="field-label">함께하는 사람 👥</p>
+      <div id="memberChips" class="member-chips"></div>
+      <div class="member-add">
+        <input id="memberInput" placeholder="이름 입력 (예: 지수)" autocomplete="off" aria-label="함께하는 사람 이름">
+        <button id="memberAdd" type="button">＋</button>
+      </div>
+      <div id="quickMembers" class="quick-members"></div>
+
+      <button type="submit" id="submitBtn" class="f-add">🎒 기록장 만들기!</button>
+    </form>
+  </main>
+
+  <script src="scripts/store.js"></script>
+  <script src="scripts/create.js"></script>
+</body>
+</html>

@@ -1,0 +1,545 @@
+/* ============================================================
+   트래블틱 — 여행 소비 기록장  (레트로 캐릭터 테마)
+   ============================================================ */
+
+/* ----- 색 변수 (레트로 웜톤 · 이름은 유지하고 값만 교체) ----- */
+:root {
+  --paper:  #fffaf0;   /* 카드/종이 · 페이지 배경 */
+  --navy:   #2b2620;   /* '진한 카드'용 웜 차콜 */
+  --navy2:  #3d362c;   /* 그라데이션 끝 */
+  --blue:   #e8503a;   /* 포인트 = 레트로 코랄(빨강-주황) */
+  --blue-l: #ffe0d6;   /* 연한 코랄 */
+  --purple: #e0952f;   /* 보조 = 머스터드 */
+  --green:  #1f9e8f;   /* 플러스(받을 돈) = 틸 */
+  --red:    #d6402c;   /* 마이너스(줄 돈) */
+  --ink:    #221f1a;   /* near-black 웜 */
+  --muted:  #8f8676;   /* 흐린 웜그레이 */
+  --line:   #e2d7c1;   /* 은은한 경계선 */
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: "Pretendard Variable", Pretendard, "Malgun Gothic", "맑은 고딕", system-ui, sans-serif;
+  background: var(--paper);   /* 메인 화면과 동일한 흰 배경 */
+  color: var(--ink);
+  margin: 0;
+  padding: 20px 12px 60px;
+  line-height: 1.5;
+  overflow-x: hidden;          /* 가로 스크롤 방지 (안전장치) */
+}
+
+/* 앱 전체 컨테이너 — 모바일 앱 느낌으로 가운데 정렬 */
+.app { max-width: 440px; margin: 0 auto; }
+
+/* 공통 입력칸 모양 */
+input, select {
+  padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px;
+  font-size: 14px; font-family: inherit; background: #fff; color: var(--ink);
+}
+input:focus, select:focus { outline: none; border-color: var(--blue); }
+
+/* 멤버 칩 (여정 생성 폼) */
+.member-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #f6efe3; border: 1px solid var(--blue-l); border-radius: 999px;
+  padding: 4px 10px 4px 4px; font-size: 13px; font-weight: 600;
+}
+.chip .avatar { width: 24px; height: 24px; font-size: 11px; }
+.chip .chip-x { cursor: pointer; color: var(--muted); font-weight: 700; }
+.chip.me { background: var(--navy); color: #fff; }   /* '나' 강조 */
+.member-add { display: flex; gap: 6px; }
+.member-add input { flex: 1; }
+.member-add button {
+  background: var(--blue); color: #fff; border: none; border-radius: 10px;
+  width: 42px; font-size: 18px; cursor: pointer;
+}
+
+/* 아바타 (이름 첫 글자 원형) — 배경색은 JS가 지정 */
+.avatar {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 50%;
+  color: #fff; font-weight: 800; flex: 0 0 auto;
+}
+
+/* ===== 대시보드 카드 (진한 카드) ===== */
+.dashboard {
+  background: linear-gradient(150deg, var(--navy), var(--navy2));
+  color: #fff; border-radius: 20px; padding: 22px; margin-bottom: 16px;
+  box-shadow: 0 10px 30px rgba(20,26,77,.25);
+}
+.dash-label { font-size: 13px; color: #aab3d6; margin: 0; }
+.dash-total { font-size: 38px; font-weight: 800; margin: 2px 0; letter-spacing: -1px; }
+.dash-total .unit { font-size: 16px; font-weight: 600; color: #aab3d6; }
+.dash-sub { font-size: 14px; color: #8ee3c0; margin: 0 0 16px; }
+
+/* 예산 막대그래프 */
+.bar-outer { height: 8px; background: rgba(255,255,255,.15); border-radius: 999px; overflow: hidden; }
+.bar-inner { height: 100%; width: 0%; background: #5b8def; border-radius: 999px; transition: width .4s, background .4s; }
+.bar-label { display: flex; justify-content: space-between; font-size: 12px; color: #aab3d6; margin: 8px 0 0; }
+
+/* 응원 문구 */
+.cheer {
+  margin-top: 14px; padding: 12px 14px; border-radius: 12px;
+  background: rgba(255,255,255,.08); font-size: 13px; font-weight: 600;
+}
+
+/* ===== 입력 폼 ===== */
+.expense-form {
+  background: #fff; border: 1px solid var(--line); border-radius: 18px;
+  padding: 16px; margin-bottom: 16px;
+}
+
+/* 카테고리 그리드 */
+.cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 12px; }
+.cat { cursor: pointer; }
+.cat input { display: none; }                 /* 실제 radio 숨김 */
+.cat span {
+  display: flex; align-items: center; justify-content: center;
+  height: 48px; border: 1px solid var(--line); border-radius: 12px;
+  font-size: 22px; background: #fafbff; transition: .15s;
+}
+.cat input:checked + span { border-color: var(--blue); background: var(--blue-l); transform: scale(1.05); }
+
+.f-name { width: 100%; margin-bottom: 10px; }
+/* date 입력창은 브라우저 내부 렌더링 때문에 flex:1 + min-width:0 으로도 정확히
+   반으로 안 나뉘는 크롬 특성이 있어서, flex 대신 grid(minmax(0,1fr))로 정확히 50:50 고정 */
+.f-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; margin-bottom: 4px; align-items: start; }
+.f-amount-wrap { position: relative; }
+.f-amount { width: 100%; padding-right: 52px; }
+.f-amount-cur {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  font-size: 12px; font-weight: 700; color: var(--muted); pointer-events: none;
+}
+.f-date { width: 100%; }
+.f-amount-krw { margin: 0 0 10px; font-size: 12.5px; color: var(--blue); font-weight: 700; min-height: 16px; }
+
+/* 개인/공동 */
+.f-split { display: flex; gap: 8px; margin-bottom: 10px; }
+.f-split label {
+  flex: 1; text-align: center; padding: 10px; border: 1px solid var(--line);
+  border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 14px;
+}
+.f-split input { display: none; }
+.f-split label:has(input:checked) { border-color: var(--blue); background: var(--blue-l); color: var(--blue); }
+
+/* 공동지출 참여자 선택 (전원이 아니어도 되게 빼고 넣기) */
+.split-members { margin: -2px 0 10px; padding: 12px; background: #fafbff; border: 1px solid var(--line); border-radius: 12px; }
+.split-members-label { font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+.split-member-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.split-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid var(--line); background: #fff; border-radius: 999px;
+  padding: 5px 12px 5px 5px; font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: .15s;
+}
+.split-chip .avatar { width: 22px; height: 22px; font-size: 10px; }
+.split-chip.off { opacity: .4; border-style: dashed; text-decoration: line-through; }
+.split-chip.on { border-color: var(--blue); background: var(--blue-l); color: var(--blue); }
+
+/* 결제자 */
+.f-payer { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+.f-payer select { width: 100%; }
+
+.f-memo { width: 100%; margin-bottom: 12px; }
+.f-add {
+  width: 100%; padding: 14px; border: none; border-radius: 14px;
+  background: var(--blue); color: #fff; font-size: 15px; font-weight: 800;
+  cursor: pointer; font-family: inherit;
+}
+.f-add:hover { background: var(--red); }
+.f-cancel {
+  width: 100%; margin-top: 8px; padding: 12px; border: 1px solid var(--line); border-radius: 14px;
+  background: #fff; color: var(--muted); font-size: 14px; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+}
+.f-cancel:hover { border-color: var(--red); color: var(--red); }
+
+/* ===== 타임라인 (일차별 그룹 + 카드) ===== */
+.day-group { margin-bottom: 18px; }
+.day-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.day-badge {
+  background: var(--navy); color: #fff; font-size: 12px; font-weight: 700;
+  padding: 4px 10px; border-radius: 999px;
+}
+.day-date { color: var(--muted); font-size: 13px; }
+.day-total { margin-left: auto; font-weight: 800; color: var(--navy); }
+.day-total small { color: var(--muted); font-weight: 500; }
+
+.card {
+  background: #fff; border: 1px solid var(--line); border-radius: 16px;
+  padding: 12px; margin-bottom: 10px; display: flex; gap: 10px;
+}
+.card-emoji {
+  width: 46px; height: 46px; border-radius: 12px; background: #f4f6fb;
+  display: flex; align-items: center; justify-content: center; font-size: 24px; flex: 0 0 auto;
+}
+.card-body { flex: 1; min-width: 0; }
+.card-top { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.card-name { font-weight: 700; font-size: 15px; }
+.badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+.badge.personal { background: #f1f5f9; color: #64748b; }
+.badge.shared   { background: #ffe4e6; color: #e11d48; }
+.card-amount { display: flex; align-items: baseline; gap: 6px; margin-top: 4px; }
+.card-amount .local { font-size: 18px; font-weight: 800; color: var(--navy); }
+.card-amount .cur   { font-size: 12px; color: var(--muted); font-weight: 700; }
+.card-amount .krw   { font-size: 12px; color: var(--muted); }
+.card-split {
+  display: inline-block; margin-top: 6px; background: #fff7ed; color: #ea580c;
+  font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 8px;
+}
+.card-meta { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.card-memo {
+  margin-top: 8px; padding: 8px 10px; background: #fafbff;
+  border-left: 3px solid var(--blue-l); border-radius: 0 8px 8px 0;
+  font-size: 13px; color: #475569; font-style: italic;
+}
+.card-del {
+  border: none; background: none; color: #cbd5e1; font-size: 18px;
+  cursor: pointer; align-self: flex-start;
+}
+.card-del:hover { color: var(--red); }
+.card-clickable { cursor: pointer; transition: box-shadow .15s, transform .15s; }
+.card-clickable:hover { box-shadow: 0 4px 14px rgba(0,0,0,.08); transform: translateY(-1px); }
+
+/* ===== 정산 리포트 ===== */
+.report-top {
+  background: linear-gradient(150deg, var(--navy), var(--navy2));
+  color: #fff; border-radius: 20px; padding: 22px; margin-bottom: 16px;
+}
+.rt-trip-name { font-size: 16px; font-weight: 800; margin: 0 0 2px; }
+.rt-trip-period { font-size: 12px; color: #8b93bd; margin: 0 0 14px; }
+.rt-label { font-size: 12px; letter-spacing: 1px; color: #8b93bd; margin: 0; }
+.rt-total { font-size: 34px; font-weight: 800; margin: 4px 0; }
+.rt-total span { font-size: 16px; color: #aab3d6; }
+.rt-krw { color: #8ee3c0; font-weight: 700; margin: 0 0 14px; }
+.rt-per { background: rgba(255,255,255,.08); border-radius: 12px; padding: 12px 14px; }
+.rt-per-label { display: block; font-size: 12px; color: #aab3d6; }
+.rt-per-val b { font-size: 20px; }
+.rt-per-val { font-size: 13px; color: #cbd5e1; }
+
+.report-card {
+  background: #fff; border: 1px solid var(--line); border-radius: 18px;
+  padding: 18px; margin-bottom: 16px;
+}
+.report-card h2 { font-size: 16px; margin: 0 0 14px; color: var(--navy); }
+
+/* 송금 루트 한 줄 */
+.route { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.route:last-child { border-bottom: none; }
+.route-main { display: flex; align-items: center; justify-content: space-between; }
+.route-arrow { flex: 1; text-align: center; }
+.route-amount { display: inline-block; background: var(--blue-l); color: var(--blue);
+  font-weight: 800; padding: 3px 12px; border-radius: 999px; font-size: 14px; }
+.route-line { height: 3px; background: linear-gradient(90deg, var(--purple), var(--blue));
+  border-radius: 2px; margin: 6px 8px; position: relative; }
+.route-krw  { text-align: center; font-size: 12px; color: var(--muted); margin-top: 2px; }
+.route-desc { text-align: center; font-size: 13px; color: #475569; margin-top: 4px; }
+.route .name { font-size: 12px; color: var(--muted); text-align: center; margin-top: 4px; }
+.route-person { display: flex; flex-direction: column; align-items: center; }
+
+/* 인원별 내역 한 줄 */
+.ledger-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.ledger-row:last-child { border-bottom: none; }
+.ledger-body { flex: 1; min-width: 0; }
+.ledger-top { display: flex; justify-content: space-between; align-items: center; }
+.ledger-name { font-weight: 700; }
+.ledger-bal { font-weight: 800; display: flex; flex-direction: column; align-items: flex-end; line-height: 1.3; }
+.ledger-bal small { font-size: 11px; font-weight: 600; color: var(--muted); }
+.ledger-bal.plus  { color: var(--green); }
+.ledger-bal.minus { color: var(--red); }
+.ledger-bar-outer { height: 6px; background: #eef1f6; border-radius: 999px; margin: 6px 0; overflow: hidden; }
+.ledger-bar-inner { height: 100%; border-radius: 999px; }
+.ledger-sub { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; font-size: 12px; color: var(--muted); }
+.ls-row { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.ls-label { flex: 0 0 auto; width: 28px; font-weight: 700; color: var(--navy); }
+.ls-amt { font-size: 13px; color: var(--ink); }
+.ls-krw { color: var(--muted); }
+.ls-pct { margin-left: auto; font-weight: 700; color: var(--navy); }
+
+.rate-note {
+  background: #eef4ff; color: var(--blue); border-radius: 12px;
+  padding: 12px 14px; font-size: 13px; font-weight: 600; text-align: center;
+}
+
+/* 빈 상태 안내 */
+.empty { text-align: center; color: var(--muted); padding: 30px 0; font-size: 14px; }
+
+/* ============================================================
+   멀티페이지 공통 · 페이지별 스타일
+   ============================================================ */
+
+/* ----- 페이지 헤더 (뒤로가기 + 제목) ----- */
+.page-head { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.page-head h1 { font-size: 20px; margin: 0; color: var(--navy); flex: 1; }
+.back {
+  width: 38px; height: 38px; border-radius: 50%; background: #fff;
+  border: 1px solid var(--line); display: flex; align-items: center; justify-content: center;
+  font-size: 18px; text-decoration: none; color: var(--navy); flex: 0 0 auto;
+}
+.head-link { text-decoration: none; color: var(--blue); font-weight: 700; font-size: 14px; }
+.trip-period { margin: -10px 0 16px; color: var(--muted); font-size: 13px; }
+
+/* ===== 🏠 홈 (에디토리얼 랜딩) ===== */
+body.home-body { padding: 0; }              /* 랜딩은 풀블리드 */
+.home-page { max-width: none; }
+
+/* ----- 풀스크린 랜딩 히어로 ----- */
+.landing {
+  position: relative; min-height: 100vh; overflow: hidden;
+  /* 트래블틱 워드마크가 선명하게 보이도록 흰 배경(테마의 paper 색) */
+  background: var(--paper);
+}
+/* 그레인(노이즈) 오버레이 */
+.landing::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  opacity: .14; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 상단 네비 */
+.landing-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 28px; color: #111;
+  background: transparent; box-shadow: none;
+  transition: background .25s ease, box-shadow .25s ease, padding .25s ease;
+}
+.landing-nav.scrolled {
+  background: rgba(255,255,255,.88); backdrop-filter: blur(10px);
+  box-shadow: 0 2px 14px rgba(20,26,77,.08); padding: 14px 28px;
+}
+.landing-nav .logo { font-weight: 800; letter-spacing: 2px; font-size: 17px; }
+.nav-menu { display: flex; gap: 26px; }
+.nav-menu a { text-decoration: none; color: #111; font-size: 13px; font-weight: 700; letter-spacing: .5px; }
+.nav-menu a:hover { color: #ff5fa2; }
+/* 모바일에서 nav-menu가 숨겨지는 대신 보이는 새 여행 만들기 버튼 (데스크톱에선 숨김) */
+.nav-add-mobile {
+  display: none; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--ink); color: #fff; text-decoration: none;
+  align-items: center; justify-content: center; font-size: 18px; font-weight: 800;
+}
+/* 스크롤 안내 (마스코트·워드마크와 안 겹치게 우측 상단 구석에) */
+.scroll-cue {
+  position: absolute; right: 24px; top: 84px; z-index: 4;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #333;
+  text-decoration: none; animation: cuebob 1.8s ease-in-out infinite;
+}
+@keyframes cuebob { 0%,100% { transform: translate(0, 0); } 50% { transform: translate(0, 6px); } }
+
+/* 히어로 스테이지 — 태그라인 · 마스코트 · 데코를 올려두는 좌표계 (풀블리드) */
+.hero-stage {
+  position: absolute; inset: 0; z-index: 2;
+  transition: transform .1s linear, opacity .1s linear;   /* JS가 스크롤에 맞춰 값을 갱신 */
+}
+
+.hero-stage .arch {
+  position: absolute; left: 50%; top: 30%; transform: translate(-50%, -50%);
+  margin: 0; white-space: nowrap;
+  font-family: "Pretendard Variable", Pretendard, "Malgun Gothic", system-ui, sans-serif; font-weight: 800; font-style: italic;
+  font-size: 15px; color: var(--ink); letter-spacing: .5px;
+}
+.hero-stage .mascot {
+  position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%);
+  width: min(21vw, 220px); z-index: 1;
+}
+
+/* 데코 두들 (스퀴글 · 여행 아이콘) */
+.hero-doodle { position: absolute; z-index: 1; pointer-events: none; }
+.doodle-squiggle-l { left: 8%; top: 30%; width: min(11vw, 110px); }
+.doodle-squiggle-r { right: 8%; top: 26%; width: min(12vw, 120px); }
+.doodle-ticket { left: 26%; top: 18%; width: min(4.5vw, 50px); }
+.doodle-star { left: 15%; top: 56%; width: min(3.6vw, 36px); }
+.doodle-dots { right: 13%; top: 58%; width: min(8vw, 84px); }
+.doodle-squiggle-b { left: 3%; top: 68%; width: min(12vw, 120px); }
+.doodle-ring { right: 21%; top: 68%; width: min(5.5vw, 56px); }
+.doodle-cloud { right: 30%; top: 12%; width: min(9vw, 88px); }
+.doodle-plane { left: 34%; top: 74%; width: min(5vw, 48px); }
+.doodle-compass { right: 4%; top: 46%; width: min(6vw, 60px); }
+.doodle-heart { left: 30%; top: 42%; width: min(3vw, 30px); }
+.doodle-camera { right: 27%; top: 40%; width: min(4.2vw, 44px); }
+.doodle-sparkle { right: 36%; top: 65%; width: min(2.6vw, 26px); }
+
+/* 하단 초대형 워드마크 — 아웃라인 + 하프톤(점무늬) 채움
+   왼쪽 정렬로 배치, 바닥에서 살짝 띄워 글자 아래가 안 잘리게 함
+   (JS가 스크롤하면 translateX를 더해 왼쪽 화면 밖으로 슬라이드시킴)
+   프리텐다드는 R+A 등 일부 글자 조합에서 아웃라인이 깨져서 로고만 원래 폰트(Arial Black)로 유지 */
+.wordmark {
+  position: absolute; left: 5vw; bottom: 6vh; z-index: 0; margin: 0;
+  width: max-content;
+  transform: translateX(0);
+  text-align: left; white-space: nowrap;
+  font-family: "Arial Black", "Arial", sans-serif; font-weight: 900;
+  font-size: 23vw; line-height: .82; letter-spacing: 0;   /* Arial Black은 자간을 좁히면 R-A가 겹쳐서 기본 자간 유지 */
+  color: transparent;
+  background-image: radial-gradient(var(--ink) 1.4px, transparent 1.6px);
+  background-size: 7px 7px;
+  -webkit-background-clip: text; background-clip: text;
+  transition: transform .1s linear;   /* JS가 스크롤에 맞춰 좌측 이동값을 갱신 */
+}
+.wordmark::before {
+  content: attr(data-text);
+  position: absolute; inset: 0;
+  color: transparent;
+  -webkit-text-stroke: 2.5px var(--ink);
+  pointer-events: none;
+}
+
+/* ----- 콘텐츠 (여행 리스트) ----- */
+.content { position: relative; z-index: 2; background: var(--paper); padding: 100px 16px 90px; }   /* 위(landing)와 같은 흰 배경으로 통일 */
+.content-inner { max-width: 920px; margin: 0 auto; }
+
+/* 스크롤하면 아래에서 살짝 떠오르며 나타나는 효과 */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* 통계 스트립 */
+.stat-strip {
+  display: flex; gap: 10px; margin-bottom: 28px;
+  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  border-radius: 18px; padding: 18px; box-shadow: 0 10px 28px rgba(20,26,77,.22);
+}
+.stat2 { flex: 1; min-width: 0; text-align: center; color: #fff; }
+.stat2 b { display: block; font-size: 24px; font-weight: 800; }
+.stat2 span { font-size: 12px; color: #aab3d6; }
+
+.home-sec { margin-bottom: 22px; }
+.sec-title { font-size: 14px; color: var(--muted); font-weight: 700; margin: 0 0 12px; }
+.trip-cards { display: flex; flex-direction: column; gap: 12px; }
+
+/* 여행 카드 (홈) */
+.trip-card {
+  display: block; text-decoration: none; color: inherit;
+  border-radius: 18px; padding: 18px; border: 1px solid var(--line);
+  background: #fff; transition: transform .12s, box-shadow .12s;
+}
+.trip-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20,26,77,.12); }
+.trip-card.ongoing {
+  background: linear-gradient(150deg, var(--navy), var(--navy2));
+  color: #fff; border: none; box-shadow: 0 10px 28px rgba(20,26,77,.25);
+}
+.tc-head { display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+.tc-status {
+  background: var(--green); color: #fff; font-weight: 700;
+  padding: 3px 10px; border-radius: 999px;
+}
+.trip-card.ongoing .tc-remain { color: #aab3d6; }
+.trip-card.past .tc-status { background: #94a3b8; }
+.tc-name { font-size: 20px; margin: 10px 0 2px; }
+.tc-date { font-size: 12px; color: var(--muted); margin: 0 0 12px; }
+.trip-card.ongoing .tc-date { color: #8b93bd; }
+.trip-card .bar-outer { background: #eef1f6; }
+.trip-card.ongoing .bar-outer { background: rgba(255,255,255,.15); }
+.trip-card .bar-inner { background: var(--blue); width: 0%; }
+.tc-foot { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 8px; }
+.trip-card.ongoing .tc-foot { color: #aab3d6; }
+.tc-members { display: flex; align-items: center; gap: 4px; margin-top: 12px; }
+.tc-members .avatar { width: 26px; height: 26px; font-size: 11px; margin-left: -6px; border: 2px solid #fff; }
+.tc-members .avatar:first-child { margin-left: 0; }
+.tc-member-names { font-size: 12px; color: var(--muted); margin-left: 6px; }
+.trip-card.ongoing .tc-member-names { color: #aab3d6; }
+
+/* 새 여행 만들기 버튼 (하단 고정 pill) */
+.fab {
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: 18px;
+  width: calc(100% - 24px); max-width: 416px;
+  background: var(--navy); color: #fff; text-decoration: none; text-align: center;
+  padding: 16px; border-radius: 16px; font-weight: 800; font-size: 15px;
+  box-shadow: 0 8px 24px rgba(20,26,77,.35);
+  opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;  /* 히어로에선 숨김 */
+}
+.fab.show { opacity: 1; visibility: visible; }        /* 스크롤 내려가면 등장 */
+
+/* ===== ✍️ 여정 생성 ===== */
+.create-form { padding-bottom: 20px; }
+.field-label { display: block; font-size: 13px; font-weight: 700; color: var(--navy); margin: 18px 0 8px; }
+.create-form > input { width: 100%; }
+
+/* 나라 그리드 */
+.country-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.country {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 12px 4px; border: 1px solid var(--line); border-radius: 12px;
+  background: #fff; cursor: pointer; font-family: inherit;
+}
+.country .c-flag { font-size: 24px; }
+.country .c-name { font-size: 12px; font-weight: 600; color: var(--ink); }
+.country.active { border-color: var(--blue); background: var(--blue-l); }
+
+/* 기간 */
+.date-row { display: flex; align-items: center; gap: 8px; }
+.date-row input { flex: 1; }
+.tilde { color: var(--muted); }
+.days-label { color: var(--blue); font-size: 13px; font-weight: 700; margin: 6px 0 0; text-align: center; }
+
+/* 통화·환율 */
+.cur-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.cur-row select { flex: 0 0 45%; }
+.cur-row input { flex: 1; min-width: 90px; }
+.rate-fetch {
+  flex: 0 0 auto; padding: 10px 12px; border: 1px solid var(--blue); border-radius: 10px;
+  background: var(--blue-l); color: var(--blue); font-weight: 700; font-size: 13px;
+  cursor: pointer; white-space: nowrap; font-family: inherit;
+}
+.rate-fetch:hover { background: var(--blue); color: #fff; }
+.rate-fetch:disabled { opacity: .6; cursor: default; }
+.rate-status { font-size: 12px; color: var(--blue); margin: 6px 0 0; min-height: 16px; }
+
+/* 예산 칩 */
+.budget-chips { display: flex; gap: 6px; margin-top: 8px; }
+.budget-chips button {
+  flex: 1; padding: 8px; border: 1px solid var(--line); border-radius: 10px;
+  background: #fff; cursor: pointer; font-size: 13px; color: var(--muted); font-family: inherit;
+}
+.budget-chips button:hover { border-color: var(--blue); color: var(--blue); }
+
+/* 빠른 멤버 추가 */
+.quick-members { font-size: 12px; color: var(--muted); margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.quick-btn {
+  border: 1px solid var(--line); background: #fff; border-radius: 999px;
+  padding: 4px 10px; font-size: 12px; cursor: pointer; color: var(--blue); font-family: inherit;
+}
+
+.create-form .f-add { margin-top: 24px; }
+
+/* ===== 결산/타임라인 하단 이동 버튼 ===== */
+.report-btn {
+  display: block; text-align: center; text-decoration: none;
+  background: linear-gradient(90deg, var(--purple), var(--blue)); color: #fff;
+  padding: 16px; border-radius: 16px; font-weight: 800; margin: 8px 0 20px;
+  box-shadow: 0 8px 20px rgba(37,99,235,.25);
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 640px) {
+  /* 모바일 : 네비 메뉴 숨기고 대신 새 여행 버튼 보이기 */
+  .nav-menu { display: none; }
+  .nav-add-mobile { display: flex; }
+  .landing-nav { padding: 18px 18px; }
+  .stat2 b { font-size: 20px; }
+}
+@media (max-width: 400px) {
+  .cat-grid { grid-template-columns: repeat(4, 1fr); }
+  .dash-total { font-size: 32px; }
+  .country-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* PC(넓은 화면) — 카드 2단 그리드
+   auto-fit 사용 : 카드가 1장뿐일 땐 왼쪽으로 치우치지 않고 폭 전체를 채움 */
+@media (min-width: 720px) {
+  .trip-cards.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+  .fab {
+    left: auto; right: 28px; transform: none;
+    width: auto; padding: 16px 26px; border-radius: 999px;
+  }
+}
+
+/* ----- 서브 페이지(수정·기록·결산) 반응형 : 홈처럼 넓은 화면에서도 작게 남지 않게
+   (2단 분할 없이 세로 1단 그대로, 폭만 넉넉하게 확장) ----- */
+@media (min-width: 760px) {
+  .app { max-width: 640px; }
+}
+
+/* 여행 상세 · 최종 결산 : 메인의 .content-inner와 동일한 최대폭(920px) — 화면이 좁으면 자연히 줄어듦 */
+.app.trip-app, .app.report-app { max-width: 920px; }

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여행 타임라인 — 트래블틱</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <main class="app trip-app">
+
+    <header class="page-head">
+      <a class="back" href="index.html#trips">←</a>
+      <h1 id="tripTitle">여행</h1>
+      <a class="head-link" id="editLink" href="#">✏️ 수정</a>
+    </header>
+    <p id="tripPeriod" class="trip-period"></p>
+
+    <!-- 왼쪽(데스크톱) : 대시보드 + 기록 폼 -->
+    <div class="trip-left">
+      <!-- 대시보드 카드 -->
+      <div class="dashboard">
+        <p class="dash-label">내 총 지출</p>
+        <p class="dash-total"><b id="totalLocal">0</b> <span class="unit" id="totalCur">JPY</span></p>
+        <p class="dash-sub">≈ <span id="totalKrw">0</span>원</p>
+
+        <div class="bar-outer"><div id="bar" class="bar-inner"></div></div>
+        <p class="bar-label">
+          <span id="budgetUsed">예산 0% 사용</span>
+          <span id="budgetGoal">목표 0원</span>
+        </p>
+        <div id="cheer" class="cheer">😊 여행 시작! 첫 지출을 기록해보세요</div>
+      </div>
+
+      <!-- 지출 기록 폼 -->
+      <form id="form" class="expense-form">
+        <div class="cat-grid">
+          <label class="cat"><input type="radio" name="cat" value="🍜" checked><span>🍜</span></label>
+          <label class="cat"><input type="radio" name="cat" value="🍣"><span>🍣</span></label>
+          <label class="cat"><input type="radio" name="cat" value="🍕"><span>🍕</span></label>
+          <label class="cat"><input type="radio" name="cat" value="🛍️"><span>🛍️</span></label>
+          <label class="cat"><input type="radio" name="cat" value="🚕"><span>🚕</span></label>
+          <label class="cat"><input type="radio" name="cat" value="🎁"><span>🎁</span></label>
+          <label class="cat"><input type="radio" name="cat" value="🏨"><span>🏨</span></label>
+          <label class="cat"><input type="radio" name="cat" value="☕"><span>☕</span></label>
+          <label class="cat"><input type="radio" name="cat" value="🍺"><span>🍺</span></label>
+          <label class="cat"><input type="radio" name="cat" value="🎡"><span>🎡</span></label>
+        </div>
+
+        <input id="name" class="f-name" placeholder="가게명 (예: 이치란 라멘)" autocomplete="off" aria-label="가게명">
+
+        <div class="f-row">
+          <div class="f-amount-wrap">
+            <input id="amount" class="f-amount" type="number" placeholder="현지금액" aria-label="현지금액">
+            <span class="f-amount-cur" id="amountCur">JPY</span>
+          </div>
+          <input id="date" class="f-date" type="date" aria-label="지출 날짜">
+        </div>
+        <p id="amountKrw" class="f-amount-krw"></p>
+
+        <div class="f-split">
+          <label><input type="radio" name="split" value="개인" checked> 🙋 개인</label>
+          <label><input type="radio" name="split" value="공동"> 👥 공동</label>
+        </div>
+
+        <div id="splitMembers" class="split-members" hidden>
+          <p class="split-members-label">누구랑 나눠 낼까요? (탭해서 빼기)</p>
+          <div id="splitMemberChips" class="split-member-chips"></div>
+        </div>
+
+        <label class="f-payer">결제자
+          <select id="payer"></select>
+        </label>
+
+        <input id="memo" class="f-memo" placeholder="한 줄 메모 (선택)" autocomplete="off" aria-label="메모">
+        <button type="submit" id="submitBtn" class="f-add">딸깍! 기록 완료 ✓</button>
+        <button type="button" id="cancelEdit" class="f-cancel" hidden>수정 취소</button>
+      </form>
+    </div>
+
+    <!-- 오른쪽(데스크톱) : 일차별 타임라인 -->
+    <div class="trip-right">
+      <div id="list" class="list"></div>
+      <a class="report-btn" id="reportBtn" href="#">💸 최종 결산 보러 가기 →</a>
+    </div>
+  </main>
+
+  <script src="scripts/store.js"></script>
+  <script src="scripts/trip.js"></script>
+</body>
+</html>

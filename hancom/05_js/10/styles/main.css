@@ -1,0 +1,9 @@
+#greet {
+    color: steelblue;
+}
+
+input, button {
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-right: 4px;
+}
