@@ -1,14 +1,3 @@
-﻿*.mp4
-hancom.txt
-.env
-__pycache__/
-*.pyc
-venv/
-node_modules/
-.DS_Store
-수업요약/
-
-
 # Logs
 logs
 *.log
@@ -22,9 +11,6 @@ node_modules
 dist
 dist-ssr
 *.local
-
-# understand-anything tool artifacts
-.understand-anything/
 
 # Editor directories and files
 .vscode/*

@@ -1,0 +1,16 @@
+.box {
+    padding: 20px;
+    background:rgb(0, 0, 0);
+    border-radius: 20px;
+    text-align: center;
+}
+
+.box h1 {
+    color:crimson;
+    font-weight: 900;
+}
+
+.box p {
+    color: #fffab0;
+    font-weight: 700;
+}
