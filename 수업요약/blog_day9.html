@@ -256,7 +256,7 @@
 
     <h2>📋 오늘 한 일</h2>
 
-    <p>드디어 <strong>React</strong>에 입문했다. 오전엔 "React가 대체 뭐고 왜 쓰는지", JSX 문법 규칙, 그리고 <strong>Node.js 설치 → Vite로 프로젝트 만들기 → 폴더 구조 이해</strong>까지 환경 세팅을 훑었다. 오후엔 <code>src/components/</code> 폴더에 직접 컴포넌트를 만들어봤다 — 첫 컴포넌트(<code>Hello</code>)부터 시작해 <strong>props</strong>로 값 넘기기, 기본값 주기, 카드 만들기, 그리고 <strong>조건부 렌더링</strong>(<code>&amp;&amp;</code>와 삼항 연산자)까지 실습했다. HTML/CSS/JS만 쓰다가 "화면을 함수로 조립한다"는 발상이 처음엔 낯설었는데, 컴포넌트를 하나씩 만들어 <code>App.jsx</code>에 끼워 넣다 보니 감이 잡히기 시작했다.</p>
+    <p>드디어 <strong>React</strong>에 입문했다. 오전엔 "React가 대체 뭐고 왜 쓰는지", JSX 문법 규칙, 그리고 <strong>Node.js 설치 → Vite로 프로젝트 만들기 → 폴더 구조 이해</strong>까지 환경 세팅을 훑었다. 오후엔 <code>src/components/</code> 폴더에 직접 컴포넌트를 만들어봤다 — 첫 컴포넌트(<code>Hello</code>)부터 시작해 <strong>props</strong>로 값 넘기기, 기본값 주기, 카드 만들기, 그리고 <strong>조건부 렌더링</strong>(<code>&amp;&amp;</code>와 삼항 연산자)까지 실습했다. HTML/CSS/JS만 쓰다가 "화면을 함수로 조립한다"는 발상이 처음엔 낯설었는데, 컴포넌트를 하나씩 만들어 <code>App.jsx</code>에 끼워 넣다 보니 감이 잡히기 시작했다. 중간에 방금 만든 <code>my-app</code>을 <strong>Understand-Anything</strong> 플러그인으로 시각화해 구조를 그래프로 뜯어보는 도구도 익혔다(react.html 14번 <em>Claude Understand</em> 순서).</p>
 
     <div class="summary-grid">
         <div class="summary-card">
@@ -286,6 +286,10 @@
         <div class="summary-card">
             <div class="card-title">조건부 렌더링</div>
             <div class="tags"><span class="ctag">&amp;&amp; 연산</span><span class="ctag">삼항 연산자</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">보너스 도구</div>
+            <div class="tags"><span class="ctag">Understand-Anything</span><span class="ctag">지식 그래프</span></div>
         </div>
     </div>
 
@@ -372,7 +376,37 @@ npm run dev      <span class="c"># ➜ Local: http://localhost:5173/</span></pre
 
     <hr class="divider">
 
-    <h2>5. 첫 컴포넌트 만들기 — Hello (18)</h2>
+    <h2>5. Claude Understand — 코드베이스를 지식 그래프로 (14)</h2>
+
+    <p>폴더 구조를 다 훑고 컴포넌트 실습에 들어가기 전, 방금 만든 <code>my-app</code> 폴더를 <strong>시각화해서 공부하는 도구</strong>를 하나 익혔다. <strong>Understand-Anything</strong>이라는 Claude Code 플러그인인데, 여러 개의 에이전트(멀티에이전트)가 코드베이스 전체를 스캔해 <strong>파일·함수·클래스·의존성을 "지식 그래프"로 만들어</strong> 인터랙티브 대시보드로 보여준다. "이 파일이 뭘 하고 어디에 연결되는지"를 한눈에 볼 수 있어서, 처음 보는 코드의 막막함을 풀어주는 게 핵심이다.</p>
+
+    <div class="callout blue">
+        🕸 <strong>왜 여기서 써봤나</strong> — 바로 앞에서 <code>main.jsx → App.jsx → components/</code>로 파일이 연결되는 구조를 배웠는데, 이 연결 관계를 그래프로 직접 보니 "누가 누구를 <code>import</code>하는지"가 눈에 확 들어왔다. 20만 줄짜리 대형 코드베이스 온보딩용 도구라는데, my-app처럼 작은 프로젝트도 구조를 눈으로 보며 공부하기 좋았다.
+    </div>
+
+    <h3>설치 (Claude Code)</h3>
+    <pre><span class="c"># 마켓플레이스 추가 → 플러그인 설치 → 리로드</span>
+/plugin marketplace add Egonex-AI/Understand-Anything
+/plugin install understand-anything
+/reload-plugins</pre>
+
+    <h3>실행 명령어</h3>
+    <table>
+        <tr><th>명령어</th><th>기능</th></tr>
+        <tr><td><code>/understand</code></td><td>분석 + 지식 그래프 생성</td></tr>
+        <tr><td><code>/understand-dashboard</code></td><td>인터랙티브 시각화 대시보드 열기</td></tr>
+        <tr><td><code>/understand-chat</code></td><td>코드베이스에 질문하기</td></tr>
+        <tr><td><code>/understand-diff</code></td><td>변경 영향도 분석</td></tr>
+        <tr><td><code>/understand-explain</code></td><td>파일/함수 심층 설명</td></tr>
+    </table>
+
+    <div class="callout green"><strong>사용 방법</strong> — 프로젝트 폴더에서 <code>/understand</code>로 분석하고 <code>/understand-dashboard</code>로 대시보드를 연다. 딱 이 두 줄로 시작. 그래프의 노드를 클릭하면 "이 코드가 뭘 하고 어디에 연결되는지" 설명이 뜨고, 생성된 그래프는 폴더에 저장돼 재사용된다. PDF·마크다운·이미지까지 비전으로 읽어준다는 점도 특이했다.</div>
+
+    <div class="callout yellow"><strong>어디에 좋나</strong> — 처음 보는·대형 코드베이스 온보딩, 변경 영향도 추적, 지식 베이스 정리에 쓴다. 나처럼 이제 막 React 구조를 익히는 단계에서는 "내가 만든 프로젝트가 실제로 어떻게 엮여 있는지"를 확인하는 학습용으로 딱이다. 🔗 <code>github.com/Egonex-AI/Understand-Anything</code></div>
+
+    <hr class="divider">
+
+    <h2>6. 첫 컴포넌트 만들기 — Hello (17·18)</h2>
 
     <p>컴포넌트는 결국 <strong>JSX를 돌려주는 함수 1개</strong>다. 규칙은 세 가지: ① 이름은 <strong>대문자</strong>로 시작, ② return하는 화면은 <strong>태그 하나</strong>로 감싸기, ③ 맨 아래 <code>export default</code> 필수. CSS 파일도 <code>import</code> 한 줄로 붙일 수 있다.</p>
 
@@ -407,7 +441,7 @@ npm run dev      <span class="c"># ➜ Local: http://localhost:5173/</span></pre
 
     <hr class="divider">
 
-    <h2>6. Props — 부모가 자식에게 값 넘기기 (19·20)</h2>
+    <h2>7. Props — 부모가 자식에게 값 넘기기 (19·20)</h2>
 
     <p><strong>Props</strong>는 부모 컴포넌트가 자식에게 넘겨주는 값이다. 같은 컴포넌트를 값만 바꿔 재사용할 수 있게 해준다. 받는 쪽에서는 <code>{ }</code>로 <strong>구조 분해</strong>해서 꺼내 쓴다.</p>
 
@@ -444,7 +478,7 @@ npm run dev      <span class="c"># ➜ Local: http://localhost:5173/</span></pre
 
     <hr class="divider">
 
-    <h2>7. 카드 컴포넌트 — props 여러 개 조합 (21)</h2>
+    <h2>8. 카드 컴포넌트 — props 여러 개 조합 (21)</h2>
 
     <p>props를 여러 개(<code>title</code>·<code>desc</code>·<code>emoji</code>) 받아 하나의 카드 UI로 조립해봤다. 이게 바로 "레고 블록"의 감각 — 같은 카드 틀에 데이터만 갈아 끼우면 카드가 무한히 찍혀 나온다.</p>
 
@@ -467,7 +501,7 @@ npm run dev      <span class="c"># ➜ Local: http://localhost:5173/</span></pre
 
     <hr class="divider">
 
-    <h2>8. 조건부 렌더링 — 상황에 따라 다르게 그리기 (22·23)</h2>
+    <h2>9. 조건부 렌더링 — 상황에 따라 다르게 그리기 (22·23)</h2>
 
     <p>값에 따라 화면 일부를 보여주거나 숨기는 게 <strong>조건부 렌더링</strong>이다. 두 가지 방법을 실습했다.</p>
 
@@ -511,7 +545,7 @@ npm run dev      <span class="c"># ➜ Local: http://localhost:5173/</span></pre
 
     <hr class="divider">
 
-    <h2>9. 오늘 배운 것 한눈에</h2>
+    <h2>10. 오늘 배운 것 한눈에</h2>
 
     <table>
         <tr><th>주제</th><th>실습(컴포넌트)</th><th>핵심</th></tr>
