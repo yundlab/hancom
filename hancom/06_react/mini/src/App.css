@@ -1,0 +1,1362 @@
+/* ===== 인트로 스플래시 ===== */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #000; /* 순수 검정 바탕 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  opacity: 1;
+  transition: opacity 0.55s ease;
+}
+
+/* 페이드아웃 (사라질 때) */
+.splash--leaving {
+  opacity: 0;
+}
+
+/* 티켓 아이콘: 선을 처음부터 끝까지 그려나가는 효과 */
+.splash-ticket {
+  width: 108px;
+  height: 108px;
+  color: var(--accent);
+}
+
+/* 채움 path: 헤더 로고와 동일한 전체 모양. 처음엔 투명 → 선을 다 그린 뒤 채워짐 */
+.splash-ticket-fill {
+  fill: currentColor;
+  fill-opacity: 0;
+  animation: ticket-fill 0.7s ease forwards 1.7s;
+}
+
+/* 선 path: 바깥 실루엣만 stroke로 서서히 그린 뒤, 채움이 끝나면 사라진다
+   (좌우 선 두께가 균일해진다) */
+.splash-ticket-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1; /* pathLength=1 로 정규화한 전체 길이 */
+  stroke-dashoffset: 1; /* 처음엔 완전히 숨김 → 0으로 가며 그려짐 */
+  animation: ticket-draw 1.6s ease forwards 0.2s,
+    ticket-line-out 0.5s ease forwards 2s;
+}
+
+@keyframes ticket-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ticket-fill {
+  to {
+    fill-opacity: 1;
+  }
+}
+
+@keyframes ticket-line-out {
+  to {
+    stroke-opacity: 0;
+  }
+}
+
+/* 제목: 한 글자씩 등장 (공백도 폭을 유지하도록 pre) */
+.splash-title {
+  display: flex;
+  white-space: pre;
+  font-size: clamp(2.5rem, 9vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.splash-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.35em) scale(0.85);
+  animation: splash-char-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes splash-char-in {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 애니메이션을 원치 않는 사용자: 즉시 표시 */
+@media (prefers-reduced-motion: reduce) {
+  .splash-ticket-fill {
+    fill-opacity: 1;
+    animation: none;
+  }
+  .splash-ticket-line {
+    stroke-opacity: 0;
+    animation: none;
+  }
+  .splash-char {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* ===== 레이아웃 ===== */
+#root {
+  max-width: 960px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  background: rgba(13, 13, 13, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff; /* 로고 글씨 흰색 */
+}
+
+.logo-ticket {
+  width: 24px;
+  height: 24px;
+  color: var(--accent); /* 티켓 아이콘 노랑 */
+  flex-shrink: 0;
+}
+
+.app-nav {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.app-nav a {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-sub);
+  transition: all 0.15s;
+}
+
+.app-nav a:hover {
+  background: var(--gray-100);
+  color: var(--text);
+}
+
+/* NavLink 활성 상태 */
+.app-nav a.active {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.app-main {
+  flex: 1;
+  padding: var(--space-6) var(--space-5);
+}
+
+.app-footer {
+  text-align: center;
+  padding: var(--space-5);
+  color: var(--text-sub);
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+}
+
+/* ===== 포스터 (공용) ===== */
+.poster {
+  display: block;
+  object-fit: cover;
+  background: var(--gray-100);
+}
+
+/* 이모지 폴백 포스터 */
+.poster-emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.poster-card {
+  width: 100%;
+  height: 150px;
+  font-size: 48px;
+}
+
+.poster-detail {
+  width: 100%;
+  height: 280px;
+  border-radius: var(--radius-lg);
+  font-size: 96px;
+  margin-bottom: var(--space-5);
+}
+
+.poster-cal {
+  width: 100%;
+  height: 100%;
+  font-size: 22px;
+}
+
+/* ===== 필터 바 ===== */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.filter-tab {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-sub);
+  transition: all 0.15s;
+}
+
+.filter-tab:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.filter-tab.active {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+}
+
+/* ===== 목록 툴바 ===== */
+/* 제목 검색창 */
+.search-bar {
+  position: relative;
+  margin-bottom: var(--space-3);
+}
+
+.search-icon {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 212, 0, 0.18);
+}
+
+.list-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.count {
+  font-size: 14px;
+  color: var(--text-sub);
+  font-weight: 600;
+}
+
+.sort-buttons {
+  display: flex;
+  gap: var(--space-1);
+  background: var(--gray-100);
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+}
+
+.sort-buttons button {
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-sub);
+  font-weight: 600;
+}
+
+.sort-buttons button.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===== 카드 그리드 (가로형: 왼쪽 포스터 + 오른쪽 내용) ===== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-4);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex; /* 가로 배치 */
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 왼쪽 세로 포스터 영역 */
+.card-poster-wrap {
+  width: 108px;
+  flex-shrink: 0;
+}
+
+.card-body {
+  flex: 1;
+  min-width: 0; /* 긴 텍스트 말줄임 위해 */
+  padding: var(--space-4);
+}
+
+.card-title {
+  margin: var(--space-2) 0 var(--space-1);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.card-meta {
+  font-size: 12px;
+  color: var(--text-sub);
+  margin-bottom: var(--space-2);
+}
+
+/* 카드에 표시되는 감상 제목 (기울임체) */
+.card-review {
+  margin: var(--space-2) 0 0;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== 뱃지 / 별점 ===== */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.stars {
+  color: var(--star);
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--text-sub);
+  padding: var(--space-7) 0;
+}
+
+/* ===== 상세 페이지 ===== */
+.detail {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.detail-body h2 {
+  margin: var(--space-3) 0 var(--space-2);
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+
+.detail-info {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: var(--space-3) var(--space-4);
+  margin: var(--space-5) 0;
+}
+
+.detail-info dt {
+  color: var(--text-sub);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.detail-info dd {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 상세 페이지 감상 (제목 이탤릭 + 내용) */
+.detail-review {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  margin: var(--space-5) 0;
+}
+
+/* 예매처 외부 링크 */
+.booking-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.booking-link:hover {
+  border-bottom-color: var(--accent);
+}
+
+.review-title {
+  margin: 0 0 var(--space-2);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.review-body {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--text-sub);
+}
+
+.detail-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-5);
+}
+
+.detail-buttons {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+/* ===== 버튼 ===== */
+/* 기본(수정완료/추가하기 등): 평소엔 노랑 아웃라인, hover 시 노랑 채움 + 흰 글씨
+   → 상세페이지 '수정' 버튼(.btn-edit)과 동일한 hover 동작으로 통일 */
+.btn-primary {
+  display: inline-block;
+  padding: var(--space-3) var(--space-5);
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 15px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.btn-ghost {
+  color: var(--text-sub);
+  font-weight: 600;
+}
+
+/* 수정/삭제 버튼: 크기 동일하게 공유 */
+.btn-edit,
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 15px;
+  border: 1px solid transparent;
+  transition: background 0.15s, color 0.15s;
+}
+
+/* 수정: 평소엔 노랑 아웃라인, hover 시 노랑 채움 + 흰 글씨 */
+.btn-edit {
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-edit:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+/* 삭제: 평소엔 빨강 아웃라인, hover 시 빨강 채움 + 흰 글씨 */
+.btn-danger {
+  background: transparent;
+  border-color: #ef4444;
+  color: #f87171;
+}
+
+.btn-danger:hover {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+/* ===== 등록 폼 ===== */
+.new-page {
+  width: 100%;
+}
+
+/* 추가/수정 폼 맨 위 제목: 섹션 구분선 없이 표시 */
+.form-heading {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.record-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.record-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-sub);
+}
+
+.record-form input,
+.record-form select,
+.record-form textarea {
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  width: 100%;
+  min-width: 0; /* 좁은 화면에서 input이 칸보다 커지지 않도록 */
+  box-sizing: border-box;
+}
+
+.record-form input:focus,
+.record-form select:focus,
+.record-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 212, 0, 0.18);
+}
+
+.record-form textarea {
+  resize: vertical;
+}
+
+.form-preview {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+/* 제출/취소 버튼 한 줄에 나란히 (취소가 있으면 반반) */
+.form-actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.form-actions .btn-primary {
+  flex: 1;
+  text-align: center;
+}
+
+/* 취소: 평소엔 회색 아웃라인, hover 시 옅은 채움 */
+.btn-cancel {
+  flex: 1;
+  padding: var(--space-3) var(--space-5);
+  background: transparent;
+  color: var(--text-sub);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 15px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.btn-cancel:hover {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--gray-300);
+}
+
+/* ===== 통계 페이지 ===== */
+.stat-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-3);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: var(--shadow-sm);
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--gray-300);
+}
+
+/* 선택된 지표 카드 */
+.stat-card.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent) inset;
+}
+
+.stat-num {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff; /* 큰 숫자는 흰색 */
+  white-space: nowrap;
+}
+
+.stat-label {
+  color: var(--text-sub);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.stats-subtitle {
+  margin: 0 0 var(--space-4);
+  font-size: 18px;
+}
+
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 96px 1fr max-content;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.bar-label {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bar-track {
+  height: 24px;
+  background: var(--gray-100);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: var(--radius-sm);
+  min-width: 4px;
+  transition: width 0.4s;
+}
+
+/* 누적 막대: 트랙 안에 카테고리 세그먼트를 가로로 나란히 */
+.bar-track.stacked {
+  display: flex;
+}
+
+.bar-seg {
+  height: 100%;
+  min-width: 2px;
+  transition: width 0.4s;
+}
+
+/* 카테고리 색상 범례 */
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.bar-count {
+  font-weight: 700;
+  text-align: right;
+  color: var(--text-sub);
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.stat-cards.three {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.stats-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stats-head .stats-subtitle {
+  margin-bottom: 0;
+}
+
+/* ===== 캘린더 페이지 ===== */
+.calendar {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.cal-header h2 {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  min-width: 130px;
+  text-align: center;
+}
+
+.cal-nav {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  font-size: 20px;
+  color: var(--text-sub);
+  line-height: 1;
+}
+
+.cal-nav:hover {
+  background: var(--gray-100);
+  color: var(--text);
+}
+
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.cal-weekday {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-2);
+}
+
+.cal-cell {
+  position: relative;
+  aspect-ratio: 1 / 1.15;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  padding: 4px;
+  overflow: hidden;
+}
+
+.cal-cell.empty {
+  border: none;
+  background: transparent;
+}
+
+.cal-cell.has {
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.cal-cell.has:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.cal-day {
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  z-index: 2;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.cal-cell.has .cal-day {
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* 요일 헤더 색: 일=빨강, 토=파랑 */
+.cal-weekday.sun {
+  color: #f87171;
+}
+.cal-weekday.sat {
+  color: #60a5fa;
+}
+
+/* 날짜 숫자 색 (has 셀 위에서도 보이게 그림자 유지, 동일 specificity·나중 순서로 우선) */
+.cal-grid .cal-day.sun {
+  color: #f87171;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+.cal-grid .cal-day.sat {
+  color: #60a5fa;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+/* 오늘: 노란 글씨 + 글로우 (불 들어온 느낌) */
+.cal-grid .cal-day.today {
+  color: var(--accent);
+  font-weight: 800;
+  text-shadow: 0 0 8px rgba(255, 212, 0, 0.9), 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* 오늘 셀은 노랑 테두리로 강조 */
+.cal-cell.today {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent) inset, 0 0 12px rgba(255, 212, 0, 0.4);
+}
+
+.cal-poster {
+  position: absolute;
+  inset: 0;
+}
+
+.cal-more {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+}
+
+/* 예매 오픈 예정 뱃지 (달력 셀 하단) */
+.cal-open {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  z-index: 3;
+  background: var(--accent);
+  color: #111111;
+  border: 0;
+  font-size: 10px;
+  font-weight: 800;
+  font-family: inherit;
+  text-align: left;
+  padding: 3px 5px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+}
+
+.cal-open-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cal-open-more {
+  flex-shrink: 0;
+}
+
+.cal-hint {
+  text-align: center;
+  color: var(--text-sub);
+  font-size: 13px;
+  margin-top: var(--space-5);
+}
+
+/* ===== 연도/월 필터 & 폼 select 공통 ===== */
+.date-filter {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.date-filter select,
+.stats-head select {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.date-filter select:focus,
+.stats-head select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* 폼에서 두 입력을 한 줄에 */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+/* 그리드 칸이 내용보다 작아질 수 있게 (모바일 넘침 방지) */
+.form-row > label {
+  min-width: 0;
+}
+
+/* ===== 통계: 기준 탭 + 차트 박스 ===== */
+.dim-tabs {
+  display: flex;
+  gap: var(--space-2);
+  margin: var(--space-6) 0 var(--space-4);
+}
+
+.dim-tab {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.dim-tab.active {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+}
+
+.chart-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.chart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.chart-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* 차트 우측 컨트롤 묶음 (나누기 토글 + 연도 pill) */
+.chart-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+/* 카테고리로 나누기 체크박스 */
+.split-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-sub);
+  cursor: pointer;
+  user-select: none;
+}
+
+.split-toggle input {
+  accent-color: var(--accent);
+}
+
+/* 월별 연도 선택 pill */
+.year-pills {
+  display: flex;
+  gap: 6px;
+}
+
+.year-pill {
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.year-pill.active {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+}
+
+/* ===== D-day / 관람 예정 ===== */
+.card-poster-wrap,
+.detail-poster-wrap {
+  position: relative;
+}
+
+.dday-badge {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  background: var(--upcoming);
+  color: #06232a;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+}
+
+.dday-badge.big {
+  top: var(--space-4);
+  right: var(--space-4);
+  font-size: 15px;
+  padding: 5px 14px;
+}
+
+/* 관람 예정 카드는 시안 테두리로 구분 */
+.card.upcoming {
+  border-color: var(--upcoming);
+}
+
+.card-upcoming {
+  margin: var(--space-2) 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--upcoming);
+}
+
+.status-pill {
+  display: inline-block;
+  margin-left: var(--space-2);
+  background: rgba(34, 211, 238, 0.15);
+  color: var(--upcoming);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+/* 결제 정보 박스 */
+.detail-info.payment {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  margin: var(--space-4) 0;
+}
+
+.pay-amount {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.upcoming-note {
+  border-color: var(--upcoming) !important;
+}
+
+/* 폼 섹션 구분 라벨 */
+.form-section {
+  margin: var(--space-3) 0 0;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--accent);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-4);
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 600px) {
+  .app-main {
+    padding: var(--space-4);
+  }
+  .poster-detail {
+    height: 200px;
+    font-size: 72px;
+  }
+  .cal-day {
+    font-size: 11px;
+  }
+  /* 통계 요약카드: 좁은 화면에서 3칸이 넘치지 않게 축소 */
+  .stat-cards.three {
+    gap: var(--space-2);
+  }
+  .stat-card {
+    min-width: 0;
+    padding: var(--space-4) var(--space-2);
+  }
+  .stat-num {
+    font-size: 17px;
+  }
+}
+
+/* ===== 페이지 헤더 (기록/예매 공통) =====
+   이모티콘+제목, 그 아래 설명 한 줄, 오른쪽에 액션 버튼.
+   기록/예매 페이지가 동일한 gap·margin을 쓰도록 클래스를 공유한다. */
+.page-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.page-head h2 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.page-sub {
+  margin: 0;
+  color: var(--text-sub);
+  font-size: 14px;
+}
+
+.inline-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.inline-form > .form-heading {
+  margin-bottom: var(--space-4);
+}
+
+.opening-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.opening-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.opening-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+}
+
+/* 예매 오픈일이 지난 항목은 흐리게 */
+.opening-item.past {
+  opacity: 0.5;
+}
+
+.opening-poster {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.opening-info {
+  flex: 1;
+  min-width: 0;
+  cursor: pointer; /* 누르면 수정 */
+}
+
+.opening-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: 4px;
+}
+
+.opening-title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.opening-when {
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.opening-meta {
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+.opening-memo {
+  font-size: 12px;
+  color: var(--upcoming);
+  margin-top: 4px;
+}
+
+/* 예매 오픈 D-day 뱃지 (노랑) */
+.dday-badge.open {
+  position: static;
+  background: var(--accent);
+  color: #111111;
+  box-shadow: none;
+}
+
+/* 오늘/이미 오픈: 시안색으로 강조 */
+.dday-badge.open.now {
+  background: var(--upcoming);
+  color: #06232a;
+}
+
+/* 예매완료 버튼 + 삭제 버튼을 세로로 묶는다 */
+.opening-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.btn-convert {
+  padding: 6px 10px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.btn-convert:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.opening-del {
+  flex-shrink: 0;
+  width: 100%;
+  height: 26px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-sub);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.opening-del:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+}

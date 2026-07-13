@@ -22,7 +22,11 @@ import './App.css'
 // import Counter from './components/36/Counter.jsx'
 // import Every from './components/37/Every.jsx'
 // import Users from './components/38/Users.jsx'
-import Wheather from './components/39/Weather.jsx'
+// import Wheather from './components/39/Weather.jsx'
+import { BrowserRouter, Routes, Route, Link } from'react-router-dom'
+import Home from './pages/Home.jsx'
+import About from './pages/About.jsx'
+import Qna from './pages/Qna.jsx'
 
 function App() {
   //const list = ['깃허브', '블로그', '링크드인']     28번 
@@ -57,7 +61,21 @@ function App() {
     {/* <Counter /> */}
     {/* <Every /> */}
     {/* <Users /> */}
-    <Wheather />
+    {/* <Wheather /> */}
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link>
+        {' | '}
+        <Link to="/about">About</Link>
+        {' | '}
+        <Link to="/Qna">Q&a</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/About" element={<About />}/>
+        <Route path="/Qna" element={<Qna/>}/>
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }

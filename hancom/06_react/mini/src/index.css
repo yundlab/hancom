@@ -1,0 +1,77 @@
+/* =========================================================
+   디자인 토큰 (Design Tokens)
+   색/여백/둥글기/그림자/타이포를 변수로 관리한다.
+   값을 바꾸고 싶으면 여기 한 곳만 고치면 전체가 바뀐다.
+   ========================================================= */
+:root {
+  /* --- 중립 색상 스케일 (다크 테마: 어두울수록 숫자 작음) --- */
+  --gray-50: #141414; /* 가장 어두운 보조 배경 */
+  --gray-100: #1e1e1e;
+  --gray-200: #2b2b2b; /* 테두리 */
+  --gray-300: #3a3a3a;
+  --gray-500: #a5a5a0; /* 보조 텍스트 */
+  --gray-700: #c8c8c2;
+  --gray-900: #ffffff; /* 본문 텍스트 (흰색) */
+
+  /* --- 의미 색상 (semantic) --- */
+  --bg: #0d0d0d; /* 검정 배경 */
+  --surface: #171717; /* 카드 등 표면 */
+  --text: #ffffff; /* 일반 글씨는 흰색 */
+  --text-sub: var(--gray-500);
+  --border: var(--gray-200);
+  --accent: #ffd400; /* 노란색 액센트 */
+  --on-accent: #ffffff; /* 노란 버튼 위의 글자색 (흰색) */
+  --star: #ffd400;
+  --upcoming: #22d3ee; /* 관람 예정(D-day) 강조색 (시안) */
+
+  /* --- 여백 스케일 (4의 배수) --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* --- 둥글기 --- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 999px;
+
+  /* --- 그림자 (은은하게) --- */
+  --shadow-sm: 0 1px 2px rgba(20, 23, 33, 0.05);
+  --shadow-md: 0 4px 14px rgba(20, 23, 33, 0.07);
+  --shadow-lg: 0 14px 34px rgba(20, 23, 33, 0.12);
+
+  /* --- 타이포 --- */
+  --font: 'Pretendard Variable', 'Pretendard', system-ui, 'Segoe UI',
+    'Malgun Gothic', sans-serif;
+
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+  /* 스크롤바 자리를 항상 확보 → 페이지 전환 시 가로 폭이 안 흔들린다 */
+  scrollbar-gutter: stable;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
