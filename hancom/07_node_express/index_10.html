@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한윤지 반배치</title>
+    <style>
+        .wrap {
+            width:500px;
+            margin:0 auto;
+        }
+        .wrap>div {
+            width:100%;
+            text-align: center;
+        }
+        .front, .back {
+            height:40px;
+            line-height: 40px;
+            background: #ff6969;
+            margin:30px 0;
+        }
+        #grid{
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+        #grid>div{
+            background:#fff6c6;
+            height: 30px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class='wrap'>
+        <div class="front">강사</div>
+        <div id="grid"></div>
+        <div class="back">간식</div>
+    </div>
+
+    <script src="./index_10.js"></script>
+</body>
+</html>
