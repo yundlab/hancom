@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>종이테이프 계산기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  :root {
+    --desk:     #26302E;
+    --desk-lo:  #1E2624;
+    --chassis:  #D26A3A;
+    --chassis-hi:#E08248;
+    --chassis-lo:#B4552A;
+    --tape:     #F2ECDD;
+    --tape-sh:  #E4DAC4;
+    --ink:      #22201B;
+    --ink-red:  #C0341D;
+    --key:      #EAD9BE;
+    --key-hi:   #F3E7D3;
+    --key-lo:   #D8C4A4;
+    --key-fn:   #B7472A;
+    --key-fn-hi:#C9573A;
+    --rule:     #A99C82;
+    --focus:    #F4C77E;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: "Pretendard", system-ui, sans-serif;
+    background:
+      radial-gradient(120% 90% at 50% -10%, #2F3B39 0%, var(--desk) 45%, var(--desk-lo) 100%);
+    color: var(--tape);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(16px, 4vw, 48px);
+    gap: 0;
+  }
+
+  /* wood-grain-ish desk striping, very subtle */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      92deg,
+      rgba(255,255,255,0.014) 0 2px,
+      transparent 2px 26px
+    );
+    pointer-events: none;
+  }
+
+  .stage {
+    width: min(420px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* ---------- the tape ---------- */
+  .tape {
+    position: relative;
+    background: var(--tape);
+    color: var(--ink);
+    font-family: "Space Mono", monospace;
+    /* faint ledger ruling */
+    background-image: repeating-linear-gradient(
+      var(--tape) 0 27px,
+      var(--tape-sh) 27px 28px
+    );
+    border-radius: 3px 3px 0 0;
+    padding: 26px 22px 14px;
+    max-height: 240px;
+    min-height: 132px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow:
+      inset 0 10px 14px -10px rgba(0,0,0,0.28),
+      inset 0 -20px 22px -18px rgba(0,0,0,0.22);
+    scrollbar-width: thin;
+    scrollbar-color: var(--rule) transparent;
+    scroll-behavior: smooth;
+  }
+  .tape::-webkit-scrollbar { width: 6px; }
+  .tape::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+  /* torn / perforated top edge of the feeding tape */
+  .tape::before {
+    content: "";
+    position: absolute;
+    top: -9px; left: 0; right: 0;
+    height: 10px;
+    background:
+      radial-gradient(circle at 9px 9px, transparent 4px, var(--tape) 4.5px) 0 0 / 18px 10px repeat-x;
+    filter: drop-shadow(0 -1px 0 rgba(0,0,0,0.10));
+  }
+
+  .tape-label {
+    font-family: "Space Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rule);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--rule);
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+
+  .tape-log { list-style: none; }
+
+  .tape-empty {
+    font-size: 13px;
+    color: var(--rule);
+    text-align: center;
+    padding: 22px 0 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .line {
+    display: grid;
+    grid-template-columns: 1.4em 1fr;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 15px;
+    line-height: 1.85;
+    white-space: nowrap;
+  }
+  .line .op   { color: var(--ink-red); font-weight: 700; text-align: center; }
+  .line .val  { text-align: right; letter-spacing: 0.01em; }
+  .line.is-result {
+    border-top: 2px solid var(--ink);
+    margin-top: 2px;
+    padding-top: 2px;
+  }
+  .line.is-result .val { color: var(--ink-red); font-weight: 700; }
+  .line.is-note .val { color: var(--ink-red); font-weight: 700; text-align: left; white-space: normal; }
+  .line.is-note { grid-template-columns: 1.4em 1fr; }
+  .line.is-note .op { color: var(--ink-red); }
+
+  @keyframes print-in {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .line { animation: print-in 220ms ease-out both; }
+
+  /* ---------- the machine ---------- */
+  .machine {
+    background:
+      linear-gradient(180deg, var(--chassis-hi), var(--chassis) 34%, var(--chassis-lo));
+    border-radius: 0 0 26px 26px;
+    padding: 22px 22px 26px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.25) inset,
+      0 26px 46px -22px rgba(0,0,0,0.6),
+      0 6px 14px -8px rgba(0,0,0,0.5);
+  }
+
+  .head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .brand {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #3A2415;
+    line-height: 1.2;
+  }
+  .brand small {
+    display: block;
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(58,36,21,0.62);
+    margin-top: 3px;
+  }
+
+  /* display window (recessed) */
+  .display {
+    flex: 1;
+    min-width: 0;
+    background: linear-gradient(180deg, #23150C, #33200F);
+    border-radius: 10px;
+    padding: 10px 16px;
+    box-shadow:
+      inset 0 3px 8px rgba(0,0,0,0.6),
+      0 1px 0 rgba(255,255,255,0.18);
+    text-align: right;
+    overflow: hidden;
+  }
+  .display .expr {
+    font-family: "Space Mono", monospace;
+    font-size: 11px;
+    color: #C98A56;
+    height: 14px;
+    letter-spacing: 0.03em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .display .now {
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-size: clamp(28px, 8vw, 40px);
+    color: var(--tape);
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  .key {
+    font-family: "Space Mono", monospace;
+    font-size: 20px;
+    font-weight: 700;
+    color: #3A2415;
+    background: linear-gradient(180deg, var(--key-hi), var(--key) 55%, var(--key-lo));
+    border: none;
+    border-radius: 14px;
+    padding: 0;
+    aspect-ratio: 1 / 0.92;
+    cursor: pointer;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.6) inset,
+      0 -3px 6px -2px rgba(0,0,0,0.28) inset,
+      0 4px 0 -1px var(--key-lo),
+      0 6px 10px -4px rgba(0,0,0,0.45);
+    transition: transform 60ms ease, box-shadow 60ms ease, filter 120ms ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .key:hover { filter: brightness(1.03); }
+  .key:active,
+  .key.is-press {
+    transform: translateY(3px);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.5) inset,
+      0 -2px 5px -2px rgba(0,0,0,0.3) inset,
+      0 1px 0 -1px var(--key-lo),
+      0 2px 5px -3px rgba(0,0,0,0.45);
+  }
+  .key:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .key.op {
+    color: #FBEEE0;
+    background: linear-gradient(180deg, var(--key-fn-hi), var(--key-fn) 55%, #9C3A20);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.28) inset,
+      0 -3px 6px -2px rgba(0,0,0,0.34) inset,
+      0 4px 0 -1px #8E3319,
+      0 6px 10px -4px rgba(0,0,0,0.45);
+  }
+  .key.op:active,
+  .key.op.is-press {
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.24) inset,
+      0 -2px 5px -2px rgba(0,0,0,0.34) inset,
+      0 1px 0 -1px #8E3319,
+      0 2px 5px -3px rgba(0,0,0,0.45);
+  }
+  .key.op.is-armed { filter: brightness(1.12) saturate(1.1); }
+
+  .key.equals {
+    grid-column: span 1;
+    color: #23150C;
+    background: linear-gradient(180deg, #F6D89B, #EEC066 55%, #DCA943);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.7) inset,
+      0 -3px 6px -2px rgba(0,0,0,0.24) inset,
+      0 4px 0 -1px #C79433,
+      0 6px 10px -4px rgba(0,0,0,0.45);
+  }
+  .key.equals:active,
+  .key.equals.is-press {
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.6) inset,
+      0 -2px 5px -2px rgba(0,0,0,0.24) inset,
+      0 1px 0 -1px #C79433,
+      0 2px 5px -3px rgba(0,0,0,0.45);
+  }
+  .key.muted { font-size: 15px; }
+
+  @media (max-width: 380px) {
+    .key { font-size: 18px; border-radius: 12px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .line { animation: none; }
+    .tape { scroll-behavior: auto; }
+    .key { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <main class="stage" aria-label="종이테이프 계산기">
+    <!-- SIGNATURE: the living paper tape -->
+    <section class="tape" id="tape" aria-live="polite" aria-label="계산 기록">
+      <div class="tape-label"><span>계산 기록</span><span>ROLL · 01</span></div>
+      <ol class="tape-log" id="log">
+        <li class="tape-empty" id="empty">여기에 계산이 인쇄됩니다</li>
+      </ol>
+    </section>
+
+    <!-- the machine body -->
+    <section class="machine">
+      <div class="head">
+        <div class="brand">종이테이프 계산기<small>Paper-Tape · KR</small></div>
+        <div class="display">
+          <div class="expr" id="expr">&nbsp;</div>
+          <div class="now" id="now" role="status" aria-live="assertive">0</div>
+        </div>
+      </div>
+
+      <div class="keys" id="keys">
+        <button class="key muted" data-action="clear" aria-label="전체 지우기">C</button>
+        <button class="key muted" data-action="negate" aria-label="부호 반전">±</button>
+        <button class="key muted" data-action="percent" aria-label="퍼센트">%</button>
+        <button class="key op" data-op="/" aria-label="나누기">÷</button>
+
+        <button class="key" data-digit="7">7</button>
+        <button class="key" data-digit="8">8</button>
+        <button class="key" data-digit="9">9</button>
+        <button class="key op" data-op="*" aria-label="곱하기">×</button>
+
+        <button class="key" data-digit="4">4</button>
+        <button class="key" data-digit="5">5</button>
+        <button class="key" data-digit="6">6</button>
+        <button class="key op" data-op="-" aria-label="빼기">−</button>
+
+        <button class="key" data-digit="1">1</button>
+        <button class="key" data-digit="2">2</button>
+        <button class="key" data-digit="3">3</button>
+        <button class="key op" data-op="+" aria-label="더하기">+</button>
+
+        <button class="key" data-digit="0">0</button>
+        <button class="key" data-action="dot" aria-label="소수점">.</button>
+        <button class="key muted" data-action="back" aria-label="한 자 지우기">⌫</button>
+        <button class="key equals" data-action="equals" aria-label="계산">=</button>
+      </div>
+    </section>
+  </main>
+
+<script>
+(() => {
+  const OPS = { "+": "+", "-": "−", "*": "×", "/": "÷" };
+
+  const els = {
+    now:   document.getElementById("now"),
+    expr:  document.getElementById("expr"),
+    log:   document.getElementById("log"),
+    empty: document.getElementById("empty"),
+    tape:  document.getElementById("tape"),
+    keys:  document.getElementById("keys"),
+  };
+
+  let state = {
+    current: "0",   // string being typed
+    acc: null,      // accumulated numeric value
+    op: null,       // pending operator key ("+", "-", "*", "/")
+    fresh: true,    // next digit starts a new number
+    printedThisOp: false, // has current operand been printed to tape yet
+  };
+
+  // ---------- formatting ----------
+  const fmt = (n) => {
+    if (!isFinite(n)) return "오류";
+    if (Number.isInteger(n)) return n.toLocaleString("en-US");
+    // trim float noise, keep up to 10 significant-ish decimals
+    let s = parseFloat(n.toPrecision(12)).toString();
+    const [int, dec] = s.split(".");
+    return Number(int).toLocaleString("en-US") + (dec ? "." + dec : "");
+  };
+  const fmtInput = (s) => {
+    if (s === "" || s === "-") return s || "0";
+    const neg = s.startsWith("-");
+    let body = neg ? s.slice(1) : s;
+    const [int, dec] = body.split(".");
+    const grouped = Number(int || "0").toLocaleString("en-US");
+    return (neg ? "-" : "") + grouped + (body.includes(".") ? "." + (dec ?? "") : "");
+  };
+
+  // ---------- tape printing ----------
+  function clearEmpty() {
+    if (els.empty) { els.empty.remove(); els.empty = null; }
+  }
+  function printLine({ op = "", val = "", cls = "" } = {}) {
+    clearEmpty();
+    const li = document.createElement("li");
+    li.className = "line" + (cls ? " " + cls : "");
+    li.innerHTML = `<span class="op">${op}</span><span class="val">${val}</span>`;
+    els.log.appendChild(li);
+    els.tape.scrollTop = els.tape.scrollHeight;
+    return li;
+  }
+  function printNote(text) {
+    printLine({ op: "!", val: text, cls: "is-note" });
+  }
+
+  // ---------- display ----------
+  function render() {
+    els.now.textContent = fmtInput(state.current);
+    if (state.op && state.acc !== null) {
+      els.expr.textContent = fmt(state.acc) + " " + OPS[state.op];
+    } else {
+      els.expr.innerHTML = "&nbsp;";
+    }
+    for (const b of els.keys.querySelectorAll(".op")) b.classList.remove("is-armed");
+    if (state.op && state.fresh) {
+      const armed = els.keys.querySelector(`.op[data-op="${cssEsc(state.op)}"]`);
+      if (armed) armed.classList.add("is-armed");
+    }
+  }
+  const cssEsc = (s) => s.replace(/[^\w-]/g, (c) => "\\" + c);
+
+  // ---------- core actions ----------
+  function inputDigit(d) {
+    if (state.fresh) { state.current = d === "." ? "0." : d; state.fresh = false; state.printedThisOp = false; }
+    else {
+      if (d === "." && state.current.includes(".")) return;
+      if (state.current === "0" && d !== ".") state.current = d;
+      else state.current += d;
+    }
+    render();
+  }
+
+  function currentValue() { return parseFloat(state.current || "0") || 0; }
+
+  // print the just-entered operand (once) before applying an operator
+  function commitOperandToTape(opKeyForLine) {
+    printLine({ op: opKeyForLine ? OPS[opKeyForLine] : "", val: fmtInput(state.current) });
+  }
+
+  function setOperator(nextOp) {
+    const val = currentValue();
+    if (state.op === null) {
+      // first operand of a sequence
+      state.acc = val;
+      commitOperandToTape("");           // black operand, no operator marker yet
+    } else if (!state.fresh) {
+      // we have a pending op and a freshly typed operand -> compute chain
+      commitOperandToTape(state.op);      // print operand w/ the operator that acts on it (red)
+      state.acc = compute(state.acc, val, state.op);
+      if (state.acc === null) return;     // error already handled
+    }
+    state.op = nextOp;
+    state.fresh = true;
+    state.printedThisOp = true;
+    render();
+  }
+
+  function compute(a, b, op) {
+    if (op === "/" && b === 0) {
+      printNote("0으로 나눌 수 없어요");
+      resetAfterError();
+      return null;
+    }
+    switch (op) {
+      case "+": return a + b;
+      case "-": return a - b;
+      case "*": return a * b;
+      case "/": return a / b;
+      default:  return b;
+    }
+  }
+
+  function equals() {
+    if (state.op === null || state.acc === null) return;
+    if (state.fresh) return; // nothing new typed since last op
+    const val = currentValue();
+    commitOperandToTape(state.op);        // final operand line (red operator)
+    const result = compute(state.acc, val, state.op);
+    if (result === null) return;
+    printLine({ op: "=", val: fmt(result), cls: "is-result" });
+    state.acc = null;
+    state.op = null;
+    state.current = fmt(result).replace(/,/g, "");
+    state.fresh = true;
+    render();
+  }
+
+  function negate() {
+    if (state.current === "0") return;
+    state.current = state.current.startsWith("-")
+      ? state.current.slice(1)
+      : "-" + state.current;
+    render();
+  }
+
+  function percent() {
+    let val = currentValue();
+    // percent of the accumulator if mid-operation, else percent of itself
+    val = (state.op !== null && state.acc !== null)
+      ? state.acc * (val / 100)
+      : val / 100;
+    state.current = String(val);
+    state.fresh = false;
+    render();
+  }
+
+  function backspace() {
+    if (state.fresh) return;
+    let s = state.current;
+    s = s.slice(0, -1);
+    if (s === "" || s === "-") { s = "0"; state.fresh = true; }
+    state.current = s;
+    render();
+  }
+
+  function clearAll() {
+    state = { current: "0", acc: null, op: null, fresh: true, printedThisOp: false };
+    render();
+  }
+
+  function resetAfterError() {
+    state.current = "0";
+    state.acc = null;
+    state.op = null;
+    state.fresh = true;
+    render();
+  }
+
+  // ---------- wiring ----------
+  function handle(el) {
+    if (el.dataset.digit !== undefined) return inputDigit(el.dataset.digit);
+    if (el.dataset.op !== undefined)    return setOperator(el.dataset.op);
+    switch (el.dataset.action) {
+      case "dot":     return inputDigit(".");
+      case "equals":  return equals();
+      case "clear":   return clearAll();
+      case "back":    return backspace();
+      case "negate":  return negate();
+      case "percent": return percent();
+    }
+  }
+
+  els.keys.addEventListener("click", (e) => {
+    const btn = e.target.closest(".key");
+    if (btn) handle(btn);
+  });
+
+  // keyboard support
+  const keyMap = {
+    "0":"0","1":"1","2":"2","3":"3","4":"4","5":"5","6":"6","7":"7","8":"8","9":"9",
+    ".":"dot", ",":"dot",
+    "+":"+", "-":"-", "*":"*", "x":"*", "X":"*", "/":"/",
+    "Enter":"equals", "=":"equals",
+    "Backspace":"back", "Delete":"back",
+    "Escape":"clear", "c":"clear", "C":"clear",
+    "%":"percent",
+  };
+  window.addEventListener("keydown", (e) => {
+    const m = keyMap[e.key];
+    if (m === undefined) return;
+    e.preventDefault();
+    let sel;
+    if (/^[0-9]$/.test(m)) sel = `[data-digit="${m}"]`;
+    else if (m === "+"||m==="-"||m==="*"||m==="/") sel = `[data-op="${cssEsc(m)}"]`;
+    else sel = `[data-action="${m}"]`;
+    const btn = els.keys.querySelector(sel);
+    if (!btn) return;
+    flash(btn);
+    handle(btn);
+  });
+
+  function flash(btn) {
+    btn.classList.add("is-press");
+    setTimeout(() => btn.classList.remove("is-press"), 90);
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

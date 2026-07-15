@@ -1,0 +1,350 @@
+/* ============================================================
+   네온 계산기 — 다크(네온 시안) / 라이트(밝고 깔끔한 톤) 토글
+   ============================================================ */
+
+:root {
+  --font-digit: "Share Tech Mono", "Orbitron", ui-monospace, monospace;
+  --radius: 18px;
+  --gap: 12px;
+  --transition: 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- 다크(네온) 테마 ---------- */
+[data-theme="dark"] {
+  --bg: radial-gradient(circle at 30% 20%, #0f1f2b 0%, #060a12 60%, #03060b 100%);
+  --calc-bg: rgba(10, 20, 30, 0.72);
+  --calc-border: rgba(0, 240, 255, 0.18);
+  --calc-shadow: 0 0 45px rgba(0, 220, 255, 0.15), 0 20px 60px rgba(0, 0, 0, 0.6);
+
+  --text: #eafcff;
+  --muted: #6f97a6;
+  --neon: #00eaff;
+  --neon-soft: rgba(0, 234, 255, 0.14);
+
+  --display-bg: rgba(0, 10, 16, 0.55);
+  --expr: #4fd8ec;
+
+  --key-bg: rgba(255, 255, 255, 0.04);
+  --key-border: rgba(0, 234, 255, 0.12);
+  --key-text: #dff8ff;
+  --key-hover: rgba(0, 234, 255, 0.12);
+
+  --op-text: #00eaff;
+  --op-border: rgba(0, 234, 255, 0.45);
+  --fn-text: #ff6ec7;
+
+  --eq-bg: linear-gradient(135deg, #00eaff, #0088ff);
+  --eq-text: #02121a;
+  --eq-glow: 0 0 20px rgba(0, 234, 255, 0.55);
+
+  --panel-bg: rgba(8, 16, 24, 0.96);
+}
+
+/* ---------- 라이트 테마 (네온 아님, 완전히 다른 밝은 톤) ---------- */
+[data-theme="light"] {
+  --bg: linear-gradient(160deg, #f3f6fb 0%, #e7edf6 100%);
+  --calc-bg: #ffffff;
+  --calc-border: rgba(20, 40, 70, 0.08);
+  --calc-shadow: 0 18px 50px rgba(40, 60, 90, 0.16);
+
+  --text: #1a2433;
+  --muted: #8a97a8;
+  --neon: #2f7bff;
+  --neon-soft: rgba(47, 123, 255, 0.1);
+
+  --display-bg: #f4f7fc;
+  --expr: #93a1b5;
+
+  --key-bg: #f4f6fa;
+  --key-border: rgba(20, 40, 70, 0.06);
+  --key-text: #26313f;
+  --key-hover: #e9eef7;
+
+  --op-text: #2f7bff;
+  --op-border: rgba(47, 123, 255, 0.28);
+  --fn-text: #ff5d8f;
+
+  --eq-bg: linear-gradient(135deg, #4f8dff, #2f7bff);
+  --eq-text: #ffffff;
+  --eq-glow: 0 8px 18px rgba(47, 123, 255, 0.35);
+
+  --panel-bg: #ffffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* ---------- 계산기 카드 ---------- */
+.calc {
+  width: min(360px, 100%);
+  background: var(--calc-bg);
+  border: 1px solid var(--calc-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--calc-shadow);
+  backdrop-filter: blur(10px);
+  transition: background var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.brand {
+  font-family: var(--font-digit);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: var(--neon);
+  text-shadow: 0 0 8px var(--neon-soft);
+}
+
+.top-actions { display: flex; gap: 6px; }
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 34px; height: 34px;
+  border: 1px solid var(--key-border);
+  border-radius: 10px;
+  background: var(--key-bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), color var(--transition);
+}
+.icon-btn:hover { background: var(--key-hover); }
+.icon-btn:active { transform: scale(0.92); }
+
+/* 테마 아이콘 표시 전환 */
+[data-theme="dark"] .i-sun { display: none; }
+[data-theme="light"] .i-moon { display: none; }
+
+/* ---------- 디스플레이 ---------- */
+.display {
+  background: var(--display-bg);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  text-align: right;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.expression {
+  font-family: var(--font-digit);
+  font-size: 0.95rem;
+  color: var(--expr);
+  min-height: 20px;
+  word-break: break-all;
+  opacity: 0.85;
+}
+
+.result-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.result {
+  font-family: var(--font-digit);
+  font-size: 2.4rem;
+  line-height: 1.1;
+  color: var(--text);
+  word-break: break-all;
+  flex: 1;
+  transition: text-shadow var(--transition);
+}
+[data-theme="dark"] .result { text-shadow: 0 0 12px rgba(0, 234, 255, 0.35); }
+
+.result.pop { animation: pop 0.22s ease; }
+@keyframes pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+.copy-btn {
+  flex: 0 0 auto;
+  width: 30px; height: 30px;
+  display: grid; place-items: center;
+  border: 1px solid var(--key-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition), transform var(--transition);
+}
+.copy-btn:hover { color: var(--neon); background: var(--neon-soft); }
+.copy-btn:active { transform: scale(0.9); }
+
+/* ---------- 키패드 ---------- */
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+}
+
+.key {
+  font-family: var(--font-digit);
+  font-size: 1.3rem;
+  height: 58px;
+  border-radius: 14px;
+  border: 1px solid var(--key-border);
+  background: var(--key-bg);
+  color: var(--key-text);
+  cursor: pointer;
+  user-select: none;
+  transition: transform var(--transition), background var(--transition),
+              box-shadow var(--transition), border-color var(--transition);
+}
+.key:hover { background: var(--key-hover); }
+.key:active { transform: translateY(2px) scale(0.97); }
+
+.key.op { color: var(--op-text); border-color: var(--op-border); }
+.key.op.active {
+  background: var(--op-text);
+  color: var(--eq-text);
+  box-shadow: var(--eq-glow);
+}
+
+.key.fn { color: var(--fn-text); font-size: 1.15rem; }
+
+.key.eq {
+  background: var(--eq-bg);
+  color: var(--eq-text);
+  border: none;
+  box-shadow: var(--eq-glow);
+}
+.key.eq:hover { filter: brightness(1.08); }
+
+/* 버튼 눌림 리플 애니메이션 */
+.key.flash { animation: flash 0.25s ease; }
+@keyframes flash {
+  0% { box-shadow: 0 0 0 0 var(--neon-soft); }
+  100% { box-shadow: 0 0 0 14px transparent; }
+}
+
+/* ---------- 히스토리 패널 ---------- */
+.history {
+  position: fixed;
+  top: 0; right: 0;
+  width: min(320px, 85vw);
+  height: 100vh;
+  background: var(--panel-bg);
+  border-left: 1px solid var(--calc-border);
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.35);
+  padding: 20px;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+}
+.history.open { transform: translateX(0); }
+
+.history-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-family: var(--font-digit);
+  letter-spacing: 1px;
+  color: var(--neon);
+}
+.history-head > div { display: flex; align-items: center; gap: 8px; }
+
+.text-btn {
+  background: none; border: none;
+  color: var(--muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.text-btn:hover { color: var(--fn-text); }
+
+.history-list {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.history-list li {
+  background: var(--key-bg);
+  border: 1px solid var(--key-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  animation: slidein 0.25s ease;
+}
+.history-list li:hover { background: var(--key-hover); transform: translateX(-3px); }
+@keyframes slidein {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.history-list .h-expr {
+  font-family: var(--font-digit);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.history-list .h-res {
+  font-family: var(--font-digit);
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.history-empty {
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 15;
+  opacity: 0;
+  animation: fadein 0.25s forwards;
+}
+@keyframes fadein { to { opacity: 1; } }
+
+/* ---------- 토스트 ---------- */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--neon);
+  color: var(--eq-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 30px;
+  box-shadow: var(--eq-glow);
+  z-index: 30;
+  opacity: 0;
+  transition: opacity var(--transition), transform var(--transition);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }

@@ -6,6 +6,17 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["--yes", "serve", "-l", "5182", "."],
       "port": 5182
+    },
+    {
+      "name": "mini",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "C:/Users/Har06/Desktop/hancom/hancom/06_react/mini",
+        "run",
+        "dev"
+      ],
+      "port": 5173
     }
   ]
 }
