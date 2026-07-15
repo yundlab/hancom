@@ -1,0 +1,3 @@
+[submodule "hancom/chatbot2"]
+	path = hancom/chatbot2
+	url = https://github.com/yundlab/chatbot2.git
