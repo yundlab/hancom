@@ -1,0 +1,249 @@
+/* ── BM 한나체 (워드마크) : noonnu jsDelivr 미러 ───────────────── */
+@font-face {
+  font-family: "BM HANNA";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/BMHANNA_11yrs.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* ── 디자인 토큰 (baemin_design.md 값 그대로) ─────────────────── */
+:root {
+  /* Color */
+  --bg-page:    oklch(0.97 0 286);      /* 본화이트 */
+  --bg-surface: #fff;                    /* 카드 표면 */
+  --fg-1:       oklch(0.18 0 0);         /* near-black : 텍스트·윤곽선·스티커 그림자 */
+  --fg-3:       oklch(0.55 0 0);         /* 보조 텍스트 */
+  --mint:       oklch(0.88 0.18 178);    /* 프라이머리 */
+  --mint-hover: oklch(0.69 0.13 184);
+  --mint-tint:  oklch(0.97 0.05 178);
+  --red:        oklch(0.63 0.24 27);     /* 단색 (그라데이션 금지) */
+  --red-hover:  oklch(0.55 0.22 27);
+  --yellow:     oklch(0.93 0.20 100);    /* 코인 액센트 */
+
+  /* Type */
+  --font-display: "Do Hyeon", "BM HANNA", system-ui, "Malgun Gothic", sans-serif;
+  --font-wordmark: "BM HANNA", "Do Hyeon", system-ui, "Malgun Gothic", sans-serif;
+  --font-body: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo",
+               "Noto Sans KR", "Malgun Gothic", Roboto, sans-serif;
+
+  /* Radius */
+  --r-card: 24px;
+  --r-key:  20px;
+  --r-pill: 9999px;
+
+  /* Signature — 스티커 그림자 (6px 단색 검정 오프셋) */
+  --sticker: 0 6px 0 var(--fg-1);
+  --sticker-mint: 0 6px 0 var(--mint-hover);
+  --sticker-red:  0 6px 0 var(--red-hover);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 140ms;
+}
+
+/* ── Reset ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 32px 16px calc(32px + env(safe-area-inset-bottom));
+  background: var(--bg-page);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  /* 옅은 손그림 결: 본화이트 위 아주 옅은 점 텍스처 (그라데이션 아님) */
+  background-image: radial-gradient(var(--mint-tint) 1.4px, transparent 1.4px);
+  background-size: 26px 26px;
+}
+
+/* ── Stage ───────────────────────────────────────────────────── */
+.stage {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Wordmark ────────────────────────────────────────────────── */
+.wordmark {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-left: 4px;
+}
+.wordmark__mark {
+  font-size: 22px;
+  transform: rotate(-8deg);
+  color: var(--fg-1);
+}
+.wordmark__text {
+  font-family: var(--font-wordmark);
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.wordmark__coin {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--yellow);
+  border: 2px solid var(--fg-1);
+  font-size: 12px;
+  font-weight: 800;
+  transform: translateY(-2px) rotate(6deg);
+}
+
+/* ── Calculator card ─────────────────────────────────────────── */
+.calc {
+  background: var(--bg-surface);
+  border: 2.5px solid var(--fg-1);
+  border-radius: var(--r-card);
+  box-shadow: var(--sticker);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ── Screen ──────────────────────────────────────────────────── */
+.screen {
+  background: var(--fg-1);
+  border-radius: 16px;
+  padding: 18px 20px 16px;
+  min-height: 118px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  overflow: hidden;
+}
+.screen__tape {
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: oklch(0.71 0 0);
+  text-align: right;
+  min-height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.screen__result {
+  font-family: var(--font-display);
+  font-size: 52px;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--bg-surface);
+  text-align: right;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+.screen__result.is-error {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--mint);
+}
+
+/* ── Keypad ──────────────────────────────────────────────────── */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.key {
+  height: 62px;
+  border: 2.5px solid var(--fg-1);
+  border-radius: var(--r-key);
+  background: var(--bg-surface);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--sticker);
+  transition: transform var(--dur) var(--ease-out),
+              box-shadow var(--dur) var(--ease-out),
+              background-color var(--dur) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+/* Signature: 스티커 스탬프 프레스 — 6px 내려가며 그림자 붕괴 */
+.key:active,
+.key.is-pressed {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 var(--fg-1);
+}
+
+.key:focus-visible {
+  outline: 3px solid var(--mint);
+  outline-offset: 3px;
+}
+
+/* 변형: 색·그림자만 override (레이아웃 토큰은 .key 유지) */
+.key--op {
+  background: var(--mint);
+  font-family: var(--font-display);
+  font-size: 26px;
+}
+.key--op:hover { background: var(--mint-hover); color: var(--bg-surface); }
+
+.key--fn {
+  background: var(--mint-tint);
+  font-size: 20px;
+}
+.key--fn:hover { background: var(--mint); }
+
+.key--ac {
+  background: var(--red);
+  color: var(--bg-surface);
+  box-shadow: var(--sticker-red);
+}
+.key--ac:hover { background: var(--red-hover); }
+
+.key--eq {
+  background: var(--fg-1);
+  color: var(--bg-surface);
+  font-family: var(--font-display);
+  font-size: 28px;
+}
+.key--eq:hover { background: oklch(0.28 0 0); }
+
+/* ── Footnote ────────────────────────────────────────────────── */
+.footnote {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-3);
+  padding-top: 2px;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 380px) {
+  .keypad { gap: 10px; }
+  .key { height: 56px; font-size: 20px; }
+  .screen__result { font-size: 44px; }
+  .wordmark__text { font-size: 30px; }
+}
+
+/* ── Reduced motion ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .key { transition: background-color var(--dur) linear; }
+  .key:active,
+  .key.is-pressed { transform: none; box-shadow: var(--sticker); }
+  .key--ac:active,
+  .key--ac.is-pressed { box-shadow: var(--sticker-red); }
+}
