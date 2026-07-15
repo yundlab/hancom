@@ -1,0 +1,182 @@
+:root {
+  /* LDSG Color Palette */
+  --color-bg: #F5F5F5;           /* ldsg-color-gray-150 */
+  --color-surface: #FFFFFF;
+  --color-primary: #06C755;      /* ldsg-color-brand-primary */
+  --color-text: #000000;
+  --color-text-sub: #949494;     /* ldsg-color-gray-500 */
+  --color-border: #DFDFDF;       /* ldsg-color-gray-300 */
+  --color-fn-bg: #F5F5F5;        /* same as page bg */
+
+  /* Spacing & Sizing */
+  --radius-btn: 5px;             /* ldsg-radius-200 */
+  --radius-card: 12px;           /* ldsg-radius-400 */
+  --shadow-card: 0px 1px 4px rgba(0, 0, 0, 0.06);
+  --shadow-btn: 0px 0px 2px rgba(0, 0, 0, 0.07), 0px 1px 2px rgba(0, 0, 0, 0.07);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", "Pretendard Variable", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 16px;
+}
+
+.calc-wrapper {
+  width: 100%;
+  max-width: 320px;
+}
+
+.calc-card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Display Section */
+.display {
+  text-align: right;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.display__history {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-sub);
+  min-height: 20px;
+  margin-bottom: 4px;
+  word-wrap: break-word;
+}
+
+.display__value {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--color-text);
+  display: block;
+  word-wrap: break-word;
+  min-height: 56px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+/* Button Grid */
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.btn-zero {
+  grid-column: span 2;
+}
+
+/* Button Base */
+.btn {
+  padding: 12px;
+  border: none;
+  border-radius: var(--radius-btn);
+  font-size: 20px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 120ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn:hover {
+  opacity: 0.7;
+}
+
+.btn:active {
+  opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+
+/* Button Variants */
+.btn-fn {
+  background-color: var(--color-fn-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-num {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-op {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+}
+
+.btn-eq {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border: none;
+  box-shadow: var(--shadow-btn);
+}
+
+.btn-eq:hover {
+  opacity: 0.7;
+}
+
+.btn-eq:active {
+  opacity: 0.5;
+}
+
+/* Focus Styles */
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .calc-wrapper {
+    max-width: 100%;
+  }
+
+  .btn {
+    font-size: 18px;
+    min-height: 44px;
+  }
+
+  .display__value {
+    font-size: 40px;
+    min-height: 48px;
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>계산기 · LINE Design System</title>
+
+  <!-- Pretendard Variable (본문) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/variable/pretendardvariable.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="calc-wrapper">
+    <div class="calc-card">
+      <div class="display">
+        <p class="display__history" id="history" aria-hidden="true"></p>
+        <output class="display__value" id="display" aria-live="polite" aria-atomic="true">0</output>
+      </div>
+
+      <div class="btn-grid">
+        <button class="btn btn-fn" data-action="ac">AC</button>
+        <button class="btn btn-fn" data-action="plusMinus">+/−</button>
+        <button class="btn btn-fn" data-action="percent">%</button>
+        <button class="btn btn-op" data-action="divide">÷</button>
+
+        <button class="btn btn-num" data-digit="7">7</button>
+        <button class="btn btn-num" data-digit="8">8</button>
+        <button class="btn btn-num" data-digit="9">9</button>
+        <button class="btn btn-op" data-action="multiply">×</button>
+
+        <button class="btn btn-num" data-digit="4">4</button>
+        <button class="btn btn-num" data-digit="5">5</button>
+        <button class="btn btn-num" data-digit="6">6</button>
+        <button class="btn btn-op" data-action="subtract">−</button>
+
+        <button class="btn btn-num" data-digit="1">1</button>
+        <button class="btn btn-num" data-digit="2">2</button>
+        <button class="btn btn-num" data-digit="3">3</button>
+        <button class="btn btn-op" data-action="add">+</button>
+
+        <button class="btn btn-num btn-zero" data-digit="0">0</button>
+        <button class="btn btn-num" data-action="dot">.</button>
+        <button class="btn btn-eq" data-action="equals">=</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
