@@ -1,0 +1,334 @@
+<style>
+.post-wrap * { box-sizing: border-box; }
+.post-wrap ul, .post-wrap ol, .post-wrap li { list-style: none !important; border: none !important; margin: 0; padding: 0; }
+.post-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+    color: #333;
+    line-height: 1.8;
+}
+.post-wrap .post-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    border-left: 5px solid #f97316;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    padding-left: 18px;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 40px;
+}
+.post-wrap .post-header * { margin-top: 0 !important; }
+.post-wrap .tag-badge {
+    display: inline-block !important;
+    background: #ffedd5;
+    color: #f97316;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.post-wrap .post-header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #1a1a2e;
+    margin: 0;
+}
+.post-wrap .subtitle {
+    margin-top: 8px;
+    color: #666;
+    font-size: 14px;
+}
+.post-wrap h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 48px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+.post-wrap h3 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #2c3e50 !important;
+    margin: 28px 0 10px !important;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap p {
+    margin-bottom: 14px;
+    font-size: 15px;
+}
+.post-wrap .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    background: none !important;
+}
+.post-wrap .summary-card {
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 10px;
+    padding: 16px 18px;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.post-wrap .summary-card * { border: none !important; outline: none !important; }
+.post-wrap .summary-card .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f97316;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.post-wrap .summary-card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+}
+.post-wrap .ctag {
+    display: inline-block;
+    background: #f1f3f9;
+    color: #444;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 0;
+    line-height: 1.6;
+    vertical-align: middle;
+}
+.post-wrap pre {
+    background: #1e2235;
+    color: #e8eaf6;
+    border-radius: 10px;
+    padding: 20px 22px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 14px 0 20px !important;
+}
+.post-wrap pre .c  { color: #7986cb; }
+.post-wrap pre .t  { color: #80cbc4; }
+.post-wrap pre .a  { color: #ffcc80; }
+.post-wrap pre .v  { color: #a5d6a7; }
+.post-wrap pre .tx { color: #e8eaf6; }
+.post-wrap code {
+    font-family: 'Courier New', monospace;
+    font-size: 13.5px;
+    background: #f1f3f9;
+    color: #c0392b;
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+.post-wrap .callout {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 18px 0;
+    font-size: 14.5px;
+}
+.post-wrap .callout.blue {
+    background: #fff4ec;
+    border-left: 4px solid #f97316;
+    color: #9a3412;
+}
+.post-wrap .callout.green {
+    background: #fff1e0;
+    border-left: 4px solid #fb923c;
+    color: #b45309;
+}
+.post-wrap .callout.yellow {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    color: #92400e;
+}
+.post-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 14px;
+}
+.post-wrap th {
+    background: #f97316;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+}
+.post-wrap td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e9ecef;
+}
+.post-wrap tr:nth-child(even) td { background: #fff7ed; }
+.post-wrap .closing {
+    margin-top: 20px !important;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #f9731622, #ea580c22);
+    border-radius: 14px;
+    border: 1px solid #dee2e6;
+}
+.post-wrap .closing h3 { margin-top: 0 !important; margin-bottom: 10px; font-size: 17px; }
+.post-wrap .closing p  { font-size: 14.5px; color: #555; margin-bottom: 6px; }
+.post-wrap hr.divider {
+    border: none;
+    border-top: 1px solid #e9ecef;
+    margin: 36px 0;
+}
+</style>
+
+<div class="post-wrap">
+
+    <div class="post-header">
+        <span class="tag-badge"># HTML 학습일지</span>
+        <h1>[HTML 1일차] HTML 기본 구조부터<br>이미지·링크까지</h1>
+        <p class="subtitle">2026.06.29 · 학습 범위: 03번 ~ 09번 파일</p>
+    </div>
+
+    <h2>📋 오늘 다뤄본 태그 목록</h2>
+
+    <p>퍼블리셔 경력이 있어서 낯설진 않았지만, 오랜만에 처음부터 다시 짚어보는 느낌이 묘했다. 환경 세팅부터 시작해서 HTML 뼈대와 기본 태그들을 하나씩 다시 손으로 쳤다.</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="card-title">문서 구조</div>
+            <div class="tags">
+                <span class="ctag">!DOCTYPE</span><span class="ctag">html</span><span class="ctag">head</span><span class="ctag">body</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">메타 정보</div>
+            <div class="tags">
+                <span class="ctag">meta</span><span class="ctag">title</span><span class="ctag">charset</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">제목 & 문단</div>
+            <div class="tags">
+                <span class="ctag">h1</span><span class="ctag">h2</span><span class="ctag">h3</span><span class="ctag">h4</span><span class="ctag">h5</span><span class="ctag">h6</span><span class="ctag">p</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">강조 & 중첩</div>
+            <div class="tags">
+                <span class="ctag">strong</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">미디어 & 링크</div>
+            <div class="tags">
+                <span class="ctag">img</span><span class="ctag">a</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">기타</div>
+            <div class="tags">
+                <span class="ctag">&lt;!-- --&gt;</span><span class="ctag">&amp;lt;</span><span class="ctag">&amp;amp;</span>
+            </div>
+        </div>
+    </div>
+
+    <h2>🗂️ 태그별 메모</h2>
+
+    <h3>HTML 문서 기본 구조</h3>
+    <p>HTML 파일은 항상 이 뼈대에서 시작한다. <code>&lt;!DOCTYPE html&gt;</code>은 "이건 HTML5 문서야"라고 브라우저에 알리는 선언이고, <code>head</code>는 화면에 보이지 않는 설정 영역, <code>body</code>가 실제 화면에 렌더링되는 영역이다.</p>
+
+    <pre><span class="t">&lt;!DOCTYPE html&gt;</span>
+<span class="t">&lt;html</span> <span class="a">lang</span>=<span class="v">"ko"</span><span class="t">&gt;</span>
+  <span class="t">&lt;head&gt;</span>
+    <span class="t">&lt;meta</span> <span class="a">charset</span>=<span class="v">"UTF-8"</span><span class="t">&gt;</span>
+    <span class="t">&lt;title&gt;</span><span class="tx">브라우저 탭 이름</span><span class="t">&lt;/title&gt;</span>
+  <span class="t">&lt;/head&gt;</span>
+  <span class="t">&lt;body&gt;</span>
+    <span class="tx">화면에 보이는 내용</span>
+  <span class="t">&lt;/body&gt;</span>
+<span class="t">&lt;/html&gt;</span></pre>
+
+    <div class="callout blue">
+        <code>&lt;meta charset="UTF-8"&gt;</code>은 한글이 깨지지 않도록 인코딩을 지정하는 설정이다. 빠트리면 한글이 깨질 수 있어서 습관적으로 넣게 된다.
+    </div>
+
+    <hr class="divider" style="border:none; border-top:1px solid #e9ecef; margin:36px 0;">
+
+    <h3>태그와 요소 개념</h3>
+    <p>태그(tag)와 요소(element)는 엄밀히 다른 개념이다. 태그는 꺾쇠 안의 이름 자체고, 요소는 여는 태그 + 내용 + 닫는 태그로 이루어진 전체 덩어리다. <code>&lt;img&gt;</code>처럼 닫는 태그 없이 단독으로 쓰는 건 빈 요소(void element)라고 부른다.</p>
+
+    <table>
+        <tr><th>구분</th><th>예시</th><th>설명</th></tr>
+        <tr><td>일반 요소</td><td><code>&lt;p&gt;내용&lt;/p&gt;</code></td><td>여는 태그 + 내용 + 닫는 태그</td></tr>
+        <tr><td>빈 요소</td><td><code>&lt;img /&gt;</code>, <code>&lt;meta /&gt;</code></td><td>내용 없음, 닫는 태그 없음</td></tr>
+        <tr><td>중첩</td><td><code>&lt;p&gt;&lt;strong&gt;굵게&lt;/strong&gt;&lt;/p&gt;</code></td><td>태그 안에 태그 넣기</td></tr>
+    </table>
+
+    <hr class="divider" style="border:none; border-top:1px solid #e9ecef; margin:36px 0;">
+
+    <h3>주석 — &lt;!-- --&gt;</h3>
+    <p>화면에 렌더링되지 않는 메모다. 코드 설명을 남기거나 특정 코드를 임시로 비활성화할 때 쓴다. 퍼블리싱할 때도 섹션 구분 표시로 자주 사용했다.</p>
+
+    <pre><span class="c">&lt;!-- 이건 화면에 안 보입니다 --&gt;</span>
+<span class="t">&lt;h1&gt;</span><span class="tx">이건 보입니다</span><span class="t">&lt;/h1&gt;</span></pre>
+
+    <hr class="divider" style="border:none; border-top:1px solid #e9ecef; margin:36px 0;">
+
+    <h3>제목 — h1 ~ h6</h3>
+    <p>heading의 약자로, 숫자가 클수록 작아진다. <code>h1</code>이 페이지에서 가장 중요한 제목이고 보통 하나만 쓴다. SEO 관점에서도 h1~h3 위계가 중요하다.</p>
+
+    <pre><span class="t">&lt;h1&gt;</span><span class="tx">가장 큰 제목</span><span class="t">&lt;/h1&gt;</span>
+<span class="t">&lt;h2&gt;</span><span class="tx">두 번째 제목</span><span class="t">&lt;/h2&gt;</span>
+<span class="t">&lt;h3&gt;</span><span class="tx">세 번째 제목</span><span class="t">&lt;/h3&gt;</span>
+<span class="c">&lt;!-- h4, h5, h6 으로 갈수록 작아짐 --&gt;</span></pre>
+
+    <hr class="divider" style="border:none; border-top:1px solid #e9ecef; margin:36px 0;">
+
+    <h3>강조와 중첩 — strong</h3>
+    <p><code>strong</code>은 텍스트를 굵게 표시하는 강조 태그다. <code>p</code> 안에 <code>strong</code>을 넣는 것처럼, 태그 안에 또 다른 태그를 넣는 걸 중첩(nesting)이라고 한다. 여닫는 순서를 지키는 게 중요하다.</p>
+
+    <pre><span class="t">&lt;p&gt;</span><span class="tx">저는 </span><span class="t">&lt;strong&gt;</span><span class="tx">개발</span><span class="t">&lt;/strong&gt;</span><span class="tx">을 좋아합니다.</span><span class="t">&lt;/p&gt;</span></pre>
+
+    <div class="callout yellow">
+        HTML에서 <code>&lt;</code>나 <code>&gt;</code>를 텍스트로 출력하려면 엔티티 문자를 써야 한다. <code>&amp;lt;</code> → &lt; / <code>&amp;gt;</code> → &gt; / <code>&amp;amp;</code> → &amp;
+    </div>
+
+    <hr class="divider" style="border:none; border-top:1px solid #e9ecef; margin:36px 0;">
+
+    <h3>이미지 — img</h3>
+    <p>닫는 태그가 없는 빈 요소다. <code>src</code>로 이미지 경로를 지정하고, <code>alt</code>로 이미지가 로드되지 않을 때 표시할 대체 텍스트를 넣는다. <code>alt</code>는 접근성과 SEO 모두에 영향을 준다.</p>
+
+    <pre><span class="t">&lt;img</span> <span class="a">src</span>=<span class="v">"image.jpg"</span> <span class="a">alt</span>=<span class="v">"예시 사진"</span> <span class="t">/&gt;</span></pre>
+
+    <div class="callout green">
+        이미지 파일은 작업 폴더 안에서 관리하는 게 기본이다. 외부 경로나 다운로드 폴더처럼 작업 폴더 밖에 있으면 브라우저가 불러오지 못하는 경우가 생긴다.
+    </div>
+
+    <hr class="divider" style="border:none; border-top:1px solid #e9ecef; margin:36px 0;">
+
+    <h3>링크 — a</h3>
+    <p>anchor의 약자. <code>href</code> 속성에 이동할 URL을 넣는다. 퍼블리싱할 때 가장 많이 쓰던 태그 중 하나다.</p>
+
+    <pre><span class="t">&lt;a</span> <span class="a">href</span>=<span class="v">"https://www.naver.com"</span><span class="t">&gt;</span><span class="tx">네이버</span><span class="t">&lt;/a&gt;</span></pre>
+
+    <div class="callout blue">
+        <code>target="_blank"</code>를 추가하면 새 탭으로 열린다. 오늘은 기본 링크만 다뤘고 심화 활용은 2일차에서 정리했다.
+    </div>
+
+    <div class="closing">
+        <h3>✍️ 마치며</h3>
+        <p>코드를 오랜만에 처음부터 치니까 손이 잠깐 어색했다. 알고 있다고 생각했던 것들도 막상 빈 파일에서 시작하면 순서를 떠올리는 데 한 박자가 걸린다. 그 감각을 다시 익히는 게 오늘 하루의 수확이었다.</p>
+        <p style="margin-top:16px; font-size:13px; color:#888;">🏷️ HTML &nbsp;|&nbsp; 웹개발 &nbsp;|&nbsp; 학습일지 &nbsp;|&nbsp; 프론트엔드</p>
+    </div>
+
+</div>

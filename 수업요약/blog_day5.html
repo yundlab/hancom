@@ -1,0 +1,458 @@
+<style>
+.post-wrap * { box-sizing: border-box; }
+.post-wrap ul, .post-wrap ol, .post-wrap li { list-style: none !important; border: none !important; margin: 0; padding: 0; }
+.post-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+    color: #333;
+    line-height: 1.8;
+}
+.post-wrap .post-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    border-left: 5px solid #f97316;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    padding-left: 18px;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 40px;
+}
+.post-wrap .post-header * {
+    margin-top: 0 !important;
+}
+.post-wrap .tag-badge {
+    display: inline-block !important;
+    background: #ffedd5;
+    color: #f97316;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.post-wrap .post-header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #1a1a2e;
+    margin: 0;
+}
+.post-wrap .subtitle {
+    margin-top: 8px;
+    color: #666;
+    font-size: 14px;
+}
+.post-wrap h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 48px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+.post-wrap h3 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #2c3e50 !important;
+    margin: 28px 0 10px !important;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap p {
+    margin-bottom: 14px;
+    font-size: 15px;
+}
+.post-wrap .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    background: none !important;
+}
+.post-wrap .summary-card {
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 10px;
+    padding: 16px 18px;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.post-wrap .summary-card * {
+    border: none !important;
+    outline: none !important;
+}
+.post-wrap .summary-card .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f97316;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap .summary-card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.post-wrap .ctag {
+    display: inline-block;
+    background: #f1f3f9;
+    color: #444;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 0;
+    line-height: 1.6;
+    vertical-align: middle;
+}
+.post-wrap pre {
+    background: #1e2235;
+    color: #e8eaf6;
+    border-radius: 10px;
+    padding: 20px 22px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 14px 0 20px !important;
+}
+.post-wrap pre .c  { color: #7986cb; }
+.post-wrap pre .t  { color: #80cbc4; }
+.post-wrap pre .a  { color: #ffcc80; }
+.post-wrap pre .v  { color: #a5d6a7; }
+.post-wrap pre .tx { color: #e8eaf6; }
+.post-wrap code {
+    font-family: 'Courier New', monospace;
+    font-size: 13.5px;
+    background: #f1f3f9;
+    color: #c0392b;
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+.post-wrap .callout {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 18px 0;
+    font-size: 14.5px;
+}
+.post-wrap .callout.blue {
+    background: #fff4ec;
+    border-left: 4px solid #f97316;
+    color: #9a3412;
+}
+.post-wrap .callout.green {
+    background: #fff1e0;
+    border-left: 4px solid #fb923c;
+    color: #b45309;
+}
+.post-wrap .callout.yellow {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    color: #92400e;
+}
+.post-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 14px;
+}
+.post-wrap th {
+    background: #f97316;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+}
+.post-wrap td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e9ecef;
+}
+.post-wrap tr:nth-child(even) td { background: #fff7ed; }
+.post-wrap .cascade-list {
+    margin: 14px 0;
+    padding: 0;
+    border: none;
+}
+.post-wrap .cascade-item {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    margin-bottom: 6px !important;
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+}
+.post-wrap .cascade-item .cnum {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 24px !important;
+    min-width: 24px !important;
+    height: 24px;
+    border-radius: 50%;
+    background: #f97316;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 12px;
+    flex-shrink: 0 !important;
+}
+.post-wrap .cascade-item .cname {
+    font-family: 'Courier New', monospace;
+    color: #f97316;
+    font-weight: 700;
+    display: inline-block !important;
+    width: 130px !important;
+    min-width: 130px !important;
+    flex-shrink: 0 !important;
+    font-size: 13px;
+}
+.post-wrap .cascade-item .cdesc {
+    color: #555;
+    flex: 1;
+    display: inline-block !important;
+}
+.post-wrap .demo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px 0 20px;
+    font-weight: 700;
+    color: #fff;
+}
+.post-wrap .closing {
+    margin-top: 0 !important;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #f9731622, #ea580c22);
+    border-radius: 14px;
+    border: 1px solid #dee2e6;
+}
+.post-wrap .closing h3 { margin-top: 0 !important; margin-bottom: 10px; font-size: 17px; }
+.post-wrap .closing p  { font-size: 14.5px; color: #555; margin-bottom: 6px; }
+.post-wrap hr.divider {
+    border: none;
+    border-top: 1px solid #e9ecef;
+    margin: 36px 0;
+}
+</style>
+
+<div class="post-wrap">
+
+    <div class="post-header">
+        <span class="tag-badge"># CSS 학습일지</span>
+        <h1>[CSS 3일차] 반응형 @media · CSS 변수 · 가상요소<br>+ CSS 리셋 · 미니 프로젝트 종합</h1>
+        <p class="subtitle">2026.07.03 · 학습 범위: CSS 14번 ~ 20번</p>
+    </div>
+
+    <h2>📋 오늘 다룬 것들</h2>
+
+    <p>오늘은 CSS 로드맵의 마무리 구간이었다. 화면 폭에 반응하는 <strong>@media</strong>, 값을 한 곳에서 관리하는 <strong>CSS 변수</strong>, hover 시 떠오르는 <strong>그림자·전환 효과</strong>, HTML을 안 건드리고 장식을 붙이는 <strong>가상 요소</strong>, 작업 시작 전 필수인 <strong>CSS 리셋</strong>까지 훑고, 마지막엔 지금까지 배운 기법을 한 페이지에 모은 <strong>미니 프로젝트(프로필 카드)</strong>로 정리했다. 참고 사이트의 예제·설명도 함께 보며 개념을 다졌다.</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="card-title">반응형</div>
+            <div class="tags"><span class="ctag">@media</span><span class="ctag">max-width</span><span class="ctag">row↔column</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">CSS 변수</div>
+            <div class="tags"><span class="ctag">:root</span><span class="ctag">--main-color</span><span class="ctag">var()</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">그림자 &amp; 전환</div>
+            <div class="tags"><span class="ctag">box-shadow</span><span class="ctag">border-radius</span><span class="ctag">opacity</span><span class="ctag">transition</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">가상 요소</div>
+            <div class="tags"><span class="ctag">::before</span><span class="ctag">::after</span><span class="ctag">content</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">CSS 리셋</div>
+            <div class="tags"><span class="ctag">margin:0</span><span class="ctag">box-sizing</span><span class="ctag">border-box</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">종합 프로젝트</div>
+            <div class="tags"><span class="ctag">프로필 카드</span><span class="ctag">01~18 종합</span></div>
+        </div>
+    </div>
+
+    <h2>🗂️ 항목별 메모</h2>
+
+    <h3>14 — 화면 크기별 스타일 (@media)</h3>
+    <p>화면 폭에 따라 다른 CSS를 적용하는 게 <code>@media</code>다. 한 CSS 파일로 PC와 모바일을 동시에 대응하는 반응형의 핵심. 기본은 넓은 화면 기준으로 짜두고, <code>@media (max-width: 600px)</code> 안에 좁을 때만 덮어쓸 규칙을 넣는다. 오늘 예제는 카드 3개를 넓을 땐 가로(<code>flex-direction: row</code>), 좁을 땐 세로(<code>column</code>)로 전환했다.</p>
+
+    <pre><span class="c">/* 기본(넓은 화면): 카드를 가로로 나란히 */</span>
+<span class="t">.box</span> {
+  <span class="a">display</span>: <span class="v">flex</span>;
+  <span class="a">flex-direction</span>: <span class="v">row</span>;   <span class="c">/* 가로 배치 (왼→오) */</span>
+  <span class="a">gap</span>: <span class="v">10px</span>;
+}
+
+<span class="c">/* 폭 600px 이하일 때만 적용 (모바일) */</span>
+<span class="c">@media</span> (<span class="a">max-width</span>: <span class="v">600px</span>) {
+  <span class="t">.box</span> { <span class="a">flex-direction</span>: <span class="v">column</span>; }  <span class="c">/* 세로로 쌓기 */</span>
+}</pre>
+
+    <div class="callout blue">
+        <strong>자주 쓰는 media query 분기점 (main.css 주석 정리)</strong><br>
+        <code>480px</code> — 작은 모바일 &nbsp;/&nbsp; <code>768px</code> — 태블릿 시작점(아이패드 세로) &nbsp;/&nbsp; <code>1024px</code> — 데스크톱 시작점(아이패드 가로) &nbsp;/&nbsp; <code>1280px · 1440px</code> — 큰 화면 대응. 브라우저 창을 줄였다 늘이며 가로↔세로 전환을 직접 확인하면 감이 잡힌다.
+    </div>
+
+    <hr class="divider">
+
+    <h3>15 — CSS 변수 (custom properties · :root · var())</h3>
+    <p>CSS 변수는 <strong>값에 이름표를 붙이는 것</strong>이다. 색·간격처럼 반복되는 값을 <code>:root</code> 안에 한 번 정의해두고, 여러 곳에서 <code>var()</code>로 꺼내 쓴다. 버튼 2개가 같은 <code>--main-color</code>를 쓰면, <code>:root</code> 한 줄만 고쳐도 둘 다 동시에 바뀐다 — 유지보수의 핵심.</p>
+
+    <pre><span class="c">/* :root = 문서 전체의 뿌리 → 어디서든 꺼내 쓸 수 있음 */</span>
+<span class="t">:root</span> {
+  <span class="a">--main-color</span>: <span class="v">#ec4899</span>;  <span class="c">/* 이 한 줄만 고치면 전체 반영 */</span>
+  <span class="a">--gap</span>: <span class="v">12px</span>;
+}
+
+<span class="t">.btn</span> { <span class="a">background</span>: <span class="v">var(--main-color)</span>; }  <span class="c">/* 버튼1·버튼2 같은 색 */</span>
+<span class="t">.row</span> { <span class="a">gap</span>: <span class="v">var(--gap)</span>; }               <span class="c">/* 간격도 변수로 */</span></pre>
+
+    <div class="callout green">
+        <strong>커스텀 프로퍼티가 뭔가? (main.css 주석 그대로)</strong><br>
+        <code>--main-color</code>, <code>--gap</code>, <code>--body-color</code>는 전부 <strong>커스텀 프로퍼티(custom property)</strong>, 즉 개발자가 이름을 직접 만든 변수다. CSS에 미리 정해진 속성이 아니다. 핵심 규칙은 딱 하나 — <strong><code>--</code>(대시 두 개)로 시작</strong>하기만 하면 이름은 뭐든 원하는 대로 지을 수 있다. 실무에선 의미가 통하는 이름을 짓는 게 흔한데, 변수 이름만 봐도 "아, 이건 gap 속성에 쓸 값이구나" 하고 바로 이해되게 하기 위해서다.
+    </div>
+
+    <div class="callout yellow">색을 바꾸고 싶으면 <code>--main-color</code> 값 <strong>한 줄만</strong> 수정 → 사용처 전부 반영. (예: <code>#2563eb</code>로 바꿔보기)</div>
+
+    <hr class="divider">
+
+    <h3>16 — 그림자·둥근모서리·전환 (box-shadow · border-radius · opacity · transition)</h3>
+    <p>카드 하나에 효과 4종을 몰아넣고, <code>transition</code>으로 hover 시 부드럽게 반응하게 만들었다. 핵심은 <code>transition</code> 덕에 변화가 뚝딱이 아니라 스르륵 일어난다는 것. 숫자(0.3s · -8px · 16px)만 바꾸면 속도·높이·그림자 세기를 조절할 수 있다.</p>
+
+    <pre><span class="t">.card</span> {
+  <span class="a">border-radius</span>: <span class="v">16px</span>;                      <span class="c">/* ① 모서리 둥글게 */</span>
+  <span class="a">opacity</span>: <span class="v">0.85</span>;                            <span class="c">/* ② 살짝 비치게 (1=불투명) */</span>
+  <span class="a">box-shadow</span>: <span class="v">0 6px 18px rgba(0,0,0,.25)</span>;  <span class="c">/* ③ x·y·번짐·색 */</span>
+  <span class="a">transition</span>: <span class="v">all 0.3s ease</span>;                <span class="c">/* ④ 바뀔 때 0.3초 스르륵 */</span>
+}
+
+<span class="c">/* 마우스 올리면 → 떠오르고 또렷해지고 그림자 커짐 */</span>
+<span class="t">.card:hover</span> {
+  <span class="a">opacity</span>: <span class="v">1</span>;
+  <span class="a">transform</span>: <span class="v">translateY(-8px)</span>;                 <span class="c">/* 위로 8px 떠오름 */</span>
+  <span class="a">box-shadow</span>: <span class="v">0 16px 32px rgba(255,105,180,.5)</span>;
+}</pre>
+
+    <table>
+        <tr><th>속성</th><th>역할</th></tr>
+        <tr><td><code>box-shadow</code></td><td>그림자 — <code>x축 y축 번짐 색</code> 순서</td></tr>
+        <tr><td><code>border-radius</code></td><td>모서리 둥글게</td></tr>
+        <tr><td><code>opacity</code></td><td>투명도 (1=불투명, 0=완전 투명)</td></tr>
+        <tr><td><code>transition</code></td><td>값이 바뀔 때 부드럽게 전환</td></tr>
+    </table>
+
+    <div class="demo-box" style="background: hotpink; box-shadow: 0 6px 18px rgba(0,0,0,0.25);">올려봐</div>
+
+    <hr class="divider">
+
+    <h3>17 — 가짜 요소로 장식 추가 (::before · ::after)</h3>
+    <p>HTML을 건드리지 않고 콘텐츠 앞(<code>::before</code>)과 뒤(<code>::after</code>)에 장식을 끼워 넣는 게 가상 요소다. 실제 DOM에는 없는 "가짜" 요소라, <code>content</code> 속성이 반드시 있어야 화면에 나타난다. 제목 앞 별(★), 인용문 양옆 따옴표, 글자 아래 밑줄 같은 순수 장식을 CSS만으로 붙일 수 있다.</p>
+
+    <pre><span class="c">/* 핵심: content 속성이 없으면 화면에 절대 안 나타남! */</span>
+<span class="t">.star-title::before</span> { <span class="a">content</span>: <span class="v">"★ "</span>; <span class="a">color</span>: <span class="v">gold</span>; }   <span class="c">/* 앞에 별 */</span>
+<span class="t">.quote::before</span> { <span class="a">content</span>: <span class="v">"“ "</span>; }   <span class="c">/* 인용 앞 따옴표 */</span>
+<span class="t">.quote::after</span>  { <span class="a">content</span>: <span class="v">" ”"</span>; }   <span class="c">/* 인용 뒤 따옴표 */</span>
+
+<span class="c">/* 빈 content + 네모 박스 = 밑줄 장식 */</span>
+<span class="t">.underline-deco::after</span> {
+  <span class="a">content</span>: <span class="v">""</span>;          <span class="c">/* 빈 따옴표라도 꼭 있어야 보임 */</span>
+  <span class="a">display</span>: <span class="v">block</span>;
+  <span class="a">height</span>: <span class="v">4px</span>; <span class="a">background</span>: <span class="v">royalblue</span>;
+}</pre>
+
+    <div class="callout green">
+        <strong>왜 쓸까? — 장식용 빈 <code>&lt;span&gt;</code>을 HTML에 넣지 않고 CSS 한 곳에서 처리</strong><br>
+        HTML이 깔끔하게 유지되고(장식 태그가 안 늘어남), 한 줄만 고치면 같은 클래스 전체에 반영된다(유지보수 ↑). 별·따옴표는 "내용이 아니라서" 스크린리더가 읽지 않아 접근성에도 좋다. 예를 들어 필수 입력 <code>*</code> 표시는 라벨마다 <code>&lt;span&gt;*&lt;/span&gt;</code>를 20번 반복하는 대신, <code>class="required"</code>만 붙이고 <code>.required::after { content:" *"; }</code> 한 줄로 끝낼 수 있다. 필수↔선택 전환도 class 추가·제거만으로 해결.
+    </div>
+
+    <div class="callout yellow"><strong>주의</strong> — 검색·SEO·복사가 필요한 <em>진짜 내용</em>은 <code>content</code>로 넣지 말 것. 순수 장식(별·따옴표·밑줄·툴팁 꼬리)에만 사용한다.</div>
+
+    <hr class="divider">
+
+    <h3>18 — CSS 리셋 (브라우저 기본 여백 없애기)</h3>
+    <p>브라우저는 <code>body</code>·<code>h1</code>·<code>p</code> 등에 기본 여백을 미리 넣어둔다. 그래서 화면 가장자리에 흰 틈이 생기고, 브라우저마다 값도 조금씩 다르다. 작업 시작 전에 이 기본값을 0으로 초기화하는 걸 <strong>CSS 리셋</strong>이라 하고, 실무에선 거의 필수다.</p>
+
+    <pre><span class="c">/* styles/main.css 맨 위에 먼저 */</span>
+<span class="t">*</span> {                              <span class="c">/* 모든 요소 (와일드카드) */</span>
+  <span class="a">margin</span>: <span class="v">0</span>;                  <span class="c">/* 기본 바깥 여백 제거 */</span>
+  <span class="a">padding</span>: <span class="v">0</span>;                 <span class="c">/* 기본 안쪽 여백 제거 */</span>
+  <span class="a">box-sizing</span>: <span class="v">border-box</span>;   <span class="c">/* 크기 계산 방식 변경 */</span>
+}</pre>
+
+    <div class="callout blue">
+        <strong>box-sizing 핵심 — content-box vs border-box</strong><br>
+        <code>width: 100px; padding: 20px</code>를 줬을 때:<br>
+        · <code>content-box</code>(기본) → padding이 width에 <strong>더해짐</strong>. 실제 폭 = 100 + 20 + 20 = <strong>140px</strong> (삐져나감)<br>
+        · <code>border-box</code> → padding을 width 안에 <strong>포함</strong>. 실제 폭 = <strong>100px 그대로</strong> (계산 편함)<br>
+        border-box면 내가 정한 <code>width</code>가 최종 크기라 padding·border를 줘도 박스가 안 커져 레이아웃이 안 틀어진다. 그래서 리셋에 거의 항상 포함한다.
+    </div>
+
+    <hr class="divider">
+
+    <h3>19 — 미니 프로젝트 (HTML + CSS 종합)</h3>
+    <p>지금까지 배운 기법(선택자 · 박스모델 · flex · :hover · position · grid · @media · CSS 변수 · 효과 · 가상요소 · transform/transition · gradient)을 한 페이지에 모은 최종본. 상단 고정 바, NEW 배지가 붙은 소개, 3칸 카드 갤러리(좁히면 1칸), hover 시 떠오르는 카드로 구성한 프로필 페이지를 만들었다.</p>
+
+    <div class="cascade-list">
+        <div class="cascade-item"><span class="cnum">1</span><span class="cname">:root 변수</span><span class="cdesc">테마 색(--main)·간격(--gap)을 한 곳에서 관리</span></div>
+        <div class="cascade-item"><span class="cnum">2</span><span class="cname">position</span><span class="cdesc">sticky 헤더(스크롤해도 고정) + absolute NEW 배지</span></div>
+        <div class="cascade-item"><span class="cnum">3</span><span class="cname">grid + @media</span><span class="cdesc">3칸 카드 갤러리, 좁으면 1칸으로 반응형 전환</span></div>
+        <div class="cascade-item"><span class="cnum">4</span><span class="cname">효과 + ::before</span><span class="cdesc">그림자·전환 hover 카드 + 제목 앞 별 장식</span></div>
+    </div>
+
+    <pre><span class="c">/* 변수 하나(--main)만 바꿔도 테마 전체가 바뀜 */</span>
+<span class="t">:root</span> { <span class="a">--main</span>: <span class="v">#ec4899</span>; <span class="a">--gap</span>: <span class="v">12px</span>; }
+
+<span class="t">.bar</span>    { <span class="a">position</span>: <span class="v">sticky</span>; <span class="a">top</span>: <span class="v">0</span>; }        <span class="c">/* 상단 고정 헤더 */</span>
+<span class="t">.grid</span>   { <span class="a">display</span>: <span class="v">grid</span>; <span class="a">grid-template-columns</span>: <span class="v">repeat(3, 1fr)</span>; }
+<span class="t">.card:hover</span> { <span class="a">transform</span>: <span class="v">translateY(-6px) scale(1.04)</span>; }
+<span class="c">@media</span> (<span class="a">max-width</span>: <span class="v">600px</span>) { <span class="t">.grid</span> { <span class="a">grid-template-columns</span>: <span class="v">1fr</span>; } }</pre>
+
+    <div class="callout yellow">
+        <strong>실습 과제</strong> — ① <code>--main</code> 색 바꿔 테마 전체 변경(예 <code>#2563eb</code>) &nbsp;② 카드 <code>&lt;div&gt;</code> 더 추가 → grid 자동 배치 &nbsp;③ 폭 줄여 @media 1칸 전환 확인 &nbsp;④ transition·transform 값 조절 &nbsp;⑤ <code>::before</code> 별을 다른 이모지로 &nbsp;⑥ animation으로 배지 깜빡이기
+    </div>
+
+    <hr class="divider">
+
+    <h3>20 — CSS 참고 사이트</h3>
+    <p>직접 만들기 전에 먼저 보면 좋은 레퍼런스도 정리했다. 복붙용 UI 부품과 살아 움직이는 데모를 모아둔 곳들이다.</p>
+
+    <div class="cascade-list">
+        <div class="cascade-item"><span class="cnum">1</span><span class="cname">uiverse.io</span><span class="cdesc">오픈소스 UI 부품(버튼·카드·로더) 모음</span></div>
+        <div class="cascade-item"><span class="cnum">2</span><span class="cname">bentogrids</span><span class="cdesc">도시락칸처럼 나눈 벤토 그리드 갤러리</span></div>
+    </div>
+
+    <div class="callout green">
+        <strong>활용 팁</strong> — 부품을 그대로 복붙하지 말고 색·간격·radius만 내 테마에 맞춰 바꾸기. 마음에 드는 효과는 <code>F12</code>(개발자도구)로 CSS를 뜯어보면 구조가 보인다.
+    </div>
+
+    <div class="closing">
+        <h3>✍️ 마치며</h3>
+        <p>오늘로 CSS 기초 로드맵을 한 바퀴 다 돌았다. 특히 미니 프로젝트에서 그동안 따로따로 배운 기법들이 한 페이지 안에서 서로 맞물리는 걸 보니, 각 속성이 언제·왜 쓰이는지가 훨씬 선명해졌다. <code>:root</code> 변수 하나만 바꿔도 테마 전체가 확 바뀌는 순간이 가장 인상적이었다. 가상 요소나 CSS 리셋처럼 "HTML은 깔끔하게, 반복은 CSS 한 곳으로" 라는 감각도 오늘 확실히 잡혔다. 다음엔 참고 사이트의 부품들을 실제로 내 페이지에 이식해보며 응용해볼 생각이다.</p>
+        <p style="margin-top:16px; font-size:13px; color:#888;">🏷️ CSS &nbsp;|&nbsp; 반응형 &nbsp;|&nbsp; CSS변수 &nbsp;|&nbsp; 가상요소 &nbsp;|&nbsp; 학습일지 &nbsp;|&nbsp; 프론트엔드</p>
+    </div>
+
+</div>

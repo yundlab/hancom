@@ -1,0 +1,434 @@
+<style>
+.post-wrap * { box-sizing: border-box; }
+.post-wrap ul, .post-wrap ol, .post-wrap li { list-style: none !important; border: none !important; margin: 0; padding: 0; }
+.post-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+    color: #333;
+    line-height: 1.8;
+}
+.post-wrap .post-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    border-left: 5px solid #f97316;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    padding-left: 18px;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 40px;
+}
+.post-wrap .post-header * {
+    margin-top: 0 !important;
+}
+.post-wrap .tag-badge {
+    display: inline-block !important;
+    background: #ffedd5;
+    color: #f97316;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.post-wrap .post-header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #1a1a2e;
+    margin: 0;
+}
+.post-wrap .subtitle {
+    margin-top: 8px;
+    color: #666;
+    font-size: 14px;
+}
+.post-wrap h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 48px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+.post-wrap h3 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #2c3e50 !important;
+    margin: 28px 0 10px !important;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap p {
+    margin-bottom: 14px;
+    font-size: 15px;
+}
+.post-wrap .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    background: none !important;
+}
+.post-wrap .summary-card {
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 10px;
+    padding: 16px 18px;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.post-wrap .summary-card * {
+    border: none !important;
+    outline: none !important;
+}
+.post-wrap .summary-card .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f97316;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap .summary-card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.post-wrap .ctag {
+    display: inline-block;
+    background: #f1f3f9;
+    color: #444;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 0;
+    line-height: 1.6;
+    vertical-align: middle;
+}
+.post-wrap pre {
+    background: #1e2235;
+    color: #e8eaf6;
+    border-radius: 10px;
+    padding: 20px 22px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 14px 0 20px !important;
+}
+.post-wrap pre .c  { color: #7986cb; }
+.post-wrap pre .t  { color: #80cbc4; }
+.post-wrap pre .a  { color: #ffcc80; }
+.post-wrap pre .v  { color: #a5d6a7; }
+.post-wrap pre .tx { color: #e8eaf6; }
+.post-wrap code {
+    font-family: 'Courier New', monospace;
+    font-size: 13.5px;
+    background: #f1f3f9;
+    color: #c0392b;
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+.post-wrap .callout {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 18px 0;
+    font-size: 14.5px;
+}
+.post-wrap .callout.blue {
+    background: #fff4ec;
+    border-left: 4px solid #f97316;
+    color: #9a3412;
+}
+.post-wrap .callout.green {
+    background: #fff1e0;
+    border-left: 4px solid #fb923c;
+    color: #b45309;
+}
+.post-wrap .callout.yellow {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    color: #92400e;
+}
+.post-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 14px;
+}
+.post-wrap th {
+    background: #f97316;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 700;
+}
+.post-wrap td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e9ecef;
+}
+.post-wrap tr:nth-child(even) td { background: #fff7ed; }
+.post-wrap .swatch-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 14px 0 20px;
+}
+.post-wrap .swatch {
+    flex: 1;
+    min-width: 140px;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+}
+.post-wrap .cascade-list {
+    margin: 14px 0;
+    padding: 0;
+    border: none;
+}
+.post-wrap .cascade-item {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    margin-bottom: 6px !important;
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+}
+.post-wrap .cascade-item .cnum {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 24px !important;
+    min-width: 24px !important;
+    height: 24px;
+    border-radius: 50%;
+    background: #f97316;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 12px;
+    flex-shrink: 0 !important;
+}
+.post-wrap .cascade-item .cname {
+    font-family: 'Courier New', monospace;
+    color: #f97316;
+    font-weight: 700;
+    display: inline-block !important;
+    width: 130px !important;
+    min-width: 130px !important;
+    flex-shrink: 0 !important;
+    font-size: 13px;
+}
+.post-wrap .cascade-item .cdesc {
+    color: #555;
+    flex: 1;
+    display: inline-block !important;
+}
+.post-wrap .closing {
+    margin-top: 0 !important;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #f9731622, #ea580c22);
+    border-radius: 14px;
+    border: 1px solid #dee2e6;
+}
+.post-wrap .closing h3 { margin-top: 0 !important; margin-bottom: 10px; font-size: 17px; }
+.post-wrap .closing p  { font-size: 14.5px; color: #555; margin-bottom: 6px; }
+.post-wrap hr.divider {
+    border: none;
+    border-top: 1px solid #e9ecef;
+    margin: 36px 0;
+}
+</style>
+
+<div class="post-wrap">
+
+    <div class="post-header">
+        <span class="tag-badge"># HTML 학습일지</span>
+        <h1>[HTML 3일차 &amp; CSS 1일차] 멀티미디어·개발자도구·폼 심화<br>+ 이력서 미니 프로젝트, CSS 첫걸음</h1>
+        <p class="subtitle">2026.07.01 · 학습 범위: 29번 ~ 34번 파일, CSS 01 ~ 02</p>
+    </div>
+
+    <h2>📋 오늘 다뤄본 것들</h2>
+
+    <p>오늘은 HTML 실습의 마무리 단계였다. 영상·음성 태그로 멀티미디어를 넣어보고, Emmet 자동완성으로 타이핑 속도를 줄이는 법을 배웠다. 개발자도구(F12)로 화면 뒤 구조를 들여다보는 법도 정리했고, 폼 심화와 지금까지 배운 태그를 총동원한 이력서 미니 프로젝트로 HTML 파트를 마무리했다. 그리고 이제 CSS로 넘어가는 첫걸음도 뗐다.</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="card-title">멀티미디어</div>
+            <div class="tags">
+                <span class="ctag">video</span><span class="ctag">audio</span><span class="ctag">controls</span><span class="ctag">autoplay</span><span class="ctag">muted</span><span class="ctag">loop</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">Emmet</div>
+            <div class="tags">
+                <span class="ctag">&gt;</span><span class="ctag">*N</span><span class="ctag">.class</span><span class="ctag">#id</span><span class="ctag">{}</span><span class="ctag">[]</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">개발자도구</div>
+            <div class="tags">
+                <span class="ctag">F12</span><span class="ctag">Elements</span><span class="ctag">Console</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">폼 심화</div>
+            <div class="tags">
+                <span class="ctag">aria-label</span><span class="ctag">fieldset</span><span class="ctag">legend</span><span class="ctag">method</span><span class="ctag">action</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">🎯 미니 프로젝트</div>
+            <div class="tags">
+                <span class="ctag">이력서 웹사이트</span>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">🎨 CSS 선택자</div>
+            <div class="tags">
+                <span class="ctag">요소 선택자</span><span class="ctag">.class</span><span class="ctag">자손 선택자</span>
+            </div>
+        </div>
+    </div>
+
+    <h2>🗂️ 태그별 메모</h2>
+
+    <h3>영상·음성 넣기 — video / audio</h3>
+    <p><code>video</code>와 <code>audio</code> 모두 <code>controls</code>로 재생 컨트롤을 노출하고, <code>autoplay muted loop</code> 조합이면 소리 없이 자동 반복 재생된다. <code>audio</code>는 <code>src</code>를 직접 쓰기보다 <code>source</code> 태그로 감싸는 걸 확인했다.</p>
+
+    <pre><span class="t">&lt;video</span> <span class="a">controls</span> <span class="a">width</span>=<span class="v">"600"</span> <span class="a">src</span>=<span class="v">"./video.mp4"</span> <span class="a">autoplay</span> <span class="a">muted</span> <span class="a">loop</span><span class="t">&gt;&lt;/video&gt;</span>
+
+<span class="t">&lt;audio</span> <span class="a">controls</span> <span class="a">autoplay</span> <span class="a">loop</span><span class="t">&gt;</span>
+  <span class="t">&lt;source</span> <span class="a">src</span>=<span class="v">"./audio.mp4"</span> <span class="a">type</span>=<span class="v">"audio/mpeg"</span><span class="t">&gt;</span>
+<span class="t">&lt;/audio&gt;</span></pre>
+
+    <hr class="divider" style="border:none; border-top:1px solid #e9ecef; margin:36px 0;">
+
+    <h3>Emmet 자동완성</h3>
+    <p>타이핑 없이 태그 구조를 순식간에 만들어내는 문법이다. 퍼블리싱할 때도 썼었지만 규칙을 다시 한 번 표로 정리했다.</p>
+
+    <table>
+        <tr><th>문법</th><th>의미</th><th>예시</th></tr>
+        <tr><td><code>&gt;</code></td><td>자식 태그 넣기</td><td><code>ul&gt;li</code></td></tr>
+        <tr><td><code>*N</code></td><td>N번 반복</td><td><code>li*3</code></td></tr>
+        <tr><td><code>.이름</code></td><td>class 붙이기</td><td><code>div.box</code></td></tr>
+        <tr><td><code>#이름</code></td><td>id 붙이기</td><td><code>div#top</code></td></tr>
+        <tr><td><code>{글자}</code></td><td>태그 안 내용</td><td><code>h1{제목}</code></td></tr>
+        <tr><td><code>[속성]</code></td><td>속성 넣기</td><td><code>a[href=#]</code></td></tr>
+    </table>
+
+    <hr class="divider" style="border:none; border-top:1px solid #e9ecef; margin:36px 0;">
+
+    <h3>개발자도구(F12) — 화면 뒤 들여다보기</h3>
+    <p><code>F12</code> 또는 우클릭 → 검사로 열 수 있다. Elements 탭에서 HTML 구조를 트리로 보고, 값을 더블클릭해 잠깐 수정하며 디자인을 미리 볼 수 있다. Console 탭의 빨간 에러 메시지는 어디가 잘못됐는지 힌트를 준다.</p>
+
+    <div class="callout blue">
+        개발자도구에서 바꾼 내용은 화면에만 잠깐 적용된다. 실제 파일은 바뀌지 않고 새로고침하면 원래대로 돌아오니, 마음껏 실험해도 안전하다.
+    </div>
+
+    <hr class="divider" style="border:none; border-top:1px solid #e9ecef; margin:36px 0;">
+
+    <h3>폼 심화 — aria-label / fieldset / method</h3>
+    <p>회원가입 폼을 만들며 접근성 관련 속성을 새로 짚었다. <code>nav</code>에 <code>aria-label</code>을 붙이면 스크린리더 사용자가 "이게 무슨 메뉴인지" 알 수 있고, <code>fieldset</code>과 <code>legend</code>로 체크박스 그룹을 묶으면 의미상 하나의 질문으로 인식된다. <code>form</code>의 <code>action</code>은 데이터를 보낼 주소, <code>method</code>는 <code>get/post</code> 중 전송 방식을 정한다.</p>
+
+    <pre><span class="t">&lt;nav</span> <span class="a">aria-label</span>=<span class="v">"주요 메뉴"</span><span class="t">&gt;</span>...<span class="t">&lt;/nav&gt;</span>
+
+<span class="t">&lt;form</span> <span class="a">action</span>=<span class="v">"/signup"</span> <span class="a">method</span>=<span class="v">"post"</span><span class="t">&gt;</span>
+  <span class="t">&lt;label</span> <span class="a">for</span>=<span class="v">"email"</span><span class="t">&gt;</span><span class="tx">이메일</span><span class="t">&lt;/label&gt;</span>
+  <span class="t">&lt;input</span> <span class="a">type</span>=<span class="v">"email"</span> <span class="a">id</span>=<span class="v">"email"</span> <span class="a">name</span>=<span class="v">"email"</span> <span class="a">required</span><span class="t">&gt;</span>
+
+  <span class="t">&lt;fieldset&gt;</span>
+    <span class="t">&lt;legend&gt;</span><span class="tx">관심사</span><span class="t">&lt;/legend&gt;</span>
+    <span class="t">&lt;label&gt;&lt;input</span> <span class="a">type</span>=<span class="v">"checkbox"</span> <span class="a">name</span>=<span class="v">"tag"</span> <span class="a">value</span>=<span class="v">"fe"</span><span class="t">&gt;</span><span class="tx"> 프론트엔드</span><span class="t">&lt;/label&gt;</span>
+  <span class="t">&lt;/fieldset&gt;</span>
+<span class="t">&lt;/form&gt;</span></pre>
+
+    <div class="callout yellow">
+        <code>label</code>의 <code>for</code>와 <code>input</code>의 <code>id</code>를 똑같이 맞추면, 라벨 텍스트를 클릭했을 때도 해당 입력창에 포커스가 간다. 사소하지만 사용성에 꽤 영향을 준다.
+    </div>
+
+    <hr class="divider" style="border:none; border-top:1px solid #e9ecef; margin:36px 0;">
+
+    <h2>🎯 미니 프로젝트 — 이력서 웹사이트</h2>
+
+    <p>지금까지 배운 태그를 전부 동원해 <strong>이력서 &middot; 자기소개서 &middot; 포트폴리오</strong> 세 파트로 구성된 한 페이지 이력서를 만들었다. <code>header/nav/main/section/article/footer</code>로 큰 골격을 잡고, 연락처는 <code>tel:</code> <code>mailto:</code> 링크로, 기술스택은 <code>table</code>로, 포트폴리오 영상은 <code>video</code>로 담았다.</p>
+
+    <div class="callout green">
+        사용한 태그: <code>header</code> <code>nav</code> <code>main</code> <code>section</code> <code>article</code> <code>footer</code> <code>h1~h5</code> <code>p</code> <code>ul</code> <code>ol</code> <code>dl</code> <code>table</code> <code>form</code> <code>input</code> <code>video</code> <code>img</code> <code>a</code> <code>strong</code> <code>mark</code> <code>small</code> <code>hr</code><br>
+        3일간 배운 걸 한 페이지에 다 쏟아부었다는 느낌이 들 정도로, 이번 실습의 총정리 성격이 강했다.
+    </div>
+
+    <hr class="divider" style="border:none; border-top:1px solid #e9ecef; margin:36px 0;">
+
+    <h2>🎨 CSS 첫걸음 — 선택자와 우선순위</h2>
+
+    <p>드디어 CSS로 넘어갔다. HTML이 뼈대라면 CSS는 꾸미기다. 오늘은 선택자 종류와, 같은 요소에 여러 스타일이 겹칠 때 어떤 게 이기는지를 확인했다.</p>
+
+    <h3>선택자 3종 세트</h3>
+
+    <pre><span class="c">/* 요소 선택자 — 태그 이름으로 전체 지정 */</span>
+<span class="t">h1</span> { <span class="a">color</span>: <span class="v">red</span>; }
+
+<span class="c">/* 클래스 선택자 — .클래스명 */</span>
+<span class="t">.special</span> { <span class="a">color</span>: <span class="v">orange</span>; }
+
+<span class="c">/* 자손 선택자 — 부모 자손 사이 띄어쓰기 */</span>
+<span class="t">li em</span> { <span class="a">color</span>: <span class="v">purple</span>; }</pre>
+
+    <div class="swatch-row">
+        <div class="swatch" style="background:#000; color:#fff;">h1 요소선택자</div>
+        <div class="swatch" style="background:#fde3cf; color:#c0392b;">.special 클래스선택자</div>
+        <div class="swatch" style="background:#e6d9f7; color:#5e2ca5;">li em 자손선택자</div>
+    </div>
+
+    <h3>우선순위 — 누가 이기나</h3>
+    <p>같은 요소에 여러 규칙이 겹치면 <strong>더 구체적인 선택자</strong>가 이긴다. 오늘 실습에서 확인한 순서는 이렇다.</p>
+
+    <div class="cascade-list">
+        <div class="cascade-item"><span class="cnum">1</span><span class="cname">요소 선택자</span><span class="cdesc">body, h1, p — 가장 넓은 범위, 가장 낮은 우선순위</span></div>
+        <div class="cascade-item"><span class="cnum">2</span><span class="cname">자손 선택자</span><span class="cdesc">li em — 특정 위치의 요소만 지정</span></div>
+        <div class="cascade-item"><span class="cnum">3</span><span class="cname">클래스 선택자</span><span class="cdesc">.special — 요소보다 구체적, 더 높은 우선순위</span></div>
+    </div>
+
+    <p>그래서 <code>p</code>에 초록색을 걸어놔도 <code>class="special"</code>이 붙은 문단만 주황색으로 따로 이길 수 있는 것이다. 또 하나 배운 건 CSS 작성 순서 관례다: <strong>전체(body) → 요소 선택자 → 클래스 선택자 → 자손 선택자</strong> 순으로 넓은 범위에서 구체적인 범위로 좁혀가며 쓰면 나중에 코드를 읽기 편하다.</p>
+
+    <pre><span class="c">/* 1. 전체 */</span>
+<span class="t">body</span> { <span class="a">background-color</span>: <span class="v">#333</span>; <span class="a">font-family</span>: <span class="v">Verdana, sans-serif</span>; }
+
+<span class="c">/* 2. 요소 선택자 */</span>
+<span class="t">h1</span> { <span class="a">color</span>: <span class="v">azure</span>; <span class="a">text-align</span>: <span class="v">center</span>; }
+<span class="t">p</span> { <span class="a">color</span>: <span class="v">#ccc</span>; <span class="a">text-align</span>: <span class="v">center</span>; }
+
+<span class="c">/* 3. 클래스 선택자 */</span>
+<span class="t">.special</span> { <span class="a">color</span>: <span class="v">orangered</span>; <span class="a">font-weight</span>: <span class="v">bold</span>; }
+
+<span class="c">/* 4. 자손 선택자 */</span>
+<span class="t">li em</span> { <span class="a">color</span>: <span class="v">yellow</span>; <span class="a">font-style</span>: <span class="v">normal</span>; }</pre>
+
+    <div class="closing">
+        <h3>✍️ 마치며</h3>
+        <p>HTML 실습을 이력서 미니 프로젝트로 마무리하고 나니 지난 3일간 배운 게 한 페이지에 다 녹아있다는 게 실감났다. 오늘부터는 CSS로 넘어가는데, 선택자 우선순위처럼 "왜 이 스타일이 이기는지"를 이해하고 넘어가는 게 앞으로 훨씬 중요해질 것 같다.</p>
+        <p style="margin-top:16px; font-size:13px; color:#888;">🏷️ HTML &nbsp;|&nbsp; CSS &nbsp;|&nbsp; 웹개발 &nbsp;|&nbsp; 학습일지 &nbsp;|&nbsp; 프론트엔드</p>
+    </div>
+
+</div>
