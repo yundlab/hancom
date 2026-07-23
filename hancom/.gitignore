@@ -42,3 +42,11 @@ dist-ssr
 
 # 대용량 모델 가중치 제외
 *.pt
+
+# 실행 산출물(재생성 가능) 제외
+*.npy
+runs/
+result*.jpg
+result*.png
+output_fast_sam_result.jpg
+sahi/
