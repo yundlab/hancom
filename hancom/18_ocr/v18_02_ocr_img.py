@@ -1,0 +1,37 @@
+# 1. 이미지에서 한글 추출
+# 2. 추출된 한글 요약
+
+import pytesseract          # 이미지에서 문자 인식
+from PIL import Image       # 이미지 처리
+import os
+
+# 1. Tesseract 실행 파일 경로 지정
+pytesseract.pytesseract.tesseract_cmd="C:/Program Files/Tesseract-OCR/tesseract.exe"
+
+# 2. 이미지 불러오기
+image = Image.open("ocr_img2.jpg")
+
+# 3. OCR 수행
+results = pytesseract.image_to_string(
+    image,
+    lang='kor'   
+)
+
+# 4. 결과 출력
+print("====================")
+print(results)
+print("====================")
+
+
+# ====================
+# This is a lot of 12 point text to test the
+# ocr code and see if it works on all types
+# of file format.
+
+# The quick brown dog jumped over the
+# lazy fox. The quick brown dog jumped
+# over the lazy fox. The quick brown dog
+# jumped over the lazy fox. The quick
+# brown dog jumped over the lazy fox.
+
+# ====================

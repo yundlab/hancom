@@ -1,0 +1,428 @@
+<style>
+.post-wrap * { box-sizing: border-box; }
+.post-wrap ul, .post-wrap ol, .post-wrap li { list-style: none !important; border: none !important; margin: 0; padding: 0; }
+.post-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+    color: #333;
+    line-height: 1.8;
+}
+.post-wrap .post-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    border-left: 5px solid #f97316;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    padding-left: 18px;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 40px;
+}
+.post-wrap .post-header * { margin-top: 0 !important; }
+.post-wrap .tag-badge {
+    display: inline-block !important;
+    background: #ffedd5;
+    color: #f97316;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.post-wrap .post-header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #1a1a2e;
+    margin: 0;
+}
+.post-wrap .subtitle {
+    margin-top: 8px;
+    color: #666;
+    font-size: 14px;
+}
+.post-wrap h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 48px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+.post-wrap h3 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #2c3e50 !important;
+    margin: 28px 0 10px !important;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap p { margin-bottom: 14px; font-size: 15px; }
+.post-wrap .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap .summary-card {
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 10px;
+    padding: 16px 18px;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.post-wrap .summary-card * { border: none !important; outline: none !important; }
+.post-wrap .summary-card .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f97316;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.post-wrap .summary-card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+.post-wrap .ctag {
+    display: inline-block;
+    background: #f1f3f9;
+    color: #444;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 0;
+    line-height: 1.6;
+    vertical-align: middle;
+}
+.post-wrap pre {
+    background: #1e2235;
+    color: #e8eaf6;
+    border-radius: 10px;
+    padding: 20px 22px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 14px 0 20px !important;
+}
+.post-wrap pre .c  { color: #7986cb; }
+.post-wrap pre .t  { color: #80cbc4; }
+.post-wrap pre .a  { color: #ffcc80; }
+.post-wrap pre .v  { color: #a5d6a7; }
+.post-wrap pre .k  { color: #f48fb1; }
+.post-wrap pre .tx { color: #e8eaf6; }
+.post-wrap code {
+    font-family: 'Courier New', monospace;
+    font-size: 13.5px;
+    background: #f1f3f9;
+    color: #c0392b;
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+.post-wrap .callout { border-radius: 10px; padding: 16px 20px; margin: 18px 0; font-size: 14.5px; }
+.post-wrap .callout.blue { background: #fff4ec; border-left: 4px solid #f97316; color: #9a3412; }
+.post-wrap .callout.green { background: #fff1e0; border-left: 4px solid #fb923c; color: #b45309; }
+.post-wrap .callout.yellow { background: #fef3c7; border-left: 4px solid #f59e0b; color: #92400e; }
+.post-wrap table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+.post-wrap th { background: #f97316; color: #fff; padding: 10px 14px; text-align: left; font-weight: 700; }
+.post-wrap td { padding: 10px 14px; border-bottom: 1px solid #e9ecef; }
+.post-wrap tr:nth-child(even) td { background: #fff7ed; }
+.post-wrap .cascade-list { margin: 14px 0; padding: 0; border: none; }
+.post-wrap .cascade-item {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    margin-bottom: 6px !important;
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+}
+.post-wrap .cascade-item .cnum {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 24px !important;
+    min-width: 24px !important;
+    height: 24px;
+    border-radius: 50%;
+    background: #f97316;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 12px;
+    flex-shrink: 0 !important;
+}
+.post-wrap .cascade-item .cname {
+    font-family: 'Courier New', monospace;
+    color: #f97316;
+    font-weight: 700;
+    display: inline-block !important;
+    width: 160px !important;
+    min-width: 160px !important;
+    flex-shrink: 0 !important;
+    font-size: 13px;
+}
+.post-wrap .cascade-item .cdesc { color: #555; flex: 1; display: inline-block !important; }
+.post-wrap .closing {
+    margin-top: 20px !important;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #f9731622, #ea580c22);
+    border-radius: 14px;
+    border: 1px solid #dee2e6;
+}
+.post-wrap .closing h3 { margin-top: 0 !important; margin-bottom: 10px; font-size: 17px; }
+.post-wrap .closing p { font-size: 14.5px; color: #555; margin-bottom: 6px; }
+.post-wrap hr.divider { border: none; border-top: 1px solid #e9ecef; margin: 36px 0; }
+</style>
+
+<div class="post-wrap">
+
+    <div class="post-header">
+        <span class="tag-badge"># YOLO 학습일지</span>
+        <h1>[YOLO 심화] 히트맵·보안·카운팅<br>+ SAHI·속도추정·FastSAM</h1>
+        <p class="subtitle">2026.07.21 · 학습 범위: YOLO 심화 02~19 (solutions · SAHI · FastSAM · OpenVINO)</p>
+    </div>
+
+    <h2>📋 오늘 다룬 것들</h2>
+
+    <p>어제 추적(Tracking)에 이어, 오늘은 YOLO를 감싼 <strong>ultralytics <code>solutions</code></strong> 모듈을 파고들었다. 코드 몇 줄로 히트맵·보안 알람·블러·거리 측정·영역/출입 카운팅·속도 추정 같은 <strong>실전 기능</strong>이 뚝딱 나온다는 게 놀라웠다. 후반엔 작은 물체를 놓치지 않는 <strong>SAHI</strong>, 텍스트로 물체를 잘라내는 <strong>FastSAM</strong>까지 다뤘다. 라이브러리가 얼마나 많은 걸 대신해 주는지 체감한 하루였다.</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="card-title">실시간 분석</div>
+            <div class="tags"><span class="ctag">Heatmap</span><span class="ctag">SecurityAlarm</span><span class="ctag">ObjectBlurrer</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">거리·영역</div>
+            <div class="tags"><span class="ctag">Distance</span><span class="ctag">RegionCounter</span><span class="ctag">ObjectCounter</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">작은 물체</div>
+            <div class="tags"><span class="ctag">SAHI</span><span class="ctag">슬라이싱</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">속도 · 분할</div>
+            <div class="tags"><span class="ctag">SpeedEstimator</span><span class="ctag">FastSAM</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">환경</div>
+            <div class="tags"><span class="ctag">conda py39</span><span class="ctag">pip sahi</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">공통 패턴</div>
+            <div class="tags"><span class="ctag">solutions(frame)</span><span class="ctag">.plot_im</span></div>
+        </div>
+    </div>
+
+    <h2>🧩 ultralytics.solutions 클래스 모음</h2>
+
+    <p><code>from ultralytics import solutions</code> 하나로 실전 기능들이 클래스로 들어 있다. 오늘은 이 중 여러 개를 직접 써봤다.</p>
+    <div class="cascade-list">
+        <div class="cascade-item"><span class="cnum">✓</span><span class="cname">Heatmap</span><span class="cdesc">물체가 자주 나타난 곳을 열지도로 시각화 (오늘)</span></div>
+        <div class="cascade-item"><span class="cnum">✓</span><span class="cname">SecurityAlarm</span><span class="cdesc">특정 클래스 감지 시 이메일 알림 (오늘)</span></div>
+        <div class="cascade-item"><span class="cnum">✓</span><span class="cname">ObjectBlurrer</span><span class="cdesc">탐지 영역만 자동 블러 (오늘)</span></div>
+        <div class="cascade-item"><span class="cnum">✓</span><span class="cname">DistanceCalculation</span><span class="cdesc">두 객체 중심점 사이 픽셀 거리 (오늘)</span></div>
+        <div class="cascade-item"><span class="cnum">✓</span><span class="cname">RegionCounter</span><span class="cdesc">다각형 영역 안 객체 수 집계 (오늘)</span></div>
+        <div class="cascade-item"><span class="cnum">✓</span><span class="cname">ObjectCounter</span><span class="cdesc">선을 넘는 IN/OUT 카운팅 (오늘)</span></div>
+        <div class="cascade-item"><span class="cnum">✓</span><span class="cname">SpeedEstimator</span><span class="cdesc">차량 등 이동 속도(km/h) 추정 (오늘)</span></div>
+        <div class="cascade-item"><span class="cnum">·</span><span class="cname">AIGym</span><span class="cdesc">운동 자세·반복 횟수 카운팅</span></div>
+        <div class="cascade-item"><span class="cnum">·</span><span class="cname">Analytics</span><span class="cdesc">탐지 결과를 그래프로 통계화</span></div>
+        <div class="cascade-item"><span class="cnum">·</span><span class="cname">ObjectCropper</span><span class="cdesc">탐지 영역만 잘라 저장</span></div>
+        <div class="cascade-item"><span class="cnum">·</span><span class="cname">ParkingManagement</span><span class="cdesc">주차 구역 점유 관리</span></div>
+        <div class="cascade-item"><span class="cnum">·</span><span class="cname">QueueManager</span><span class="cdesc">대기열 인원 관리</span></div>
+        <div class="cascade-item"><span class="cnum">·</span><span class="cname">TrackZone</span><span class="cdesc">특정 구역 안에서만 추적</span></div>
+        <div class="cascade-item"><span class="cnum">·</span><span class="cname">VisionEye</span><span class="cdesc">시점 기반 객체 매핑</span></div>
+        <div class="cascade-item"><span class="cnum">·</span><span class="cname">SearchApp / Inference</span><span class="cdesc">이미지 검색 · Streamlit 추론 UI</span></div>
+    </div>
+    <div class="callout blue">
+        <strong>공통 사용 패턴 — 오늘 계속 나온 형태</strong> — solutions 객체는 일반 추론(<code>model()</code>)과 조금 다르다. 프레임을 직접 넣어 호출하고(<code>results = 객체(frame)</code>), 결과가 그려진 이미지는 <code>results[0].plot()</code>이 아니라 <strong><code>results.plot_im</code></strong>으로 꺼낸다. <code>show=True</code>면 창을 알아서 띄우고, <code>show=False</code>면 <code>cv2.imshow(..., results.plot_im)</code>으로 직접 띄운다.
+    </div>
+
+    <h2>🎥 실시간 분석 솔루션</h2>
+
+    <h3>02 — 히트맵 (Heatmap)</h3>
+    <p>물체가 자주 지나간 곳을 <strong>빨강(자주)~파랑(드묾)</strong> 열지도로 누적 시각화한다. 매장 동선 분석 등에 쓴다.</p>
+    <pre>heatmap = solutions.Heatmap(
+    model=<span class="v">"yolo11n.pt"</span>,
+    colormap=cv2.COLORMAP_MAGMA   <span class="c"># 색상 지도(MAGMA=보라~노랑)</span>
+)
+results = heatmap(frame)
+cv2.imshow(<span class="v">"HEATMAP"</span>, results.plot_im)  <span class="c"># 누적 결과</span></pre>
+
+    <h3>03 — 보안 알람 (SecurityAlarm)</h3>
+    <p>특정 클래스(예: 자동차)가 감지되면 <strong>이메일</strong>을 자동 발송한다. 탐지 → 추적 → 누적 카운트 → SMTP 메일 발송이 내부에서 한 번에 처리된다.</p>
+    <pre>alarm = solutions.SecurityAlarm(
+    model=<span class="v">"yolo11n.pt"</span>, show=<span class="k">False</span>,
+    records=<span class="v">2</span>,       <span class="c"># N회 감지 시 1회 메일(오탐 방지)</span>
+    classes=[<span class="v">2</span>]      <span class="c"># 2 = car</span>
+)
+alarm.authenticate(from_email, password, to_email)  <span class="c"># SMTP 로그인</span>
+results = alarm(frame)</pre>
+    <div class="callout yellow"><strong>Gmail 앱 비밀번호 필수</strong> — 2단계 인증을 켠 뒤 <strong>앱 비밀번호(16자리)</strong>를 발급받아 <code>password</code>에 넣어야 한다. 일반 로그인 비밀번호로는 SMTP 인증이 막힌다. 실무에선 비밀번호를 코드에 직접 쓰지 말고 환경변수로 분리하는 게 안전하다.</div>
+
+    <h3>04 — 블러 (ObjectBlurrer)</h3>
+    <p>방송의 모자이크처럼, 탐지된 물체 영역만 골라 자동으로 흐리게 처리한다. 좌표를 직접 계산할 필요가 없다.</p>
+    <pre>blurrer = solutions.ObjectBlurrer(
+    model=<span class="v">"yolo11n.pt"</span>, show=<span class="k">False</span>,
+    blur_ratio=<span class="v">0.5</span>   <span class="c"># 0.1~1.0, 높을수록 더 흐림</span>
+)
+results = blurrer(frame)
+cv2.imshow(<span class="v">"BLUR"</span>, results.plot_im)</pre>
+
+    <h2>📏 거리 · 영역 · 출입</h2>
+
+    <h3>05 — 거리 계산 (DistanceCalculation)</h3>
+    <p>영상 위에서 <strong>마우스로 객체 2개를 클릭</strong>하면 두 중심점 사이의 픽셀 거리를 실시간으로 잰다.</p>
+    <pre>distance = solutions.DistanceCalculation(model=<span class="v">"yolo11n.pt"</span>, show=<span class="k">True</span>)
+distance(frame)  <span class="c"># 좌클릭 2회로 대상 선택 → 거리 표시</span></pre>
+
+    <h3>06 — 거리 상태 분류 (실습)</h3>
+    <p>거리 값을 꺼내 <strong>신호등처럼 안전/경고/위험</strong>으로 분류하는 실습. 여기서 solutions 객체를 <code>process()</code>로 호출하면 결과 객체가 나오고, 거기서 <code>pixels_distance</code>를 꺼낼 수 있다는 걸 배웠다.</p>
+    <pre>results = distance.process(frame)         <span class="c"># 결과 객체 반환</span>
+d = results.pixels_distance               <span class="c"># 두 점 사이 픽셀 거리</span>
+
+<span class="k">if</span> d <span class="k">is</span> <span class="k">None</span> <span class="k">or</span> d == <span class="v">0</span>:
+    <span class="k">print</span>(<span class="v">"입력 안됨"</span>); <span class="k">continue</span>   <span class="c"># 아직 선택 전</span>
+<span class="k">elif</span> d &gt;= <span class="v">150</span>: status = <span class="v">"Safe"</span>
+<span class="k">elif</span> d &gt;= <span class="v">100</span>: status = <span class="v">"Warning"</span>
+<span class="k">else</span>:          status = <span class="v">"Danger"</span></pre>
+    <div class="callout green"><strong><code>distance(frame)</code> vs <code>distance.process(frame)</code></strong> — 앞엣것은 화면에 그려 주기만 하고, 뒤엣것은 <strong>결과 객체를 돌려줘</strong> <code>pixels_distance</code> 같은 값을 코드로 꺼내 조건 분기에 쓸 수 있다. 상태를 판단해야 하니 <code>process()</code>를 썼다. 임계값(150·100)은 카메라 위치·줌에 따라 달라져 직접 보정해야 한다.</div>
+
+    <h3>07 — 영역 카운팅 (RegionCounter)</h3>
+    <p>다각형 <strong>영역(4점)</strong>을 정의하고, 그 안에 들어온 객체만 센다. 좌표는 화면 해상도에 맞춰야 해서 프레임을 <code>640×480</code>으로 통일했다.</p>
+    <pre>region_points = { <span class="v">"region-01"</span>: [(<span class="v">179</span>,<span class="v">114</span>), (<span class="v">173</span>,<span class="v">466</span>), (<span class="v">636</span>,<span class="v">359</span>), (<span class="v">217</span>,<span class="v">133</span>)] }
+region = solutions.RegionCounter(
+    model=<span class="v">"yolo11n.pt"</span>, show=<span class="k">False</span>,
+    region=region_points, conf=<span class="v">0.4</span>   <span class="c"># CCTV 저화질 대응</span>
+)
+re_frame = cv2.resize(frame, (<span class="v">640</span>, <span class="v">480</span>))  <span class="c"># 좌표계 통일 필수</span>
+results = region(re_frame)</pre>
+
+    <h3>08 — 마우스로 영역 좌표 추출 (get_region)</h3>
+    <p>영역 좌표를 코드에 하드코딩하지 않고, <strong>화면을 클릭</strong>해서 좌표를 뽑는 방법. <code>setMouseCallback</code>에 콜백을 연결해 좌클릭한 (x, y)를 리스트에 모은다.</p>
+    <pre>points = []
+<span class="k">def</span> <span class="a">mouse_callback</span>(event, x, y, flags, param):
+    <span class="k">if</span> event == cv2.EVENT_LBUTTONDOWN:   <span class="c"># 좌클릭 감지</span>
+        points.append((x, y))
+        <span class="k">print</span>(f<span class="v">"클릭 좌표: {x, y}"</span>)
+
+cv2.namedWindow(<span class="v">"GET_X_Y"</span>, cv2.WINDOW_NORMAL)
+cv2.setMouseCallback(<span class="v">"GET_X_Y"</span>, mouse_callback)
+<span class="c"># 좌상단→좌하단→우하단→우상단 순서로 4점 클릭 → region_points로 복사</span></pre>
+    <div class="callout yellow"><strong>콜백 인자 5개는 순서 고정</strong> — <code>event</code>(무슨 일)·<code>x, y</code>(어디)·<code>flags</code>(같이 누른 키)·<code>param</code>(밖에서 넘긴 값). 안 써도 <strong>자리는 비워두면 안 된다</strong>(OpenCV 호출 규칙). 그리고 좌표 측정 창과 실제 카운팅 코드의 <code>resize</code> 크기가 같아야(640×480) 영역이 안 어긋난다.</div>
+
+    <h3>09 — 출입 카운팅 (ObjectCounter)</h3>
+    <p>화면에 <strong>선(2점)</strong>을 긋고 그 선을 넘는 사람·차를 세어 IN/OUT을 집계한다. 4점을 주면 RegionCounter처럼, 2점을 주면 선 카운터로 동작한다.</p>
+    <pre>count_points = [(<span class="v">231</span>,<span class="v">465</span>), (<span class="v">637</span>,<span class="v">418</span>)]  <span class="c"># 점 2개 = 선 1개</span>
+counter = solutions.ObjectCounter(
+    model=<span class="v">"yolo11n.pt"</span>, show=<span class="k">False</span>,
+    region=count_points
+)
+results = counter(re_frame)  <span class="c"># 탐지+추적+선통과+IN/OUT 한 번에</span></pre>
+    <div class="callout blue">선은 사람 다니는 길에 <strong>직각</strong>으로 그어야 잘 세고, IN/OUT이 반대로 나오면 두 점의 순서만 바꾸면 된다. 같은 사람은 처음 넘는 순간 <strong>한 번만</strong> 카운트된다(내부에서 ID로 잠금).</div>
+
+    <h2>🔍 SAHI · 속도 · FastSAM</h2>
+
+    <div class="callout green"><strong>환경 준비</strong> — SAHI는 별도 가상환경에서 실습했다. <code>conda activate py39</code>로 Python 3.9 환경에 들어가 <code>pip install sahi</code>로 설치. (버전 호환 때문에 전용 환경을 쓰는 게 편했다.)</div>
+
+    <h3>10 — SAHI 데이터 준비</h3>
+    <p>멀리 있는 작은 차·사람은 일반 YOLO가 잘 못 본다. <strong>SAHI</strong>로 해결하는데, 먼저 테스트용 이미지를 내려받았다.</p>
+    <pre><span class="k">from</span> sahi.utils.file <span class="k">import</span> download_from_url
+
+download_from_url(
+    <span class="v">".../demo_data/small-vehicles1.jpeg"</span>,  <span class="c"># 작은 차량</span>
+    <span class="v">"demo_data/small-vehicles1.jpeg"</span>,
+)</pre>
+
+    <h3>11 — SAHI 기본 추론 (비교용)</h3>
+    <p>사진을 <strong>통째로 한 번</strong> 추론해 탐지 개수를 세어 둔다. 이 숫자를 다음 슬라이싱 결과와 비교하면 SAHI 효과가 한눈에 보인다.</p>
+    <pre>model = YOLO(<span class="v">"yolo11n.pt"</span>)
+results = model(<span class="v">"demo_data/image_1.png"</span>)
+detected = len(results[<span class="v">0</span>].boxes)   <span class="c"># 탐지 수 기억!</span>
+<span class="k">print</span>(f<span class="v">"탐지수 : {detected}"</span>)</pre>
+
+    <h3>12 — SAHI 슬라이싱 추론</h3>
+    <p>사진을 <strong>작은 타일(200×200)로 잘라</strong> 각 조각마다 추론한 뒤 결과를 합친다. 큰 그림을 돋보기로 한 칸씩 보는 셈이라 작은 물체 탐지가 확 늘어난다.</p>
+    <pre><span class="k">from</span> sahi.predict <span class="k">import</span> get_sliced_prediction
+<span class="k">from</span> sahi <span class="k">import</span> AutoDetectionModel
+
+det_model = AutoDetectionModel.from_pretrained(
+    model_type=<span class="v">"ultralytics"</span>, model_path=<span class="v">"yolo11n.pt"</span>,
+    confidence_threshold=<span class="v">0.4</span>
+)
+results = get_sliced_prediction(
+    <span class="v">"demo_data/image_1.png"</span>, det_model,
+    slice_width=<span class="v">200</span>, slice_height=<span class="v">200</span>,      <span class="c"># 타일 크기</span>
+    overlap_width_ratio=<span class="v">0.1</span>, overlap_height_ratio=<span class="v">0.1</span>  <span class="c"># 경계 10% 겹침</span>
+)
+results.export_visuals(export_dir=<span class="v">"sahi/"</span>)</pre>
+    <div class="callout yellow">타일을 작게 할수록 더 작은 물체를 잡지만 타일 수가 늘어 처리 시간이 증가한다(트레이드오프). 경계에 걸친 물체를 놓치지 않도록 <code>overlap</code>을 10~20% 준다.</div>
+
+    <h3>13 — 속도 추정 (SpeedEstimator)</h3>
+    <p>실시간 CCTV에서 차량 속도를 <strong>km/h</strong>로 추정한다. 핵심은 픽셀을 실제 거리로 바꾸는 <code>meter_per_pixel</code> 보정값.</p>
+    <pre>speed = solutions.SpeedEstimator(
+    model=<span class="v">"yolo11n.pt"</span>, show=<span class="k">False</span>,
+    classes=[<span class="v">2</span>],            <span class="c"># car만</span>
+    max_speed=<span class="v">120</span>,          <span class="c"># 상한 km/h</span>
+    meter_per_pixel=<span class="v">0.5</span>     <span class="c"># 1픽셀 = 0.5m (환경별 보정 필수)</span>
+)
+results = speed(frame)
+cv2.imshow(<span class="v">"Speed"</span>, results.plot_im)</pre>
+    <div class="callout blue"><code>meter_per_pixel</code>은 화면 1픽셀이 실제 몇 m인지의 환산 계수다. 도로 점선 한 칸(3m)이 화면에서 6픽셀이면 <code>3 ÷ 6 = 0.5</code>. 카메라 높이·각도·렌즈마다 달라서 <strong>직접 측정</strong>해야 하고, 원근 왜곡 때문에 도로 면 근처에서 재야 정확하다.</div>
+
+    <h3>15 — FastSAM (텍스트로 잘라내기)</h3>
+    <p>SAM(Segment Anything)은 학습 없이 모든 물체를 분할하지만 무겁다. <strong>FastSAM</strong>은 그걸 YOLO 골격으로 갈아 끼워 훨씬 빠르게 만들고, <code>"cat"</code>처럼 <strong>텍스트 한 단어</strong>로 원하는 물체만 콕 집어 잘라낸다.</p>
+    <pre><span class="k">from</span> ultralytics <span class="k">import</span> FastSAM
+
+model = FastSAM(<span class="v">"FastSAM-s.pt"</span>)          <span class="c"># s=소형·빠름</span>
+results = model(<span class="v">"img_cat.jpg"</span>, texts=<span class="v">"cat"</span>) <span class="c"># "cat"만 분할</span>
+cv2.imwrite(<span class="v">"result.jpg"</span>, results[<span class="v">0</span>].plot())</pre>
+    <div class="callout green">SAM은 "모든 물체"를 다 자르고, FastSAM은 "말로 시킨 것만" 빠르게 자른다. (실습 땐 인증서 오류가 나서 <code>ssl</code>·<code>CA_BUNDLE</code> 관련 설정으로 다운로드를 우회했다.)</div>
+
+    <h2>⚡ 모델 최적화 · 웹 UI</h2>
+
+    <h3>16 — OpenVINO 변환</h3>
+    <p><strong>OpenVINO</strong>는 Intel이 만든 CPU 전용 부스터. PyTorch <code>.pt</code> 모델을 변환하면 GPU 없이 CPU만으로도 <strong>2~3배 빠른 추론</strong>이 가능하다.</p>
+    <pre>model = YOLO(<span class="v">"yolo11n.pt"</span>)
+model.export(format=<span class="v">"openvino"</span>)   <span class="c"># → yolo11n_openvino_model/ 폴더 생성</span></pre>
+    <div class="callout blue"><code>format</code>은 <code>"openvino"</code> 외에 <code>"onnx"</code>·<code>"tensorrt"</code> 등도 된다. GPU가 없는 노트북에서 빠르게 돌리고 싶을 때 변환이 유용하다.</div>
+
+    <h3>17 — PT vs OpenVINO FPS 비교</h3>
+    <p><strong>FPS</strong>(초당 프레임 수)로 원본과 변환본의 속도를 겨뤄봤다. 한 프레임 추론에 걸린 시간을 재서 1초로 나누면 FPS가 나온다.</p>
+    <pre>start = time.time()
+results = model(frame, verbose=<span class="k">False</span>)
+fps = <span class="v">1</span> / (time.time() - start)   <span class="c"># 1초 ÷ 1장 걸린 시간</span>
+cv2.putText(annotated, f<span class="v">"{fps:.1f} FPS"</span>, (<span class="v">10</span>,<span class="v">30</span>), cv2.FONT_HERSHEY_SIMPLEX, <span class="v">1</span>, (<span class="v">0</span>,<span class="v">255</span>,<span class="v">0</span>), <span class="v">2</span>)</pre>
+    <div class="callout yellow">모델만 <code>yolo11n.pt</code> ↔ <code>yolo11n_openvino_model/</code>로 바꿔 같은 코드로 비교한다. CPU 환경일수록 OpenVINO 효과가 커서 보통 <strong>2~3배</strong> 빨라진다. <code>verbose=False</code>는 콘솔 로그를 꺼 측정을 깔끔하게 하려는 용도.</div>
+
+    <h3>18 — 이미지 검색 (SearchApp)</h3>
+    <p>"<strong>내 사진첩 전용 구글</strong>". 폴더를 주면 <code>"cat"</code> 같은 단어로 비슷한 이미지를 찾아주는 웹앱이다. 내부에 CLIP 임베딩 + FAISS 인덱스가 들어 있어 "비슷한 그림" 찾기가 된다.</p>
+    <pre>app = solutions.SearchApp(
+    data=<span class="v">"demo_data"</span>,   <span class="c"># 검색 대상 이미지 폴더</span>
+    device=<span class="v">"cpu"</span>          <span class="c"># GPU면 "cuda"</span>
+)
+app.run(debug=<span class="k">False</span>)     <span class="c"># 브라우저에서 자동 오픈</span></pre>
+    <div class="callout green">Flask 앱이라 <code>python 파일.py</code>로 실행한다(<code>streamlit run</code> 쓰면 오류). 여기서도 HuggingFace 모델 다운로드 인증서 문제로 <code>ssl</code>·<code>CA_BUNDLE</code>을 우회 설정했다.</div>
+
+    <h3>19 — Streamlit 추론 UI</h3>
+    <p>코드 <strong>두 줄</strong>로 뜨는 YOLO 대시보드. 모델 선택·웹캠 입력·결과 표시를 <code>solutions.Inference</code>가 알아서 그려준다.</p>
+    <pre>inf = solutions.Inference(model=<span class="v">"yolo11n.pt"</span>)
+inf.inference()   <span class="c"># 실행: streamlit run 파일.py</span></pre>
+    <div class="callout blue">STEP 18 SearchApp이 "<strong>이미지 검색</strong>"이라면, Inference는 "<strong>실시간 객체 탐지 UI</strong>". 실행 명령이 <code>python</code>이 아니라 <code>streamlit run</code>이라는 점만 주의하면 된다.</div>
+
+    <div class="closing">
+        <h3>✍️ 마치며</h3>
+        <p>어제까지는 "YOLO로 박스 그리기"였는데, 오늘 <code>solutions</code>를 보니 히트맵·알람·카운팅·속도까지 <em>실제 서비스에 쓸 법한 기능</em>이 이미 클래스로 다 만들어져 있었다. 결국 중요한 건 각 클래스가 어떤 입력(영역 좌표·이메일·보정값)을 필요로 하는지, 그리고 결과를 <code>results.plot_im</code>·<code>process()</code>로 어떻게 꺼내 쓰는지를 아는 것이었다. SAHI의 "잘라서 보기"나 FastSAM의 "말로 자르기"처럼, 문제를 바라보는 관점 자체가 새로워서 재미있었다. 마지막엔 OpenVINO로 속도를 끌어올리고 SearchApp·Streamlit으로 웹 UI까지 붙여봤다. 다음엔 SAM 본체와 직접 모은 데이터로 커스텀 학습을 이어서 해볼 예정이다.</p>
+        <p style="margin-top:16px; font-size:13px; color:#888;">🏷️ YOLO &nbsp;|&nbsp; solutions &nbsp;|&nbsp; SAHI &nbsp;|&nbsp; OpenCV &nbsp;|&nbsp; AI &nbsp;|&nbsp; 학습일지</p>
+    </div>
+
+</div>

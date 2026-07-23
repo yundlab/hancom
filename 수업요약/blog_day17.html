@@ -1,0 +1,419 @@
+<style>
+.post-wrap * { box-sizing: border-box; }
+.post-wrap ul, .post-wrap ol, .post-wrap li { list-style: none !important; border: none !important; margin: 0; padding: 0; }
+.post-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+    color: #333;
+    line-height: 1.8;
+}
+.post-wrap .post-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    border-left: 5px solid #f97316;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    padding-left: 18px;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 40px;
+}
+.post-wrap .post-header * { margin-top: 0 !important; }
+.post-wrap .tag-badge {
+    display: inline-block !important;
+    background: #ffedd5;
+    color: #f97316;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.post-wrap .post-header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #1a1a2e;
+    margin: 0;
+}
+.post-wrap .subtitle {
+    margin-top: 8px;
+    color: #666;
+    font-size: 14px;
+}
+.post-wrap h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 48px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+.post-wrap h3 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #2c3e50 !important;
+    margin: 28px 0 10px !important;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap p { margin-bottom: 14px; font-size: 15px; }
+.post-wrap .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap .summary-card {
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 10px;
+    padding: 16px 18px;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.post-wrap .summary-card * { border: none !important; outline: none !important; }
+.post-wrap .summary-card .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f97316;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.post-wrap .summary-card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+.post-wrap .ctag {
+    display: inline-block;
+    background: #f1f3f9;
+    color: #444;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 0;
+    line-height: 1.6;
+    vertical-align: middle;
+}
+.post-wrap pre {
+    background: #1e2235;
+    color: #e8eaf6;
+    border-radius: 10px;
+    padding: 20px 22px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 14px 0 20px !important;
+}
+.post-wrap pre .c  { color: #7986cb; }
+.post-wrap pre .t  { color: #80cbc4; }
+.post-wrap pre .a  { color: #ffcc80; }
+.post-wrap pre .v  { color: #a5d6a7; }
+.post-wrap pre .k  { color: #f48fb1; }
+.post-wrap pre .tx { color: #e8eaf6; }
+.post-wrap code {
+    font-family: 'Courier New', monospace;
+    font-size: 13.5px;
+    background: #f1f3f9;
+    color: #c0392b;
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+.post-wrap .callout { border-radius: 10px; padding: 16px 20px; margin: 18px 0; font-size: 14.5px; }
+.post-wrap .callout.blue { background: #fff4ec; border-left: 4px solid #f97316; color: #9a3412; }
+.post-wrap .callout.green { background: #fff1e0; border-left: 4px solid #fb923c; color: #b45309; }
+.post-wrap .callout.yellow { background: #fef3c7; border-left: 4px solid #f59e0b; color: #92400e; }
+.post-wrap table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+.post-wrap th { background: #f97316; color: #fff; padding: 10px 14px; text-align: left; font-weight: 700; }
+.post-wrap td { padding: 10px 14px; border-bottom: 1px solid #e9ecef; }
+.post-wrap tr:nth-child(even) td { background: #fff7ed; }
+.post-wrap .cascade-list { margin: 14px 0; padding: 0; border: none; }
+.post-wrap .cascade-item {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    margin-bottom: 6px !important;
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+}
+.post-wrap .cascade-item .cnum {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 24px !important;
+    min-width: 24px !important;
+    height: 24px;
+    border-radius: 50%;
+    background: #f97316;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 12px;
+    flex-shrink: 0 !important;
+}
+.post-wrap .cascade-item .cname {
+    font-family: 'Courier New', monospace;
+    color: #f97316;
+    font-weight: 700;
+    display: inline-block !important;
+    width: 150px !important;
+    min-width: 150px !important;
+    flex-shrink: 0 !important;
+    font-size: 13px;
+}
+.post-wrap .cascade-item .cdesc { color: #555; flex: 1; display: inline-block !important; }
+.post-wrap .closing {
+    margin-top: 20px !important;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #f9731622, #ea580c22);
+    border-radius: 14px;
+    border: 1px solid #dee2e6;
+}
+.post-wrap .closing h3 { margin-top: 0 !important; margin-bottom: 10px; font-size: 17px; }
+.post-wrap .closing p { font-size: 14.5px; color: #555; margin-bottom: 6px; }
+.post-wrap hr.divider { border: none; border-top: 1px solid #e9ecef; margin: 36px 0; }
+</style>
+
+<div class="post-wrap">
+
+    <div class="post-header">
+        <span class="tag-badge"># AI 활용 학습일지</span>
+        <h1>[OpenAPI · HuggingFace · Transformers · OCR]<br>공공 API · LLM · NLP · 문자 인식</h1>
+        <p class="subtitle">2026.07.22 · 학습 범위: 공공 OpenAPI(ITS CCTV), HuggingFace, Transformers, OCR</p>
+    </div>
+
+    <h2>📋 오늘 다룬 것들</h2>
+
+    <p>오늘은 <strong>"이미 만들어진 AI·데이터를 가져다 쓰는"</strong> 하루였다. 공공기관의 <strong>OpenAPI</strong>로 전국 CCTV 영상을 받아 YOLO로 분석하고, <strong>HuggingFace</strong>로 LLM 채팅과 이미지 생성을, <strong>Transformers</strong>로 문장 유사도·감정분석·요약·번역을, 마지막으로 <strong>OCR</strong>로 이미지 속 글자까지 뽑아봤다. 모델을 직접 학습하지 않아도 API·라이브러리 몇 줄로 이만한 걸 한다는 게 신기했다.</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="card-title">공공 API</div>
+            <div class="tags"><span class="ctag">apiKey</span><span class="ctag">urllib</span><span class="ctag">json_normalize</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">LLM 채팅</div>
+            <div class="tags"><span class="ctag">InferenceClient</span><span class="ctag">DeepSeek</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">이미지 생성</div>
+            <div class="tags"><span class="ctag">FLUX.1</span><span class="ctag">text_to_image</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">NLP</div>
+            <div class="tags"><span class="ctag">pipeline</span><span class="ctag">유사도</span><span class="ctag">감정분석</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">요약·번역</div>
+            <div class="tags"><span class="ctag">t5-small</span><span class="ctag">deep_translator</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">문자 인식</div>
+            <div class="tags"><span class="ctag">Tesseract</span><span class="ctag">pytesseract</span></div>
+        </div>
+    </div>
+
+    <h2>🔌 공공 OpenAPI — ITS CCTV</h2>
+
+    <p><strong>OpenAPI</strong>는 정부·공공기관 데이터 창고의 자동문 같은 것. 사람이 직접 가지 않고 프로그램이 <strong>인증키(열쇠)</strong>를 들고 필요한 데이터만 꺼내온다. 오늘은 국토교통부 <strong>ITS(지능형교통시스템)</strong>에서 전국 도로 CCTV 영상 주소를 받아왔다.</p>
+
+    <pre><span class="c"># 설치 (urllib·json은 파이썬 기본 내장)</span>
+pip install pandas ultralytics opencv-python</pre>
+
+    <div class="callout green"><strong>💡 곁들여 배운 개념 — MCP</strong> — AI에 새 능력을 더해주는 "USB-C 같은 약속". 도구마다 다른 연결 방식을 하나의 표준으로 통일한 것으로, AI가 혼자 모르는 것도 도구(기상청·노션·캘린더 등)를 꽂으면 진짜 정보를 가져와 할루시네이션(그럴듯한 거짓말)을 줄인다. OpenAPI가 "데이터를 직접 호출"하는 방식이라면, MCP는 그걸 AI가 알아서 쓰게 연결하는 상위 개념.</div>
+
+    <h3>① API 키 · 요청 URL</h3>
+    <p>인증키를 발급받고, 도로 유형(<code>its</code> 일반 / <code>ex</code> 고속)·관심 영역(경위도 범위)·응답 형식(<code>json</code>)을 붙여 요청 URL을 조립한다.</p>
+    <pre>url_cctv = (
+    f<span class="v">"https://openapi.its.go.kr:9443/cctvInfo"</span>
+    f<span class="v">"?apiKey={key}&type={Type}&cctvType=1"</span>
+    f<span class="v">"&minX={minX}&maxX={maxX}&minY={minY}&maxY={maxY}"</span>
+    f<span class="v">"&getType={getType}"</span>
+)</pre>
+
+    <h3>② 응답 처리 (urllib → JSON → DataFrame)</h3>
+    <p>URL로 요청을 보내 받은 응답을 <strong>bytes → str → dict → 표(DataFrame)</strong> 순으로 가공한 뒤, 원하는 CCTV의 스트림 주소를 골라낸다.</p>
+    <pre>response = urllib.request.urlopen(url_cctv)          <span class="c"># 요청 → 응답</span>
+json_str = response.read().decode(<span class="v">"utf-8"</span>)         <span class="c"># bytes → str</span>
+json_object = json.loads(json_str)                  <span class="c"># str → dict</span>
+cctv_play = pd.json_normalize(json_object[<span class="v">"response"</span>][<span class="v">"data"</span>])  <span class="c"># dict → 표</span>
+test_url = cctv_play[<span class="v">"cctvurl"</span>][<span class="v">77</span>]                   <span class="c"># 77번 CCTV 선택</span></pre>
+    <div class="callout blue"><strong>왜 두 번 변환?</strong> — 서버는 전송용 <strong>bytes</strong>(0·1)로 보내니 사람이 읽으려면 <code>decode</code>로 <strong>str</strong>(글자)로 풀고, 값을 꺼내려면 <code>json.loads</code>로 <strong>dict</strong>(사전)로 바꿔야 <code>["키"]</code>로 접근된다. CCTV 목록이 <code>response → data</code> 안에 숨어 있어서 <code>pd.json_normalize</code>로 평평한 표로 펴 인덱싱했다.</div>
+
+    <h3>③ 함수화 + YOLO 통합</h3>
+    <p>반복되는 API 호출을 <code>its_cctv(번호)</code> 함수로 묶으니, 다른 파일에서 <strong>import 한 줄</strong>로 CCTV 주소를 얻어 바로 YOLO에 연결할 수 있었다.</p>
+    <pre><span class="k">from</span> v15_03_cctv_its_def <span class="k">import</span> its_cctv  <span class="c"># 만들어 둔 함수 재사용</span>
+
+test_url = its_cctv(<span class="v">50</span>)              <span class="c"># 17줄 코드가 1줄로</span>
+cap = cv2.VideoCapture(test_url)
+model = YOLO(<span class="v">"yolo11n.pt"</span>)
+<span class="c"># while 루프에서 프레임마다 model(frame)로 실시간 탐지</span></pre>
+    <div class="callout yellow">함수화의 장점 — <strong>재사용</strong>(import 한 줄), <strong>매개변수</strong>(번호만 바꿔 다른 CCTV), <strong>가독성</strong>(메인 로직에서 API 세부 숨김), <strong>유지보수</strong>(주소·키 바뀌면 함수 1곳만 수정). 참고로 알라딘·기상청·카카오·네이버도 같은 방식(키 발급 → URL/헤더에 담아 요청 → JSON 파싱)으로 쓴다.</div>
+
+    <h2>🤗 HuggingFace — LLM · 이미지 생성</h2>
+
+    <p><strong>HuggingFace</strong>는 전 세계 AI 모델·데이터셋을 무료 공유하는 최대 허브. <code>InferenceClient</code> 한 줄로 GPT급 LLM이나 이미지 생성 모델을 바로 호출할 수 있다.</p>
+
+    <pre>pip install huggingface_hub   <span class="c"># HuggingFace 공식 SDK → InferenceClient·model_info·login 등 일체 제공</span></pre>
+
+    <div class="callout yellow"><strong>🔑 토큰은 <code>.env</code>에</strong> — HuggingFace 토큰은 <strong>절대 코드·주석에 직접 쓰지 말고</strong> <code>.env</code>(gitignore됨)에 저장한다. <code>load_dotenv()</code>로 읽어 <code>os.environ["HF_TOKEN"]</code>으로 꺼내 쓴다. 키가 코드에 박히면 GitHub에 그대로 노출된다.</div>
+
+    <h3>① LLM 채팅 (DeepSeek)</h3>
+    <p><code>chat.completions.create</code>로 DeepSeek 모델에 질문을 보낸다. ChatGPT와 동일한 <code>messages</code>(role + content) 패턴이다.</p>
+    <pre>client = InferenceClient(provider=<span class="v">"auto"</span>, api_key=os.environ[<span class="v">'HF_TOKEN'</span>])
+completion = client.chat.completions.create(
+    model=<span class="v">"deepseek-ai/DeepSeek-V3.2:novita"</span>,  <span class="c"># :novita → 무료 라우팅</span>
+    messages=[{<span class="v">"role"</span>: <span class="v">"user"</span>, <span class="v">"content"</span>: answer}],
+)
+<span class="k">print</span>(completion.choices[<span class="v">0</span>].message)   <span class="c"># 후보 중 첫 응답</span></pre>
+    <div class="callout blue"><code>provider="auto"</code>는 가장 빠른 무료 서버를 자동 선택. LLM은 단일 질문이 아니라 <strong>대화 이력(messages 리스트)</strong>을 입력받고, 답은 후보 N개 중 <code>choices[0].message</code>로 꺼낸다.</div>
+
+    <h3>② 이미지 생성 (Text-to-Image, FLUX)</h3>
+    <p>텍스트 설명을 주면 <code>FLUX.1-dev</code>가 그림을 그려 <strong>PIL.Image</strong> 객체로 돌려준다. 그대로 <code>.save()</code>하면 파일로 저장된다.</p>
+    <pre>image = client.text_to_image(answer, model=<span class="v">"black-forest-labs/FLUX.1-dev"</span>)
+image.save(<span class="v">"tti_result.jpg"</span>)</pre>
+    <div class="callout green">프롬프트는 <strong>영어</strong>로 쓰면 품질이 오른다. 스타일 키워드(<code>anime style, photorealistic</code>)와 품질 키워드(<code>high quality, 4K, detailed</code>)를 붙이면 좋다. 무료 서버 기준 1회 1~3분 걸린다.</div>
+
+    <h2>🧠 Transformers — 자연어 처리(NLP)</h2>
+
+    <p><code>pipeline</code>은 모델 로드 + 토크나이저 + 후처리를 <strong>한 줄로 묶어주는</strong> 진입점. 태스크 이름만 주면 알맞은 모델을 자동으로 붙여준다.</p>
+
+    <pre>pip install transformers
+pip install -U <span class="v">"transformers==4.46.3"</span>
+pip install deep-translator</pre>
+
+    <h3>① 문장 유사도 (SentenceTransformer · 코사인)</h3>
+    <p>문장을 <strong>임베딩(숫자 벡터)</strong>으로 바꾸고, 두 벡터 사잇각의 <strong>코사인 유사도</strong>로 의미가 얼마나 비슷한지 수치화한다. 단어가 달라도 의미가 같으면 1에 가깝다.</p>
+
+    <pre>pip install sentence-transformers   <span class="c"># 문장 임베딩 전용 패키지</span></pre>
+
+    <pre>model = SentenceTransformer(<span class="v">"all-MiniLM-L6-v2"</span>)   <span class="c"># 경량 임베딩 모델</span>
+emb1 = model.encode(sen1, convert_to_tensor=<span class="k">True</span>)
+emb2 = model.encode(sen2, convert_to_tensor=<span class="k">True</span>)
+cos_sim = util.pytorch_cos_sim(emb1, emb2)
+<span class="c"># -1 반대 · 0 무관 · 1 완전히 동일</span></pre>
+    <div class="callout blue"><strong>임베딩 = 문장을 의미 좌표로</strong> — "강아지"와 "개"는 가까운 점, "강아지"와 "비행기"는 먼 점이 된다. 코사인 유사도는 두 화살표의 <strong>각도만</strong> 보므로(길이 무시) 문장 길이에 영향받지 않는다. 실제로 어순만 다른 문장은 0.94, 무관한 문장은 0.15가 나왔다.</div>
+
+    <h3>② 감정 분석 (Sentiment)</h3>
+    <p>영어 문장을 <strong>POSITIVE / NEGATIVE</strong>로 판별하고 신뢰도(0~1)를 준다.</p>
+    <pre>classifier = pipeline(<span class="v">"sentiment-analysis"</span>)
+results = classifier(<span class="v">"I feel calm"</span>)
+<span class="k">print</span>(results[<span class="v">0</span>][<span class="v">'label'</span>], results[<span class="v">0</span>][<span class="v">'score'</span>])  <span class="c"># POSITIVE 0.8280</span></pre>
+    <div class="callout yellow"><code>score</code>는 <strong>softmax</strong>를 통과한 확률값(모든 값 합=1)이라 "확신도"로 읽을 수 있다. 단, 기본 모델은 영어 전용이고 중립·복합 감정은 잘 못 잡는 한계가 있다.</div>
+
+    <h3>③ 텍스트 생성 (GPT-2 / KoGPT2)</h3>
+    <p>시드 문장을 주면 뒤 단어를 한 토큰씩 예측해 이어붙인다. 한국어는 <code>skt/kogpt2-base-v2</code>를 썼다.</p>
+    <pre>generator = pipeline(<span class="v">"text-generation"</span>, model=<span class="v">"skt/kogpt2-base-v2"</span>)
+results = generator(answer, max_new_tokens=<span class="v">50</span>, num_return_sequences=<span class="v">1</span>, truncation=<span class="k">True</span>)</pre>
+    <div class="callout blue"><code>max_new_tokens</code>는 생성 길이 상한(안 주면 무한 생성 위험), <code>truncation=True</code>는 입력이 모델 최대 길이를 넘으면 잘라준다. (1 토큰 ≈ 영어 4글자)</div>
+
+    <h3>④ 요약 (T5-small)</h3>
+    <p>긴 영어 단락을 핵심만 뽑아 다시 쓴다. T5는 모든 작업을 "텍스트 → 텍스트"로 통일한 모델이다.</p>
+    <pre>summarizer = pipeline(<span class="v">"summarization"</span>, model=<span class="v">"t5-small"</span>)
+summary = summarizer(text, min_length=<span class="v">20</span>, max_length=<span class="v">60</span>, do_sample=<span class="k">False</span>)
+<span class="k">print</span>(summary[<span class="v">0</span>][<span class="v">'summary_text'</span>])</pre>
+    <div class="callout green"><strong>Task Prefix</strong> — T5는 <code>"summarize: 원문"</code>·<code>"translate English to Korean: ..."</code>처럼 앞머리(접두사)로 작업을 지시받게 학습됐다. 한 모델로 요약·번역·분류가 다 되는 비결. <code>pipeline("summarization")</code>이 <code>"summarize: "</code>를 자동으로 붙여준다. <code>do_sample=False</code>는 매번 같은 결과(결정적 생성).</div>
+
+    <h3>⑤ 요약 + 한국어 번역</h3>
+    <p>T5는 영어만 잘하니, 요약(영어) 결과를 <code>deep_translator</code>의 GoogleTranslator로 한국어로 옮겨 한계를 보완했다(API 키 불필요).</p>
+    <pre><span class="k">from</span> deep_translator <span class="k">import</span> GoogleTranslator
+
+<span class="k">def</span> <span class="a">translate_ko</span>(sentence):
+    <span class="k">return</span> GoogleTranslator(source=<span class="v">'en'</span>, target=<span class="v">'ko'</span>).translate(sentence)
+
+ko_sum = translate_ko(sum_text)   <span class="c"># 영어 요약 → 한국어</span></pre>
+    <div class="callout yellow">파이프라인 흐름: <strong>원문(영) → T5 요약 → 요약(영) → GoogleTranslator → 요약(한)</strong>. 무료·키 불필요·다국어라 편했지만, 인터넷이 필요하고 호출이 많으면 차단될 수 있다.</div>
+
+    <h2>🔤 OCR — 이미지 속 글자 읽기</h2>
+
+    <p><strong>OCR</strong>(광학 문자 인식)은 사진 속 글자를 읽어내는 기술. 구글 <strong>Tesseract</strong> 엔진을 파이썬 <code>pytesseract</code>로 감싸 사용한다.</p>
+
+    <h3>① OCR 개요 & 설치</h3>
+    <p><strong>설치 순서</strong> — ① Tesseract 실행 파일 설치 → ② Python 라이브러리 설치 → ③ 실행 파일 경로 지정</p>
+
+    <pre><span class="c"># ① Tesseract-OCR 설치 (Windows)</span>
+<span class="c"># 공식 설치 경로: https://github.com/UB-Mannheim/tesseract/wiki</span>
+<span class="c"># 설치 후 기본 경로: C:/Program Files/Tesseract-OCR/tesseract.exe</span>
+<span class="c"># (한국어 인식은 설치 시 Korean 언어팩 체크)</span></pre>
+
+    <pre><span class="c"># ② Python 라이브러리 설치</span>
+pip install pytesseract pillow</pre>
+
+    <div class="callout green"><code>pytesseract</code> — 파이썬에서 Tesseract를 부르는 통역사. &nbsp;<code>PIL(pillow)</code> — 사진 파일을 여닫는 파이썬 이미지 도구.</div>
+
+    <h3>② 이미지 텍스트 인식 (v18_01_ocr_img.py)</h3>
+    <p>PIL로 사진을 열고 <code>image_to_string</code>으로 글자를 뽑아내는 4단계 흐름이다.</p>
+
+    <div class="cascade-list">
+        <div class="cascade-item"><span class="cnum">1</span><span class="cname">경로 지정</span><span class="cdesc">tesseract_cmd로 Tesseract 실행 파일 위치 알려주기</span></div>
+        <div class="cascade-item"><span class="cnum">2</span><span class="cname">이미지 열기</span><span class="cdesc">Image.open(경로)로 사진 파일 불러오기</span></div>
+        <div class="cascade-item"><span class="cnum">3</span><span class="cname">OCR 수행</span><span class="cdesc">image_to_string(image, lang)으로 글자 추출</span></div>
+        <div class="cascade-item"><span class="cnum">4</span><span class="cname">결과 출력</span><span class="cdesc">추출된 문자열 print</span></div>
+    </div>
+
+    <pre><span class="k">import</span> pytesseract
+<span class="k">from</span> PIL <span class="k">import</span> Image
+<span class="k">import</span> os
+
+<span class="c"># 1. Tesseract 실행 파일 경로 지정</span>
+pytesseract.pytesseract.tesseract_cmd = <span class="v">"C:/Program Files/Tesseract-OCR/tesseract.exe"</span>
+
+<span class="c"># 2. 이미지 불러오기</span>
+image = Image.open(<span class="v">"image.png"</span>)
+
+<span class="c"># 3. OCR 수행</span>
+results = pytesseract.image_to_string(image, lang=<span class="v">'eng'</span>)
+
+<span class="c"># 4. 결과 출력</span>
+<span class="k">print</span>(results)
+<span class="c"># Optical Character</span>
+<span class="c"># Recognition (OCR)</span></pre>
+
+    <div class="callout blue">
+        <strong>핵심 함수</strong><br>
+        · <code>pytesseract.tesseract_cmd</code> — Tesseract 실행 파일 위치 알려주기<br>
+        · <code>Image.open(경로)</code> — PIL로 사진 파일 열기<br>
+        · <code>image_to_string(image, lang)</code> — 사진에서 글자 뽑아 문자열로 반환<br>
+        · <code>lang='eng'</code> — OCR이 쓸 언어 지정 (언어팩 설치 필수)
+    </div>
+
+    <h3>③ lang 파라미터 & 결과 해석</h3>
+    <p><code>lang</code>은 OCR에게 읽을 언어를 알려주는 값. <code>+</code>로 여러 언어를 동시에 인식할 수 있다(예: <code>eng+kor</code>).</p>
+
+    <table>
+        <tr><th>lang 값</th><th>설명</th><th>예시 코드</th></tr>
+        <tr><td><code>eng</code></td><td>영어 (기본값, 별도 설치 없이 사용 가능)</td><td><code>lang='eng'</code></td></tr>
+        <tr><td><code>kor</code></td><td>한국어 (언어팩 별도 설치 필요)</td><td><code>lang='kor'</code></td></tr>
+        <tr><td><code>eng+kor</code></td><td>영어 + 한국어 동시 인식</td><td><code>lang='eng+kor'</code></td></tr>
+        <tr><td><code>chi_sim</code></td><td>중국어 간체</td><td><code>lang='chi_sim'</code></td></tr>
+        <tr><td><code>jpn</code></td><td>일본어</td><td><code>lang='jpn'</code></td></tr>
+    </table>
+
+    <pre><span class="c"># 영어 + 한국어 동시 인식</span>
+results = pytesseract.image_to_string(image, lang=<span class="v">'eng+kor'</span>)
+<span class="k">print</span>(results)</pre>
+
+    <div class="callout yellow">
+        · 결과에 줄바꿈(<code>\n</code>)이 포함됨 → <code>.strip()</code>으로 공백 제거<br>
+        · 사진 해상도가 낮거나 글꼴이 특수하면 인식률 저하 → <strong>전처리</strong>(흑백 변환·크기 조정)로 개선<br>
+        · <code>tesseract_cmd</code>로 엔진 실행 파일 위치를 먼저 지정해야 함(설치 필수)<br>
+        · 더 똑똑한 대안: 딥러닝 기반 <strong>EasyOCR · PaddleOCR</strong>
+    </div>
+
+    <div class="closing">
+        <h3>✍️ 마치며</h3>
+        <p>오늘은 "밑바닥부터 만들기"가 아니라 <em>"잘 만들어진 걸 조립하기"</em>의 힘을 느낀 하루였다. 공공 API로 실시간 데이터를 끌어오고, HuggingFace·Transformers로 남이 학습해 둔 거대 모델을 몇 줄로 불러 쓰고, OCR로 이미지를 텍스트로 바꾸는 것까지 — 결국 중요한 건 각 도구의 <strong>입력·출력 형태</strong>(JSON 파싱, messages 리스트, 임베딩 벡터, lang 옵션)를 이해하고 이어 붙이는 감각이었다. <code>.env</code>로 키를 안전하게 관리하는 습관도 오늘 확실히 챙겼다. 다음엔 이 조각들을 엮어 작은 AI 서비스를 만들어볼 생각이다.</p>
+        <p style="margin-top:16px; font-size:13px; color:#888;">🏷️ OpenAPI &nbsp;|&nbsp; HuggingFace &nbsp;|&nbsp; Transformers &nbsp;|&nbsp; OCR &nbsp;|&nbsp; NLP &nbsp;|&nbsp; 학습일지</p>
+    </div>
+
+</div>
