@@ -50,3 +50,6 @@ result*.jpg
 result*.png
 output_fast_sam_result.jpg
 sahi/
+
+# Gradio 런타임 캐시 제외
+.gradio/
