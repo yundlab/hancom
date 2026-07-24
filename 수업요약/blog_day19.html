@@ -316,6 +316,15 @@
     </table>
     <div class="callout green"><strong>느낀 점</strong> — 스킬·훅·에이전트·MCP가 따로 놀던 개념이었는데, 플러그인이라는 그릇에 <strong>한꺼번에 담아 배포</strong>할 수 있다는 걸 알고 나니 "내 워크플로 전체를 하나로 패키징한다"는 그림이 잡혔다. 마켓플레이스로 배포한다는 건, 결국 내가 만든 도구를 남도 쓸 수 있게 <strong>상품처럼 유통</strong>한다는 의미였다.</div>
 
+    <h3>실제 배포 & 설치 방법</h3>
+    <p>Claude Code의 마켓플레이스는 특별한 서버가 아니라 <strong>깃허브 저장소 하나</strong>다. 플러그인 파일과 <code>marketplace.json</code>을 담은 repo를 푸시하면 그 자체가 배포다. 오늘 만든 <code>daily-log</code> 플러그인을 <code>yundlab/claude-marketplace</code> 저장소에 올렸고, 다른 사람은 아래 두 줄로 바로 설치해 쓸 수 있다.</p>
+    <pre><span class="c"># 1) 마켓플레이스(깃허브 repo) 등록</span>
+/plugin marketplace add yundlab/claude-marketplace
+
+<span class="c"># 2) 플러그인 설치</span>
+/plugin install daily-log@yundlab-marketplace</pre>
+    <div class="callout blue">설치하면 <code>/daily-log</code> 스킬, <code>journal-writer</code> 에이전트, 노션 MCP 설정이 한꺼번에 딸려 온다. 사용 전 노션 Integration 토큰을 <code>NOTION_TOKEN</code> 환경변수로 넣어주면(<code>setx NOTION_TOKEN "ntn_xxx"</code>) 준비 끝. 내가 만든 자동화를 <strong>명령어 두 줄</strong>로 남에게 그대로 넘길 수 있다는 게 신기했다.</div>
+
     <h2>🔌 MCP 연결 → 학습일지 자동화</h2>
 
     <p>마지막으로, 재시작된 세션에서 <code>/mcp</code>로 <strong>notion MCP가 초록불(연결됨)</strong>인지 확인한 뒤 <code>/daily-log</code>를 실행했다. 노션의 오늘 메모와 코드 변경을 읽어, 지금 보고 있는 이 학습일지 HTML을 <strong>자동으로</strong> 만들고 커밋까지 이어지는 흐름이다.</p>
