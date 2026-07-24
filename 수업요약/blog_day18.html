@@ -1,0 +1,430 @@
+<style>
+.post-wrap * { box-sizing: border-box; }
+.post-wrap ul, .post-wrap ol, .post-wrap li { list-style: none !important; border: none !important; margin: 0; padding: 0; }
+.post-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+    color: #333;
+    line-height: 1.8;
+}
+.post-wrap .post-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    border-left: 5px solid #f97316;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    padding-left: 18px;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 40px;
+}
+.post-wrap .post-header * { margin-top: 0 !important; }
+.post-wrap .tag-badge {
+    display: inline-block !important;
+    background: #ffedd5;
+    color: #f97316;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.post-wrap .post-header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #1a1a2e;
+    margin: 0;
+}
+.post-wrap .subtitle {
+    margin-top: 8px;
+    color: #666;
+    font-size: 14px;
+}
+.post-wrap h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 48px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+.post-wrap h3 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #2c3e50 !important;
+    margin: 28px 0 10px !important;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap p { margin-bottom: 14px; font-size: 15px; }
+.post-wrap .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap .summary-card {
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 10px;
+    padding: 16px 18px;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.post-wrap .summary-card * { border: none !important; outline: none !important; }
+.post-wrap .summary-card .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f97316;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.post-wrap .summary-card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+.post-wrap .ctag {
+    display: inline-block;
+    background: #f1f3f9;
+    color: #444;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 0;
+    line-height: 1.6;
+    vertical-align: middle;
+}
+.post-wrap pre {
+    background: #1e2235;
+    color: #e8eaf6;
+    border-radius: 10px;
+    padding: 20px 22px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 14px 0 20px !important;
+}
+.post-wrap pre .c  { color: #7986cb; }
+.post-wrap pre .t  { color: #80cbc4; }
+.post-wrap pre .a  { color: #ffcc80; }
+.post-wrap pre .v  { color: #a5d6a7; }
+.post-wrap pre .k  { color: #f48fb1; }
+.post-wrap pre .tx { color: #e8eaf6; }
+.post-wrap code {
+    font-family: 'Courier New', monospace;
+    font-size: 13.5px;
+    background: #f1f3f9;
+    color: #c0392b;
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+.post-wrap .callout { border-radius: 10px; padding: 16px 20px; margin: 18px 0; font-size: 14.5px; }
+.post-wrap .callout.blue { background: #fff4ec; border-left: 4px solid #f97316; color: #9a3412; }
+.post-wrap .callout.green { background: #fff1e0; border-left: 4px solid #fb923c; color: #b45309; }
+.post-wrap .callout.yellow { background: #fef3c7; border-left: 4px solid #f59e0b; color: #92400e; }
+.post-wrap table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+.post-wrap th { background: #f97316; color: #fff; padding: 10px 14px; text-align: left; font-weight: 700; }
+.post-wrap td { padding: 10px 14px; border-bottom: 1px solid #e9ecef; }
+.post-wrap tr:nth-child(even) td { background: #fff7ed; }
+.post-wrap .cascade-list { margin: 14px 0; padding: 0; border: none; }
+.post-wrap .cascade-item {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    margin-bottom: 6px !important;
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+}
+.post-wrap .cascade-item .cnum {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 24px !important;
+    min-width: 24px !important;
+    height: 24px;
+    border-radius: 50%;
+    background: #f97316;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 12px;
+    flex-shrink: 0 !important;
+}
+.post-wrap .cascade-item .cname {
+    font-family: 'Courier New', monospace;
+    color: #f97316;
+    font-weight: 700;
+    display: inline-block !important;
+    width: 150px !important;
+    min-width: 150px !important;
+    flex-shrink: 0 !important;
+    font-size: 13px;
+}
+.post-wrap .cascade-item .cdesc { color: #555; flex: 1; display: inline-block !important; }
+.post-wrap .closing {
+    margin-top: 20px !important;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #f9731622, #ea580c22);
+    border-radius: 14px;
+    border: 1px solid #dee2e6;
+}
+.post-wrap .closing h3 { margin-top: 0 !important; margin-bottom: 10px; font-size: 17px; }
+.post-wrap .closing p { font-size: 14.5px; color: #555; margin-bottom: 6px; }
+.post-wrap hr.divider { border: none; border-top: 1px solid #e9ecef; margin: 36px 0; }
+</style>
+
+<div class="post-wrap">
+
+    <div class="post-header">
+        <span class="tag-badge"># AI 웹앱 · 도구 학습일지</span>
+        <h1>[Streamlit · Gradio · Claude Code]<br>Python 웹앱 만들기 + AI 코딩 CLI</h1>
+        <p class="subtitle">2026.07.23 · 학습 범위: Streamlit, Gradio, Claude Code(로드맵 01~19)</p>
+    </div>
+
+    <h2>📋 오늘 다룬 것들</h2>
+
+    <p>오늘은 <strong>"내가 만든 AI를 화면으로 보여주는"</strong> 하루였다. Python만으로 웹 대시보드를 만드는 <strong>Streamlit</strong>, 함수 하나로 웹앱을 뚝딱 만드는 <strong>Gradio</strong>로 CCTV 실시간 탐지·번역기·YOLO 탐지기를 웹으로 띄웠다. 그리고 지금 이 실습을 도와준 도구인 <strong>Claude Code</strong>(AI 코딩 CLI) 자체의 명령어·CLAUDE.md·프롬프트·협업까지 로드맵으로 정리했다.</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="card-title">Streamlit</div>
+            <div class="tags"><span class="ctag">st.empty</span><span class="ctag">columns</span><span class="ctag">plotly</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">Gradio</div>
+            <div class="tags"><span class="ctag">gr.Interface</span><span class="ctag">gr.Blocks</span><span class="ctag">launch</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">웹앱 예제</div>
+            <div class="tags"><span class="ctag">CCTV 탐지</span><span class="ctag">번역기</span><span class="ctag">YOLO</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">Claude 명령어</div>
+            <div class="tags"><span class="ctag">/init</span><span class="ctag">@파일</span><span class="ctag">/model</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">CLAUDE.md</div>
+            <div class="tags"><span class="ctag">메모리</span><span class="ctag">@import</span><span class="ctag">200줄</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">프롬프트</div>
+            <div class="tags"><span class="ctag">위치지정</span><span class="ctag">역할</span><span class="ctag">단계분해</span></div>
+        </div>
+    </div>
+
+    <h2>📊 Streamlit — Python 대시보드</h2>
+
+    <p><strong>Streamlit</strong>은 Python만으로 웹 앱을 뚝딱 만드는 도구. HTML·CSS·JS를 몰라도 AI 데모·대시보드를 즉시 만들고, <code>streamlit run 파일.py</code> 한 줄로 브라우저에서 실행된다.</p>
+
+    <pre><span class="c"># 가상환경 활성화</span>
+conda activate pyweb310
+
+<span class="c"># 설치</span>
+pip install streamlit
+pip install ultralytics streamlit
+
+<span class="c"># 실행</span>
+streamlit run v19_01_streamlit_b.py</pre>
+
+    <table>
+        <tr><th>함수</th><th>역할</th></tr>
+        <tr><td><code>st.set_page_config()</code></td><td>페이지 레이아웃·제목 설정(코드 최상단)</td></tr>
+        <tr><td><code>st.empty()</code></td><td>나중에 채울 빈 공간(placeholder) 예약</td></tr>
+        <tr><td><code>st.columns(n)</code></td><td>화면을 n개 컬럼으로 분할</td></tr>
+        <tr><td><code>placeholder.image()</code></td><td>예약 공간에 이미지(프레임) 갱신</td></tr>
+        <tr><td><code>placeholder.plotly_chart()</code></td><td>예약 공간에 Plotly 그래프 갱신</td></tr>
+    </table>
+
+    <h3>① 기본 CCTV 실시간 탐지</h3>
+    <p>빈 액자(<code>st.empty()</code>)를 만들어 두고, 루프에서 YOLO 탐지 결과를 그 액자에 <strong>한 장씩 덮어써</strong> 슬라이드 쇼처럼 실시간 영상을 보여준다.</p>
+    <pre><span class="k">import</span> streamlit <span class="k">as</span> st
+<span class="k">from</span> ultralytics <span class="k">import</span> YOLO
+<span class="k">import</span> cv2
+
+st.set_page_config(layout=<span class="v">"wide"</span>)      <span class="c"># 넓게 (반드시 맨 위)</span>
+frame_placeholder = st.empty()          <span class="c"># 사진 갈아끼울 빈 액자</span>
+cap = cv2.VideoCapture(stream_url)
+model = YOLO(<span class="v">"yolo11n.pt"</span>)
+
+<span class="k">while</span> cap.isOpened():
+    success, frame = cap.read()
+    <span class="k">if</span> <span class="k">not</span> success: <span class="k">break</span>
+    annotated = model(frame)[<span class="v">0</span>].plot()
+    frame_placeholder.image(annotated, channels=<span class="v">"BGR"</span>)  <span class="c"># 액자 갱신</span></pre>
+    <div class="callout yellow"><code>set_page_config(layout="wide")</code>는 반드시 코드 최상단에 있어야 동작한다. OpenCV는 색 순서가 BGR이라 <code>channels="BGR"</code>를 명시해야 Streamlit에서 색이 제대로 나온다. <code>st.empty()</code> placeholder를 루프에서 <code>.image()</code>로 계속 덮어써야 실시간 효과가 난다.</div>
+
+    <h3>② 컬럼 레이아웃 + 실시간 그래프</h3>
+    <p>화면을 좌우 2칸으로 쪼개 왼쪽엔 영상, 오른쪽엔 <strong>탐지 개수 막대 그래프</strong>를 동시에 갱신한다. Plotly로 종류별 개수를 매 프레임 다시 그린다.</p>
+    <pre>col1, col2 = st.columns(<span class="v">2</span>)          <span class="c"># 좌·우 2칸</span>
+<span class="k">with</span> col1: frame_placeholder = st.empty()
+<span class="k">with</span> col2: chart_placeholder = st.empty()
+
+<span class="a">@st.cache_resource</span>                  <span class="c"># 무거운 모델은 1회만 로드</span>
+<span class="k">def</span> <span class="a">load_model</span>(): <span class="k">return</span> YOLO(<span class="v">"yolo11n.pt"</span>)
+model = load_model()
+
+<span class="c"># 탐지된 클래스 이름 모으기 → 개수 집계 → 막대그래프</span>
+labels = [model.names[<span class="a">int</span>(c)] <span class="k">for</span> c <span class="k">in</span> results[<span class="v">0</span>].boxes.cls]
+df = pd.DataFrame({<span class="v">"Object"</span>: labels}).value_counts().reset_index(name=<span class="v">"Count"</span>)
+fig = px.bar(df, x=<span class="v">"Object"</span>, y=<span class="v">"Count"</span>, color=<span class="v">"Object"</span>, text=<span class="v">"Count"</span>)
+chart_placeholder.plotly_chart(fig, key=f<span class="v">"chart_{time.time()}"</span>)</pre>
+    <div class="callout blue"><code>@st.cache_resource</code>는 무거운 AI 모델을 <strong>딱 한 번만</strong> 불러온다(화면 조작으로 스크립트가 재실행돼도 캐시에서 즉시 반환 → 안 쓰면 매번 새로 읽어 느림). Plotly 차트는 매 프레임 <code>key=f"chart_{time.time()}"</code>로 <strong>고유 key</strong>를 줘야 위젯 충돌이 안 난다.</div>
+
+    <h2>🎨 Gradio — 함수 하나로 웹앱</h2>
+
+    <p><strong>Gradio</strong>는 Python 함수만 있으면 웹 화면을 만들어주는 도구. HTML·CSS 없이 AI 데모를 만들고 <code>launch(share=True)</code>로 인터넷 주소까지 발급한다.</p>
+    <pre><span class="c"># 설치</span>
+pip install gradio deep-translator</pre>
+    <div class="callout yellow"><strong>⚠ import 하자마자 <code>ImportError: numpy.core.multiarray failed to import</code>가 나면</strong> — gradio 잘못이 아니라 <strong>numpy 2 버전 충돌</strong>이다(numpy 2부터 <code>numpy.core</code>→<code>numpy._core</code>로 바뀜, 옛 pandas·matplotlib이 옛 이름을 부름). gradio는 내부에서 pandas를 불러오다 터지는 피해자. 해결: <code>pip install -U pandas matplotlib</code>로 최신판으로 갈아끼운다(numpy를 1.x로 내리는 건 비권장).</div>
+
+    <table>
+        <tr><th>파라미터</th><th>역할</th><th>예시</th></tr>
+        <tr><td><code>fn</code></td><td>실행할 함수</td><td><code>fn=say_hello</code></td></tr>
+        <tr><td><code>inputs</code></td><td>입력 컴포넌트</td><td><code>"text"</code>, <code>gr.Image(type="numpy")</code></td></tr>
+        <tr><td><code>outputs</code></td><td>출력 컴포넌트</td><td><code>"text"</code>, <code>gr.Image()</code></td></tr>
+        <tr><td><code>launch(share=True)</code></td><td>공개 URL 생성(72시간)</td><td>—</td></tr>
+    </table>
+
+    <h3>① 기본 웹앱 (Hello)</h3>
+    <p>함수 정의 → <code>gr.Interface</code> 연결 → <code>launch</code> 세 단계로 끝나는 가장 쉬운 첫 웹앱.</p>
+    <pre><span class="k">def</span> <span class="a">say_hello</span>(name):
+    <span class="k">return</span> <span class="v">"Hello, "</span> + name
+
+gr.Interface(fn=say_hello, inputs=<span class="v">"text"</span>, outputs=<span class="v">"text"</span>).launch(share=<span class="k">True</span>)</pre>
+
+    <h3>② 번역 웹앱</h3>
+    <p>구글 번역 라이브러리에 Gradio 화면만 입혀 5줄로 완성한 영한 번역기.</p>
+    <pre><span class="k">from</span> deep_translator <span class="k">import</span> GoogleTranslator
+<span class="k">def</span> <span class="a">trans_en_to_ko</span>(text):
+    <span class="k">return</span> GoogleTranslator(source=<span class="v">"en"</span>, target=<span class="v">"ko"</span>).translate(text)
+
+gr.Interface(fn=trans_en_to_ko, inputs=<span class="v">"text"</span>, outputs=<span class="v">"text"</span>,
+             title=<span class="v">"번역기"</span>, description=<span class="v">"영어 → 한국어"</span>).launch()</pre>
+
+    <h3>③ YOLO 이미지 탐지</h3>
+    <p>사진을 올리면 YOLO가 사물을 찾아 박스를 그려준다. <code>gr.Image(type="numpy")</code>로 이미지를 숫자 배열로 받아 모델에 바로 넘긴다.</p>
+    <pre><span class="k">def</span> <span class="a">det_image</span>(image):
+    <span class="k">return</span> model(image)[<span class="v">0</span>].plot()
+
+gr.Interface(fn=det_image, inputs=gr.Image(type=<span class="v">"numpy"</span>), outputs=gr.Image(),
+             title=<span class="v">"YOLO 이미지 객체 탐지"</span>).launch()</pre>
+    <div class="callout blue"><code>gr.Image(type="numpy")</code> — <code>type</code>을 안 적으면 PIL 객체로 들어가 오류가 난다. YOLO엔 숫자 배열(numpy)로 넘겨야 한다. 출력의 <code>gr.Image()</code>는 배열도 자동으로 그림으로 표시한다.</div>
+
+    <h3>④ gr.Blocks 통합 앱 (탭 3개)</h3>
+    <p>인사·번역·YOLO를 <strong>탭 3개</strong>로 묶어 한 앱에 담았다. 함수는 그대로 두고 화면 짜는 부분만 <code>gr.Blocks</code>로 바꾼다.</p>
+    <pre><span class="k">with</span> gr.Blocks() <span class="k">as</span> gr_web:
+    gr.Markdown(<span class="v">"# 내가 만든 AI 앱 모음"</span>)
+    <span class="k">with</span> gr.Tab(<span class="v">"번역"</span>):
+        en = gr.Textbox(label=<span class="v">"영어"</span>)
+        ko = gr.Textbox(label=<span class="v">"한국어"</span>)
+        gr.Button(<span class="v">"번역"</span>).click(trans_en_to_ko, en, ko)  <span class="c"># (함수, 입력칸, 출력칸)</span>
+gr_web.launch()</pre>
+    <table>
+        <tr><th>비교</th><th>gr.Interface</th><th>gr.Blocks</th></tr>
+        <tr><td>화면</td><td>Gradio가 알아서</td><td>내가 쓴 순서대로 배치</td></tr>
+        <tr><td>기능 개수</td><td>1개</td><td>여러 개(탭·행·열)</td></tr>
+        <tr><td>실행 시점</td><td>입력하면 자동</td><td><code>.click()</code>으로 내가 정함</td></tr>
+    </table>
+    <div class="callout yellow"><strong>자주 하는 실수</strong> — 탭마다 칸 이름을 똑같이 지으면(<code>name_box</code>) 나중 것이 앞 것을 덮어써 엉뚱한 칸에 결과가 나온다. <code>.click()</code>은 칸을 만든 <code>with</code> 블록 안에, <code>launch()</code>는 <code>with</code> 밖에 둔다. 버튼만 만들고 <code>.click()</code>을 안 붙이면 눌러도 아무 일이 없다.</div>
+
+    <h2>🤖 Claude Code — AI 코딩 CLI (로드맵 01~19)</h2>
+
+    <p><strong>Claude Code</strong>는 Anthropic이 만든 터미널용 AI 코딩 도구. 지금 이 정리도 Claude Code로 만들고 있어서, 도구 자체를 제대로 뜯어봤다.</p>
+    <pre><span class="c"># 01 설치 (Node.js 18+)</span>
+npm install -g @anthropic-ai/claude-code
+claude --version   <span class="c"># 확인 후 claude 로 실행</span></pre>
+
+    <h3>02~03 · 명령어</h3>
+    <p>세션 안에서 쓰는 슬래시 명령어. 새 프로젝트는 <code>/init</code>으로 시작한다.</p>
+    <table>
+        <tr><th>명령어</th><th>설명</th></tr>
+        <tr><td><code>/init</code></td><td>CLAUDE.md 자동 생성(프로젝트 설정)</td></tr>
+        <tr><td><code>/help</code> · <code>/clear</code></td><td>도움말 · 대화 초기화</td></tr>
+        <tr><td><code>/compact</code></td><td>긴 대화 요약·압축(컨텍스트 절약)</td></tr>
+        <tr><td><code>@파일</code></td><td>특정 파일만 수정 지정(<code>@src/main.py</code>)</td></tr>
+        <tr><td><code>!</code> prefix</td><td>터미널 명령 즉시 실행(<code>!ls -la</code>)</td></tr>
+        <tr><td><code>/model</code> · <code>/btw</code></td><td>모델 전환 · 작업 중단 없이 간단 질문</td></tr>
+    </table>
+
+    <h3>04 · 14 · 15 — 작동 모드 · 모델 · Effort</h3>
+    <p><code>Shift+Tab</code>으로 <strong>작동 모드 3가지</strong>를 순환한다: <code>default</code>(매번 확인) → <code>auto</code>(자동 수행) → <code>plan</code>(계획 먼저 작성 후 승인). 작업 성격에 따라 <strong>모델</strong>(Opus=복잡, Sonnet=일반, Haiku=빠름)과 <strong>Effort</strong>(low~max, 높을수록 깊은 사고·토큰↑)를 고른다.</p>
+
+    <div class="callout yellow">
+        <strong>🔒 고급 설정 — 자율권과 안전</strong> — Claude에게 주는 <strong>자율권을 조절하는 장치</strong>다. 신입에게 "매번 확인받고 진행"시키다 신뢰가 쌓이면 "알아서 해"로 바꾸는 것과 같은데, <strong>자율권 ↑ = 속도 ↑ = 위험 ↑</strong>이라 실수를 되돌리기 어려워진다. 극단이 <code>claude --dangerously-skip-permissions</code>(bypassPermissions) — 모든 작업을 확인 없이 자동 실행하므로 <strong>신뢰 가능한 격리 환경(도커·VM)에서만</strong> 써야 한다. <em>"큰 힘에는 큰 책임이 따른다."</em></div>
+
+    <h3>05 — 이미지 사용</h3>
+    <p>스크린샷을 채팅창에 드롭하면 분석한다. "이 UI 오류 고쳐줘", "이 시안대로 HTML 만들어줘", "이 에러 원인이 뭐야?"처럼 화면을 그대로 넘길 수 있다.</p>
+
+    <h3>06 · 07 — 용어</h3>
+    <table>
+        <tr><th>용어</th><th>설명</th></tr>
+        <tr><td>Context Window</td><td>AI가 한 번에 처리할 수 있는 최대 텍스트 길이</td></tr>
+        <tr><td>Token</td><td>텍스트 처리 최소 단위(약 0.75단어)</td></tr>
+        <tr><td>Hallucination</td><td>사실 아닌 내용을 자신 있게 생성하는 현상</td></tr>
+        <tr><td>MCP</td><td>USB-C처럼 통일 규격으로 외부 도구 연결</td></tr>
+    </table>
+    <div class="callout green"><strong>프롬프트 엔지니어링 vs 컨텍스트 엔지니어링</strong> — 전자는 <strong>무엇을 물어볼지</strong>(질문·지시를 잘 쓰기), 후자는 <strong>어떤 정보를 줄지</strong>(CLAUDE.md·<code>@파일</code>로 대화에 담을 정보를 구성)에 집중한다.</div>
+
+    <h3>08 — AI 도입 3단계 여정</h3>
+    <p>새 도구를 채택할 때 누구나 거치는 과정(Mitchell Hashimoto): ① <strong>비효율의 기간</strong>(기존보다 느리고 어색) → ② <strong>적절성의 기간</strong>(비슷한 효율) → ③ <strong>발견의 기간</strong>(워크플로가 바뀌는 생산성 도약).</p>
+
+    <h3>🔒 하네스 엔지니어링 (Harness Engineering)</h3>
+    <p><strong>하네스(Harness)</strong>는 AI 에이전트가 <strong>오랜 시간 일할 때 방향을 잡아주고 실수를 감지하는 관리 기술</strong>이다. 마치 등산 안전줄처럼 — AI가 자유롭게 일하되, 위험한 순간엔 자동으로 제동이 걸리게 만드는 <strong>제어 시스템</strong>이다. 프롬프트/컨텍스트 엔지니어링이 "한 번의 요청을 잘 만드는" 것이라면, 하네스 엔지니어링은 "장시간 자율 실행되는 에이전트를 안전하게 굴리는" 상위 관점이다.</p>
+    <div class="callout green">
+        참고: Anthropic — <em>Effective Harnesses for Long-Running Agents</em>. 그리고 하네스 엔지니어링 이후, 요즘은 <strong>루프 엔지니어링(Loop Engineering)</strong>이라는 개념도 새로 등장했다. 에이전트가 <strong>관찰 → 행동 → 피드백</strong>을 반복하는 <strong>실행 루프 자체를 설계·최적화</strong>하는 접근으로, 언제 멈추고 언제 다시 시도할지, 어떤 신호로 루프를 조율할지에 초점을 둔다.
+    </div>
+
+    <h3>09 · 10 · 11 — CLAUDE.md 메모리</h3>
+    <p><code>CLAUDE.md</code>는 모든 세션 시작 시 자동으로 컨텍스트에 로드된다. <strong>200줄 이하</strong>로 유지해야 지침 준수율이 높다. 초과 내용은 <code>@import</code>로 분리한다.</p>
+    <pre><span class="c"># CLAUDE.md 안에서 다른 파일 참조</span>
+@docs/git-instructions.md
+@.claude/rules/testing.md</pre>
+    <div class="callout blue"><strong>넣을 것</strong> — 빌드·테스트·린트 명령, 코드 스타일, 브랜치 규칙. <strong>뺄 것</strong> — 코드 보면 아는 것, 자주 바뀌는 정보. 강조는 <code>IMPORTANT</code>·<code>YOU MUST</code>로. 개인 설정은 <code>CLAUDE.local.md</code>(gitignore), 팀 공유는 git 커밋.</div>
+
+    <h3>12 · 13 · 16 — 프롬프트 잘 쓰는 법</h3>
+    <div class="cascade-list">
+        <div class="cascade-item"><span class="cnum">1</span><span class="cname">위치 지정</span><span class="cdesc">"auth.js에서 비밀번호 찾기 버튼 오류 수정" — @파일로 콕 집기</span></div>
+        <div class="cascade-item"><span class="cnum">2</span><span class="cname">역할 명확화</span><span class="cdesc">"당신은 시니어 백엔드 엔지니어, 성능 최적화 중심으로"</span></div>
+        <div class="cascade-item"><span class="cnum">3</span><span class="cname">금지사항 명시</span><span class="cdesc">"새 패키지 추가 금지, 동작하는 기능은 건드리지 말 것"</span></div>
+        <div class="cascade-item"><span class="cnum">4</span><span class="cname">단계별 분해</span><span class="cdesc">"분석 → 방법 설명 → 코드 작성 → 저장 순서로"</span></div>
+        <div class="cascade-item"><span class="cnum">5</span><span class="cname">검증 수단 제공</span><span class="cdesc">"수정 후 자동 검사 돌려 기존 기능 문제없는지 확인"</span></div>
+    </div>
+    <pre><span class="c"># 구조화 템플릿</span>
+[ROLE: 시니어 백엔드 엔지니어]
+[GOAL: 로그인 버그 수정]
+[CONSTRAINTS: Python만, 새 패키지 금지]
+[CONTEXT: auth.py 245번 줄 오류]
+[QUESTION: 원인과 수정 방법은?]</pre>
+
+    <h3>17 — 세션 관리</h3>
+    <p>종료했다 다시 시작해도 문맥을 유지한다. <code>claude --resume</code>으로 최근 세션 목록에서 골라 이어가거나, <code>--continue</code>로 최근 세션을 바로 잇는다.</p>
+
+    <h3>18 · 19 — 스킬 & 협업</h3>
+    <p>자주 쓰는 작업을 <code>.claude/skills/이름.md</code>에 저장하면 <code>/이름</code>으로 바로 실행하는 <strong>나만의 슬래시 명령어</strong>가 된다. 나아가 Claude App + Chrome 확장 + MCP를 연결하면 "뉴스 요약해서 카톡으로 보내줘" 같은 <strong>복합 자동화</strong >도 가능하다.</p>
+    <pre><span class="c"># .claude/skills/translate-ko.md → /translate-ko 로 실행</span>
+주어진 텍스트를 자연스러운 한국어로 번역합니다.
+- 구어체보다 문어체 우선
+- 전문 용어는 원문 병기</pre>
+
+    <div class="callout blue"><strong>🛠 직접 스킬 만들기 실습</strong> — 이론만 보지 않고, <code>.claude/skills/</code> 폴더에 <code>이름.md</code> 파일을 만들어 작업 지시를 적고 <code>/이름</code>으로 실행되는 <strong>나만의 스킬</strong>을 직접 만들어봤다. 자주 반복하는 프롬프트를 한 번 스킬로 굳혀 두니, 다음부턴 명령어 하나로 똑같은 작업을 재현할 수 있어서 편했다.</div>
+
+    <div class="callout green"><strong>💰 스킬도 사고판다</strong> — 잘 만든 스킬은 상품이 되기도 한다. <a href="https://www.skills.ag/" target="_blank" rel="noopener">skills.ag</a> 같은 마켓에서는 검증된 AI 에이전트 스킬을 <strong>판매·구매</strong>한다. "반복 작업을 절차적 지식으로 굳혀 재사용한다"는 스킬의 개념이, 이제 하나의 <strong>생태계·시장</strong>으로 커지고 있다는 게 인상적이었다.</div>
+
+    <div class="closing">
+        <h3>✍️ 마치며</h3>
+        <p>Streamlit·Gradio를 보면서 "AI 모델을 만드는 것"과 "그걸 사람이 쓰게 만드는 것"은 다른 일이라는 걸 느꼈다. 함수 하나에 <code>gr.Interface</code> 몇 줄만 붙여도 친구에게 링크로 보낼 수 있는 웹앱이 된다는 게 특히 인상적이었다. 그리고 그동안 무심코 써온 <strong>Claude Code</strong> 자체를 뜯어보니, 결국 핵심은 "무엇을 시키느냐(프롬프트)"보다 "어떤 맥락을 주느냐(CLAUDE.md·@파일)"라는 컨텍스트 엔지니어링이었다. 도구를 아는 만큼 더 잘 쓸 수 있다는 걸 체감한 하루였다. 다음엔 만든 앱들을 실제로 배포해 링크로 공유해볼 생각이다.</p>
+        <p style="margin-top:16px; font-size:13px; color:#888;">🏷️ Streamlit &nbsp;|&nbsp; Gradio &nbsp;|&nbsp; Claude Code &nbsp;|&nbsp; 웹앱 &nbsp;|&nbsp; AI &nbsp;|&nbsp; 학습일지</p>
+    </div>
+
+</div>

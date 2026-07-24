@@ -1,0 +1,333 @@
+<style>
+.post-wrap * { box-sizing: border-box; }
+.post-wrap ul, .post-wrap ol, .post-wrap li { list-style: none !important; border: none !important; margin: 0; padding: 0; }
+.post-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+    color: #333;
+    line-height: 1.8;
+}
+.post-wrap .post-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    border-left: 5px solid #f97316;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    padding-left: 18px;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 40px;
+}
+.post-wrap .post-header * { margin-top: 0 !important; }
+.post-wrap .tag-badge {
+    display: inline-block !important;
+    background: #ffedd5;
+    color: #f97316;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.post-wrap .post-header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #1a1a2e;
+    margin: 0;
+}
+.post-wrap .subtitle {
+    margin-top: 8px;
+    color: #666;
+    font-size: 14px;
+}
+.post-wrap h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 48px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+.post-wrap h3 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #2c3e50 !important;
+    margin: 28px 0 10px !important;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap p { margin-bottom: 14px; font-size: 15px; }
+.post-wrap .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+    border: none !important;
+    background: none !important;
+}
+.post-wrap .summary-card {
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 10px;
+    padding: 16px 18px;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.post-wrap .summary-card * { border: none !important; outline: none !important; }
+.post-wrap .summary-card .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f97316;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.post-wrap .summary-card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+.post-wrap .ctag {
+    display: inline-block;
+    background: #f1f3f9;
+    color: #444;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 0;
+    line-height: 1.6;
+    vertical-align: middle;
+}
+.post-wrap pre {
+    background: #1e2235;
+    color: #e8eaf6;
+    border-radius: 10px;
+    padding: 20px 22px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 14px 0 20px !important;
+}
+.post-wrap pre .c  { color: #7986cb; }
+.post-wrap pre .t  { color: #80cbc4; }
+.post-wrap pre .a  { color: #ffcc80; }
+.post-wrap pre .v  { color: #a5d6a7; }
+.post-wrap pre .k  { color: #f48fb1; }
+.post-wrap pre .tx { color: #e8eaf6; }
+.post-wrap code {
+    font-family: 'Courier New', monospace;
+    font-size: 13.5px;
+    background: #f1f3f9;
+    color: #c0392b;
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+.post-wrap .callout { border-radius: 10px; padding: 16px 20px; margin: 18px 0; font-size: 14.5px; }
+.post-wrap .callout.blue { background: #fff4ec; border-left: 4px solid #f97316; color: #9a3412; }
+.post-wrap .callout.green { background: #fff1e0; border-left: 4px solid #fb923c; color: #b45309; }
+.post-wrap .callout.yellow { background: #fef3c7; border-left: 4px solid #f59e0b; color: #92400e; }
+.post-wrap table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+.post-wrap th { background: #f97316; color: #fff; padding: 10px 14px; text-align: left; font-weight: 700; }
+.post-wrap td { padding: 10px 14px; border-bottom: 1px solid #e9ecef; }
+.post-wrap tr:nth-child(even) td { background: #fff7ed; }
+.post-wrap .cascade-list { margin: 14px 0; padding: 0; border: none; }
+.post-wrap .cascade-item {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    margin-bottom: 6px !important;
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+}
+.post-wrap .cascade-item .cnum {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 24px !important;
+    min-width: 24px !important;
+    height: 24px;
+    border-radius: 50%;
+    background: #f97316;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 12px;
+    flex-shrink: 0 !important;
+}
+.post-wrap .cascade-item .cname {
+    font-family: 'Courier New', monospace;
+    color: #f97316;
+    font-weight: 700;
+    display: inline-block !important;
+    width: 150px !important;
+    min-width: 150px !important;
+    flex-shrink: 0 !important;
+    font-size: 13px;
+}
+.post-wrap .cascade-item .cdesc { color: #555; flex: 1; display: inline-block !important; }
+.post-wrap .closing {
+    margin-top: 20px !important;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #f9731622, #ea580c22);
+    border-radius: 14px;
+    border: 1px solid #dee2e6;
+}
+.post-wrap .closing h3 { margin-top: 0 !important; margin-bottom: 10px; font-size: 17px; }
+.post-wrap .closing p { font-size: 14.5px; color: #555; margin-bottom: 6px; }
+.post-wrap hr.divider { border: none; border-top: 1px solid #e9ecef; margin: 36px 0; }
+</style>
+
+<div class="post-wrap">
+
+    <div class="post-header">
+        <span class="tag-badge"># AI 도구 · 자동화 학습일지</span>
+        <h1>[Claude Code 심화]<br>커스텀 훅 · 플러그인 · MCP 자동화</h1>
+        <p class="subtitle">2026.07.24 · 학습 범위: Claude Code CLI 명령어, 커스텀 훅(PreToolUse), 플러그인 제작, MCP</p>
+    </div>
+
+    <h2>📋 오늘 다룬 것들</h2>
+
+    <p>오늘은 <strong>"Claude Code를 내 손에 맞게 길들이는"</strong> 하루였다. 세션을 관리하는 CLI 명령어부터, 위험한 명령을 자동으로 가로채는 <strong>커스텀 훅</strong>, 스킬·훅·에이전트·MCP를 한데 묶은 <strong>플러그인 제작</strong>, 그리고 노션 MCP를 연결해 이 학습일지를 자동으로 쓰는 <strong>자동화</strong>까지 직접 만들어봤다. 어제까지 도구를 "쓰는" 쪽이었다면, 오늘은 도구를 "만드는" 쪽으로 넘어간 느낌이었다.</p>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="card-title">CLI 명령어</div>
+            <div class="tags"><span class="ctag">/rename</span><span class="ctag">/resume</span><span class="ctag">@agent</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">커스텀 훅</div>
+            <div class="tags"><span class="ctag">PreToolUse</span><span class="ctag">stdin JSON</span><span class="ctag">exit code</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">안전 가드</div>
+            <div class="tags"><span class="ctag">rm -rf</span><span class="ctag">git reset</span><span class="ctag">DROP</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">플러그인</div>
+            <div class="tags"><span class="ctag">스킬</span><span class="ctag">훅</span><span class="ctag">에이전트</span><span class="ctag">MCP</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">배포</div>
+            <div class="tags"><span class="ctag">마켓플레이스</span></div>
+        </div>
+        <div class="summary-card">
+            <div class="card-title">자동화</div>
+            <div class="tags"><span class="ctag">notion MCP</span><span class="ctag">/daily-log</span></div>
+        </div>
+    </div>
+
+    <h2>🖥 Claude Code CLI — 세션 다루기</h2>
+
+    <p>세션을 오래 쓰다 보면 대화가 여러 개로 쌓인다. 오늘은 그 세션을 <strong>이름 붙이고 다시 찾아 들어가는</strong> 명령어를 익혔다.</p>
+    <table>
+        <tr><th>명령어</th><th>역할</th></tr>
+        <tr><td><code>/rename</code></td><td>현재 세션에 제목을 붙여 나중에 알아보기 쉽게 함</td></tr>
+        <tr><td><code>/resume</code></td><td>이전 세션 목록을 모두 보고 원하는 세션으로 찾아 들어감</td></tr>
+    </table>
+    <div class="callout blue"><code>/resume</code>은 <strong>"어제 하던 그 작업"</strong>으로 정확히 되돌아갈 때 유용하다. 세션마다 <code>/rename</code>으로 제목을 붙여두면, 나중에 목록에서 헤매지 않고 바로 골라 이어갈 수 있다.</div>
+
+    <h3>@에이전트로 홈페이지 만들기</h3>
+    <p><code>@에이전트이름</code>으로 특정 서브에이전트를 호출해 작업을 통째로 맡길 수 있다. 오늘은 <code>@"늙크크"</code> 에이전트를 불러 홈페이지(<code>index.html</code>) 한 벌을 만들어봤다. 프롬프트로 일일이 지시하는 대신, 목적에 맞게 설계된 에이전트에게 "만들어줘" 한 번으로 결과물이 나온다는 게 편했다.</p>
+
+    <h2>🔒 커스텀 훅 — Dangerous Command Guard</h2>
+
+    <p>오늘의 핵심 실습. <strong>Claude Code가 복구 불가능한 Bash 명령을 실행하려 할 때, 자동으로 가로채서 사용자가 그 명령을 직접 타이핑해야만 실행을 허용하는 안전 가드 훅</strong>을 만들었다. 훅(Hook)은 Claude가 특정 행동을 하기 <strong>직전/직후</strong>에 끼어드는 내 코드다.</p>
+
+    <h3>동작 방식</h3>
+    <div class="cascade-list">
+        <div class="cascade-item"><span class="cnum">1</span><span class="cname">시도</span><span class="cdesc">Claude가 Bash 툴로 명령 실행을 시도</span></div>
+        <div class="cascade-item"><span class="cnum">2</span><span class="cname">이벤트</span><span class="cdesc">PreToolUse 이벤트 발생 → 훅 스크립트 자동 실행</span></div>
+        <div class="cascade-item"><span class="cnum">3</span><span class="cname">감지</span><span class="cdesc">위험 패턴 감지 시 실행 중단 + 터미널에 경고 출력</span></div>
+        <div class="cascade-item"><span class="cnum">4</span><span class="cname">확인</span><span class="cdesc">사용자가 명령어를 그대로 타이핑하면 허용, 아니면 차단</span></div>
+        <div class="cascade-item"><span class="cnum">5</span><span class="cname">기록</span><span class="cdesc">시도 결과(차단/허용)를 로그 파일에 남김</span></div>
+    </div>
+
+    <h3>차단 대상 명령어</h3>
+    <table>
+        <tr><th>패턴</th><th>위험 이유</th></tr>
+        <tr><td><code>rm -rf</code></td><td>파일·디렉토리 강제 삭제</td></tr>
+        <tr><td><code>git reset --hard</code></td><td>미저장 변경사항 전체 파기</td></tr>
+        <tr><td><code>git push --force</code></td><td>원격 히스토리 덮어쓰기</td></tr>
+        <tr><td><code>DROP TABLE</code></td><td>DB 테이블 삭제</td></tr>
+        <tr><td><code>DROP DATABASE</code></td><td>DB 전체 삭제</td></tr>
+    </table>
+
+    <h3>구성 요소</h3>
+    <pre>~/.claude/
+├── hooks/
+│   └── dangerous_guard.py   <span class="c"># 훅 스크립트 (Python)</span>
+├── settings.json            <span class="c"># PreToolUse 이벤트 등록</span>
+└── logs/
+    └── dangerous_guard.log  <span class="c"># 시도 기록</span></pre>
+
+    <p>훅은 <code>settings.json</code>의 <code>PreToolUse</code>에 <strong>Bash 툴을 matcher로</strong> 걸어 등록한다. Bash 실행 시도마다 이 파이썬 스크립트가 먼저 돌아간다.</p>
+    <pre><span class="k">"hooks"</span>: {
+  <span class="k">"PreToolUse"</span>: [
+    {
+      <span class="k">"matcher"</span>: <span class="v">"Bash"</span>,
+      <span class="k">"hooks"</span>: [
+        {
+          <span class="k">"type"</span>: <span class="v">"command"</span>,
+          <span class="k">"command"</span>: <span class="v">"python \"C:/Users/Har06/.claude/hooks/dangerous_guard.py\""</span>
+        }
+      ]
+    }
+  ]
+}</pre>
+
+    <h3>확인 방식 · 로그</h3>
+    <p>사용자가 위험 명령어를 <strong>토씨 하나 안 틀리고 그대로 타이핑</strong>해야 실행이 허용된다. 틀리거나 빈 입력이면 차단된다.</p>
+    <pre>⚠️  위험 명령어 감지: [rm -rf]
+   명령어: rm -rf ./dist
+
+실행하려면 명령어를 그대로 입력하세요 (취소: Enter만 누르기):
+&gt; rm -rf ./dist     <span class="c">← 정확히 입력 시 허용</span></pre>
+    <pre>2026-07-24 14:32:11 | BLOCKED | rm -rf ./dist
+2026-07-24 14:35:02 | ALLOWED | git reset --hard HEAD~1</pre>
+
+    <h3>핵심 기술</h3>
+    <table>
+        <tr><th>항목</th><th>내용</th></tr>
+        <tr><td>이벤트</td><td><code>PreToolUse</code> — Bash 툴 실행 <strong>전</strong>에 가로채기</td></tr>
+        <tr><td>언어</td><td>Python</td></tr>
+        <tr><td>입력</td><td>stdin으로 JSON 수신 (<code>tool_input.command</code> 필드)</td></tr>
+        <tr><td>콘솔 입력</td><td><code>CONIN$</code> 직접 열기 (stdin이 이미 소비된 상태에서 사용자 입력 받기)</td></tr>
+        <tr><td>종료 코드</td><td><code>0</code> = 허용, <code>2</code> = 차단</td></tr>
+    </table>
+    <div class="callout yellow"><strong>막혔던 지점</strong> — stdin으로 이미 JSON을 다 읽어버린 뒤라, 같은 stdin으로 다시 사용자 키 입력을 받으려 하면 안 된다. 그래서 Windows 콘솔의 입력 버퍼인 <code>CONIN$</code>를 <strong>직접 열어서</strong> 타이핑을 받아야 했다. 종료 코드로 허용/차단이 갈린다는 것(<code>2</code>면 Claude 쪽에서 실행이 막힘)도 이 실습으로 확실히 이해했다.</div>
+    <div class="callout blue"><strong>솔직한 후기</strong> — 훅 실습을 로드맵 20번부터 끝까지 마저 진행했는데, 실행이 너무너무 느려서 훅이 제대로 걸린 건지 애매했다 ㅠㅠ. 개념과 흐름은 확실히 잡았지만, 실제 반응 속도 때문에 "정말 동작하는가"를 눈으로 확신하긴 어려웠던 부분이 아쉬웠다.</div>
+
+    <h2>🧩 커스텀 플러그인 제작</h2>
+
+    <p>훅 하나로 끝이 아니라, <strong>스킬 · 훅 · 에이전트 · MCP</strong>를 한 묶음으로 담은 <strong>커스텀 플러그인</strong>을 만들어봤다. 여러 요소를 조합해 하나의 기능 패키지로 굳히고, <strong>마켓플레이스 배포 방식</strong>으로 배포까지 진행했다.</p>
+    <table>
+        <tr><th>구성 요소</th><th>역할</th></tr>
+        <tr><td>스킬(Skill)</td><td>반복 작업을 <code>/명령어</code>로 굳혀 재사용</td></tr>
+        <tr><td>훅(Hook)</td><td>특정 행동 직전/직후에 내 코드가 자동 개입</td></tr>
+        <tr><td>에이전트(Agent)</td><td>목적별 서브에이전트에게 작업을 통째로 위임</td></tr>
+        <tr><td>MCP</td><td>노션·카카오 등 외부 도구를 통일 규격으로 연결</td></tr>
+    </table>
+    <div class="callout green"><strong>느낀 점</strong> — 스킬·훅·에이전트·MCP가 따로 놀던 개념이었는데, 플러그인이라는 그릇에 <strong>한꺼번에 담아 배포</strong>할 수 있다는 걸 알고 나니 "내 워크플로 전체를 하나로 패키징한다"는 그림이 잡혔다. 마켓플레이스로 배포한다는 건, 결국 내가 만든 도구를 남도 쓸 수 있게 <strong>상품처럼 유통</strong>한다는 의미였다.</div>
+
+    <h2>🔌 MCP 연결 → 학습일지 자동화</h2>
+
+    <p>마지막으로, 재시작된 세션에서 <code>/mcp</code>로 <strong>notion MCP가 초록불(연결됨)</strong>인지 확인한 뒤 <code>/daily-log</code>를 실행했다. 노션의 오늘 메모와 코드 변경을 읽어, 지금 보고 있는 이 학습일지 HTML을 <strong>자동으로</strong> 만들고 커밋까지 이어지는 흐름이다.</p>
+    <pre><span class="c"># MCP 연결 확인 → 자동화 스킬 실행</span>
+/mcp          <span class="c"># notion 초록불 확인</span>
+/daily-log    <span class="c"># 오늘 메모 + git 변경 → 학습일지 HTML 생성·커밋</span></pre>
+    <div class="callout blue">오늘 배운 <strong>스킬 · 훅 · 에이전트 · MCP</strong>가 결국 이 <code>/daily-log</code> 한 줄에 전부 모여 있다. 노션 MCP로 메모를 읽고, 서브에이전트가 글을 쓰고, 스킬이 전체 절차를 묶고, 커밋 형식 검증 훅이 마지막을 지킨다 — 오늘 실습이 하나의 자동화로 합쳐지는 게 눈에 보였다.</div>
+
+    <div class="closing">
+        <h3>✍️ 마치며</h3>
+        <p>어제까지가 Claude Code를 "쓰는" 법이었다면, 오늘은 <strong>"뜯어고쳐 내 것으로 만드는"</strong> 법을 배웠다. 위험 명령을 직접 타이핑해야만 통과시키는 안전 가드 훅을 만들면서, AI에게 자율권을 주되 <strong>돌이킬 수 없는 순간엔 사람이 한 번 더 확인</strong>하게 만드는 하네스의 감각을 손으로 익혔다. 스킬·훅·에이전트·MCP를 플러그인으로 묶어 배포하고, 그 조합이 <code>/daily-log</code> 자동화로 합쳐지는 걸 보며 "도구를 만드는 사람"의 시야가 조금 열린 하루였다. 훅 실행이 느려 아쉬웠던 부분은, 다음에 더 가벼운 구조로 다시 확인해볼 생각이다.</p>
+        <p style="margin-top:16px; font-size:13px; color:#888;">🏷️ Claude Code &nbsp;|&nbsp; 커스텀 훅 &nbsp;|&nbsp; PreToolUse &nbsp;|&nbsp; 플러그인 &nbsp;|&nbsp; MCP &nbsp;|&nbsp; 자동화 &nbsp;|&nbsp; 학습일지</p>
+    </div>
+
+</div>
